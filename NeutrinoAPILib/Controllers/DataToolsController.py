@@ -3,7 +3,7 @@
 """
    NeutrinoAPILib.Controllers.DataToolsController
 
-   This file was automatically generated for NeutrinoAPI.com by APIMATIC BETA v2.0 on 12/10/2015
+   This file was automatically generated for NeutrinoAPI.com by APIMATIC BETA v2.0 on 01/07/2016
 """
 import unirest
 
@@ -32,9 +32,9 @@ class DataToolsController(object):
         self.__user_id = user_id
         self.__api_key = api_key
 
-    def create_phone_validate(self,
-                              number,
-                              country_code=None):
+    def phone_validate(self,
+                       number,
+                       country_code=None):
         """Does a POST request to /phone-validate.
 
         Parse, validate and get location information about a phone number.
@@ -103,8 +103,8 @@ class DataToolsController(object):
         # If we got here then an error occured while trying to parse the response
         raise APIException("Invalid JSON returned", response.code, response.body) 
 
-    def create_user_agent_info(self,
-                               user_agent):
+    def user_agent_info(self,
+                        user_agent):
         """Does a POST request to /user-agent-info.
 
         Parse, validate and get detailed user-agent information from a
@@ -169,10 +169,10 @@ class DataToolsController(object):
         # If we got here then an error occured while trying to parse the response
         raise APIException("Invalid JSON returned", response.code, response.body) 
 
-    def create_code_highlight(self,
-                              content,
-                              mtype,
-                              add_keyword_links=None):
+    def code_highlight(self,
+                       content,
+                       mtype,
+                       add_keyword_links=None):
         """Does a POST request to /code-highlight.
 
         Code highlight will take raw source code and convert into nicely
@@ -236,9 +236,9 @@ class DataToolsController(object):
     
         return response.body
 
-    def create_bad_word_filter(self,
-                               content,
-                               censor_character=None):
+    def bad_word_filter(self,
+                        content,
+                        censor_character=None):
         """Does a POST request to /bad-word-filter.
 
         Detect bad words, swear words and profanity in a given text. See:
@@ -306,10 +306,10 @@ class DataToolsController(object):
         # If we got here then an error occured while trying to parse the response
         raise APIException("Invalid JSON returned", response.code, response.body) 
 
-    def create_convert(self,
-                       from_type,
-                       from_value,
-                       to_type):
+    def convert(self,
+                from_type,
+                from_value,
+                to_type):
         """Does a POST request to /convert.
 
         A powerful unit and currency conversion tool. See:
@@ -377,9 +377,9 @@ class DataToolsController(object):
         # If we got here then an error occured while trying to parse the response
         raise APIException("Invalid JSON returned", response.code, response.body) 
 
-    def create_email_validate(self,
-                              email,
-                              fix_typos=None):
+    def email_validate(self,
+                       email,
+                       fix_typos=None):
         """Does a POST request to /email-validate.
 
         Parse, validate and clean an email address. See:
@@ -446,9 +446,9 @@ class DataToolsController(object):
         # If we got here then an error occured while trying to parse the response
         raise APIException("Invalid JSON returned", response.code, response.body) 
 
-    def create_html_clean(self,
-                          content,
-                          output_type):
+    def html_clean(self,
+                   content,
+                   output_type):
         """Does a POST request to /html-clean.
 
         Clean and sanitize untrusted HTML. See:
@@ -509,11 +509,11 @@ class DataToolsController(object):
     
         return response.body
 
-    def create_html_extract(self,
-                            content,
-                            tag,
-                            attribute=None,
-                            base_url=None):
+    def html_extract(self,
+                     content,
+                     tag,
+                     attribute=None,
+                     base_url=None):
         """Does a POST request to /html-extract-tags.
 
         Extract HTML tag contents or attributes from complex HTML or XHTML

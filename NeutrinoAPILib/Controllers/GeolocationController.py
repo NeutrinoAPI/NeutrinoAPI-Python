@@ -3,7 +3,7 @@
 """
    NeutrinoAPILib.Controllers.GeolocationController
 
-   This file was automatically generated for NeutrinoAPI.com by APIMATIC BETA v2.0 on 12/10/2015
+   This file was automatically generated for NeutrinoAPI.com by APIMATIC BETA v2.0 on 01/07/2016
 """
 import unirest
 
@@ -29,9 +29,9 @@ class GeolocationController(object):
         self.__user_id = user_id
         self.__api_key = api_key
 
-    def create_ip_info(self,
-                       ip,
-                       reverse_lookup=None):
+    def ip_info(self,
+                ip,
+                reverse_lookup=None):
         """Does a POST request to /ip-info.
 
         Get location information about an IP address and do reverse DNS (PTR)
@@ -99,10 +99,10 @@ class GeolocationController(object):
         # If we got here then an error occured while trying to parse the response
         raise APIException("Invalid JSON returned", response.code, response.body) 
 
-    def create_geocode_address(self,
-                               address,
-                               country_code=None,
-                               language_code=None):
+    def geocode_address(self,
+                        address,
+                        country_code=None,
+                        language_code=None):
         """Does a POST request to /geocode-address.
 
         Geocode an address or partial address. See:
@@ -173,10 +173,10 @@ class GeolocationController(object):
         # If we got here then an error occured while trying to parse the response
         raise APIException("Invalid JSON returned", response.code, response.body) 
 
-    def create_geocode_reverse(self,
-                               latitude,
-                               longitude,
-                               language_code=None):
+    def geocode_reverse(self,
+                        latitude,
+                        longitude,
+                        language_code=None):
         """Does a POST request to /geocode-reverse.
 
         Reverse geocoding is the process of taking a coordinate (latitude and

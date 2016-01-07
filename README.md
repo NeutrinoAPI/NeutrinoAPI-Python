@@ -33,7 +33,7 @@ It is also shown in [2].
         'from NeutrinoAPILib.Controllers.GeolocationController import *'
     3. Create a new instance using 'controller = GeolocationController()'
     4. Invoke an endpoint with the appropriate parameters, for example
-        'response = controller.create_ip_info(<required parameters if any>)'
+        'response = controller.ip_info(<required parameters if any>)'
     5. "response" will now be an object of type IP Info Response.
     6. To test the response you get, print out a property of "response",
         for example 'print response.valid'.
@@ -43,7 +43,7 @@ It is also shown in [2].
 [2] from NeutrinoAPILib.Controllers.GeolocationController import *
 
 	controller = GeolocationController()
-    response = controller.create_ip_info()
+    response = controller.ip_info()
 
     print response.valid
     #or you can print more information

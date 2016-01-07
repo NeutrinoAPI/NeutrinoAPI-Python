@@ -3,7 +3,7 @@
 """
    NeutrinoAPILib.Controllers.TelephonyController
 
-   This file was automatically generated for NeutrinoAPI.com by APIMATIC BETA v2.0 on 12/10/2015
+   This file was automatically generated for NeutrinoAPI.com by APIMATIC BETA v2.0 on 01/07/2016
 """
 import unirest
 
@@ -31,9 +31,9 @@ class TelephonyController(object):
         self.__user_id = user_id
         self.__api_key = api_key
 
-    def create_phone_playback(self,
-                              audio_url,
-                              number):
+    def phone_playback(self,
+                       audio_url,
+                       number):
         """Does a POST request to /phone-playback.
 
         Make an automated call to any valid phone number and playback an audio
@@ -101,8 +101,8 @@ class TelephonyController(object):
         # If we got here then an error occured while trying to parse the response
         raise APIException("Invalid JSON returned", response.code, response.body) 
 
-    def create_verify_security_code(self,
-                                    security_code):
+    def verify_security_code(self,
+                             security_code):
         """Does a POST request to /verify-security-code.
 
         Check if a security code from one of the verify APIs is valid. See:
@@ -166,9 +166,9 @@ class TelephonyController(object):
         # If we got here then an error occured while trying to parse the response
         raise APIException("Invalid JSON returned", response.code, response.body) 
 
-    def create_hlr_lookup(self,
-                          number,
-                          country_code=None):
+    def hlr_lookup(self,
+                   number,
+                   country_code=None):
         """Does a POST request to /hlr-lookup.
 
         Mobile network HLR lookup service. See:
@@ -237,13 +237,13 @@ class TelephonyController(object):
         # If we got here then an error occured while trying to parse the response
         raise APIException("Invalid JSON returned", response.code, response.body) 
 
-    def create_phone_verify(self,
-                            number,
-                            code_length=None,
-                            country_code=None,
-                            language_code=None,
-                            playback_delay=None,
-                            security_code=None):
+    def phone_verify(self,
+                     number,
+                     code_length=None,
+                     country_code=None,
+                     language_code=None,
+                     playback_delay=None,
+                     security_code=None):
         """Does a POST request to /phone-verify.
 
         Make an automated call to any valid phone number and playback a unique
@@ -329,12 +329,12 @@ class TelephonyController(object):
         # If we got here then an error occured while trying to parse the response
         raise APIException("Invalid JSON returned", response.code, response.body) 
 
-    def create_sms_verify(self,
-                          number,
-                          code_length=None,
-                          country_code=None,
-                          language_code=None,
-                          security_code=None):
+    def sms_verify(self,
+                   number,
+                   code_length=None,
+                   country_code=None,
+                   language_code=None,
+                   security_code=None):
         """Does a POST request to /sms-verify.
 
         Send a unique security code to any mobile device via SMS. See:

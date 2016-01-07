@@ -3,7 +3,7 @@
 """
    NeutrinoAPILib.Controllers.SecurityAndNetworkingController
 
-   This file was automatically generated for NeutrinoAPI.com by APIMATIC BETA v2.0 on 12/10/2015
+   This file was automatically generated for NeutrinoAPI.com by APIMATIC BETA v2.0 on 01/07/2016
 """
 import unirest
 
@@ -29,9 +29,9 @@ class SecurityAndNetworkingController(object):
         self.__user_id = user_id
         self.__api_key = api_key
 
-    def create_url_info(self,
-                        fetch_content,
-                        url):
+    def url_info(self,
+                 fetch_content,
+                 url):
         """Does a POST request to /url-info.
 
         Parse, analyze and retrieve content from the supplied URL. See:
@@ -99,8 +99,8 @@ class SecurityAndNetworkingController(object):
         # If we got here then an error occured while trying to parse the response
         raise APIException("Invalid JSON returned", response.code, response.body) 
 
-    def create_host_reputation(self,
-                               host):
+    def host_reputation(self,
+                        host):
         """Does a POST request to /host-reputation.
 
         Check the reputation of an IP address or domain against a
@@ -166,8 +166,8 @@ class SecurityAndNetworkingController(object):
         # If we got here then an error occured while trying to parse the response
         raise APIException("Invalid JSON returned", response.code, response.body) 
 
-    def create_ip_blocklist(self,
-                            ip):
+    def ip_blocklist(self,
+                     ip):
         """Does a POST request to /ip-blocklist.
 
         The IP Blocklist API will detect potentially malicious or dangerous IP

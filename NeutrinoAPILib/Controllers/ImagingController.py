@@ -3,7 +3,7 @@
 """
    NeutrinoAPILib.Controllers.ImagingController
 
-   This file was automatically generated for NeutrinoAPI.com by APIMATIC BETA v2.0 on 12/10/2015
+   This file was automatically generated for NeutrinoAPI.com by APIMATIC BETA v2.0 on 01/07/2016
 """
 import unirest
 
@@ -26,12 +26,12 @@ class ImagingController(object):
         self.__user_id = user_id
         self.__api_key = api_key
 
-    def create_qr_code(self,
-                       content,
-                       bg_color=None,
-                       fg_color=None,
-                       height=None,
-                       width=None):
+    def qr_code(self,
+                content,
+                bg_color=None,
+                fg_color=None,
+                height=None,
+                width=None):
         """Does a POST request to /qr-code.
 
         Generate a QR code as a PNG image. See:
@@ -98,11 +98,11 @@ class ImagingController(object):
     
         return response.body
 
-    def create_html_to_pdf(self,
-                           content,
-                           html_width=None,
-                           margin=None,
-                           title=None):
+    def html_to_pdf(self,
+                    content,
+                    html_width=None,
+                    margin=None,
+                    title=None):
         """Does a POST request to /html-to-pdf.
 
         Convert HTML content into PDF documents. See:
@@ -166,11 +166,11 @@ class ImagingController(object):
     
         return response.body
 
-    def create_image_resize(self,
-                            height,
-                            image_url,
-                            width,
-                            format=None):
+    def image_resize(self,
+                     height,
+                     image_url,
+                     width,
+                     format=None):
         """Does a POST request to /image-resize.
 
         Resize an image and output as either JPEG or PNG. See:
@@ -233,14 +233,14 @@ class ImagingController(object):
     
         return response.body
 
-    def create_image_watermark(self,
-                               image_url,
-                               watermark_url,
-                               format=None,
-                               height=None,
-                               opacity=None,
-                               position=None,
-                               width=None):
+    def image_watermark(self,
+                        image_url,
+                        watermark_url,
+                        format=None,
+                        height=None,
+                        opacity=None,
+                        position=None,
+                        width=None):
         """Does a POST request to /image-watermark.
 
         Watermark one image with another image. See:

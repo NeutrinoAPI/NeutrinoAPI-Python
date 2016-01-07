@@ -3,7 +3,7 @@
 """
    NeutrinoAPILib.Controllers.ECommerceController
 
-   This file was automatically generated for NeutrinoAPI.com by APIMATIC BETA v2.0 on 12/10/2015
+   This file was automatically generated for NeutrinoAPI.com by APIMATIC BETA v2.0 on 01/07/2016
 """
 import unirest
 
@@ -27,9 +27,9 @@ class ECommerceController(object):
         self.__user_id = user_id
         self.__api_key = api_key
 
-    def create_bin_lookup(self,
-                          bin_number,
-                          customer_ip=None):
+    def bin_lookup(self,
+                   bin_number,
+                   customer_ip=None):
         """Does a POST request to /bin-lookup.
 
         Perform a BIN (Bank Identification Number) or IIN (Issuer
