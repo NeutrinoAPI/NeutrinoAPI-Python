@@ -9,7 +9,7 @@ except(IOError, ImportError):
 
 setup(
     name='neutrino_api',
-    version='3.3.2',
+    version='3.3.6',
     description='The general-purpose API',
     long_description=long_description,
     author='APIMatic SDK Generator',
@@ -21,9 +21,5 @@ setup(
         'jsonpickle>=0.7.1, <1.0',
         'cachecontrol>=0.11.7, <1.0',
         'python-dateutil>=2.5.3, <3.0'
-    ],
-    tests_require=[
-        'nose>=1.3.7'
-    ],
-    test_suite = 'nose.collector'
+    ]
 )

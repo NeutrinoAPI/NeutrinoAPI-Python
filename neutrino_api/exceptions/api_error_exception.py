@@ -32,5 +32,5 @@ class APIErrorException(neutrino_api.exceptions.api_exception.APIException):
             MUST match property names in the API description.
 
         """
-        self.api_error = dictionary.get("apiError")
-        self.api_error_msg = dictionary.get("apiErrorMsg")
+        self.api_error = dictionary.get('apiError')
+        self.api_error_msg = dictionary.get('apiErrorMsg')

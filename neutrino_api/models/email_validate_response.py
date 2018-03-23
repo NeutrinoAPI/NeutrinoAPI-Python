@@ -25,19 +25,24 @@ class EmailValidateResponse(object):
         is_disposable (bool): True if this address is a disposable, temporary
             or darknet related email address
         typos_fixed (bool): True if typos have been fixed
+        is_personal (bool): True if this address belongs to a person. False if
+            this is a role based address, e.g. admin@, help@, office@, etc.
+        provider (string): The email service provider domain
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "valid" : "valid",
-        "syntax_error" : "syntaxError",
-        "domain" : "domain",
-        "domain_error" : "domainError",
-        "is_freemail" : "isFreemail",
-        "email" : "email",
-        "is_disposable" : "isDisposable",
-        "typos_fixed" : "typosFixed"
+        "valid":'valid',
+        "syntax_error":'syntaxError',
+        "domain":'domain',
+        "domain_error":'domainError',
+        "is_freemail":'isFreemail',
+        "email":'email',
+        "is_disposable":'isDisposable',
+        "typos_fixed":'typosFixed',
+        "is_personal":'isPersonal',
+        "provider":'provider'
     }
 
     def __init__(self,
@@ -48,7 +53,9 @@ class EmailValidateResponse(object):
                  is_freemail=None,
                  email=None,
                  is_disposable=None,
-                 typos_fixed=None):
+                 typos_fixed=None,
+                 is_personal=None,
+                 provider=None):
         """Constructor for the EmailValidateResponse class"""
 
         # Initialize members of the class
@@ -60,6 +67,8 @@ class EmailValidateResponse(object):
         self.email = email
         self.is_disposable = is_disposable
         self.typos_fixed = typos_fixed
+        self.is_personal = is_personal
+        self.provider = provider
 
 
     @classmethod
@@ -80,14 +89,16 @@ class EmailValidateResponse(object):
             return None
 
         # Extract variables from the dictionary
-        valid = dictionary.get("valid")
-        syntax_error = dictionary.get("syntaxError")
-        domain = dictionary.get("domain")
-        domain_error = dictionary.get("domainError")
-        is_freemail = dictionary.get("isFreemail")
-        email = dictionary.get("email")
-        is_disposable = dictionary.get("isDisposable")
-        typos_fixed = dictionary.get("typosFixed")
+        valid = dictionary.get('valid')
+        syntax_error = dictionary.get('syntaxError')
+        domain = dictionary.get('domain')
+        domain_error = dictionary.get('domainError')
+        is_freemail = dictionary.get('isFreemail')
+        email = dictionary.get('email')
+        is_disposable = dictionary.get('isDisposable')
+        typos_fixed = dictionary.get('typosFixed')
+        is_personal = dictionary.get('isPersonal')
+        provider = dictionary.get('provider')
 
         # Return an object of this model
         return cls(valid,
@@ -97,6 +108,8 @@ class EmailValidateResponse(object):
                    is_freemail,
                    email,
                    is_disposable,
-                   typos_fixed)
+                   typos_fixed,
+                   is_personal,
+                   provider)
 
 

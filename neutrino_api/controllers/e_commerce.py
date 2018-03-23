@@ -48,11 +48,6 @@ class ECommerce(BaseController):
         # Prepare query URL
         _query_builder = Configuration.base_uri
         _query_builder += '/bin-lookup'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -66,8 +61,6 @@ class ECommerce(BaseController):
             'bin-number': bin_number,
             'customer-ip': customer_ip
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)

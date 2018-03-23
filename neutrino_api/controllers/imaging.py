@@ -47,11 +47,6 @@ class Imaging(BaseController):
         # Prepare query URL
         _query_builder = Configuration.base_uri
         _query_builder += '/image-resize'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare form parameters
@@ -61,8 +56,6 @@ class Imaging(BaseController):
             'height': height,
             'format': format
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, parameters=_form_parameters)
@@ -122,8 +115,6 @@ class Imaging(BaseController):
             'fg-color': fg_color,
             'bg-color': bg_color
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, parameters=_form_parameters)
@@ -175,11 +166,6 @@ class Imaging(BaseController):
         # Prepare query URL
         _query_builder = Configuration.base_uri
         _query_builder += '/image-watermark'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare form parameters
@@ -192,8 +178,6 @@ class Imaging(BaseController):
             'width': width,
             'height': height
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, parameters=_form_parameters)
@@ -222,7 +206,24 @@ class Imaging(BaseController):
                       forms=False,
                       css=None,
                       image_width=1024,
-                      image_height=None):
+                      image_height=None,
+                      render_delay=None,
+                      header_text_left=None,
+                      header_text_center=None,
+                      header_text_right=None,
+                      header_size=9,
+                      header_font='Courier',
+                      header_font_size='11',
+                      header_line=False,
+                      footer_text_left=None,
+                      footer_text_center=None,
+                      footer_text_right=None,
+                      footer_size=9,
+                      footer_font='Courier',
+                      footer_font_size=11,
+                      footer_line=False,
+                      page_width=None,
+                      page_height=None):
         """Does a POST request to /html5-render.
 
         Render HTML and HTML5 content to PDF, JPG or PNG
@@ -261,6 +262,41 @@ class Imaging(BaseController):
                 or JPG) use this image height (in pixels). The default is
                 automatic which dynamically sets the image height based on the
                 content
+            render_delay (int, optional): Number of milliseconds to wait
+                before rendering the page (can be useful for pages with
+                animations etc)
+            header_text_left (string, optional): Text to print to the
+                left-hand side header of each page. e.g. 'My header - Page
+                {page_number} of {total_pages}'
+            header_text_center (string, optional): Text to print to the center
+                header of each page
+            header_text_right (string, optional): Text to print to the
+                right-hand side header of each page
+            header_size (int, optional): The height of your header (in mm)
+            header_font (string, optional): Set the header font. Fonts
+                available: Times, Courier, Helvetica, Arial
+            header_font_size (string, optional): Set the header font size (in
+                pt)
+            header_line (bool, optional): Draw a full page width horizontal
+                line under your header
+            footer_text_left (string, optional): Text to print to the
+                left-hand side footer of each page. e.g. 'My footer - Page
+                {page_number} of {total_pages}'
+            footer_text_center (string, optional): Text to print to the center
+                header of each page
+            footer_text_right (string, optional): Text to print to the
+                right-hand side header of each page
+            footer_size (int, optional): The height of your footer (in mm)
+            footer_font (string, optional): Set the footer font. Fonts
+                available: Times, Courier, Helvetica, Arial
+            footer_font_size (int, optional): Set the footer font size (in
+                pt)
+            footer_line (bool, optional): Draw a full page width horizontal
+                line above your footer
+            page_width (int, optional): Set the PDF page width explicitly (in
+                mm)
+            page_height (int, optional): Set the PDF page height explicitly
+                (in mm)
 
         Returns:
             binary: Response from the API. 
@@ -276,11 +312,6 @@ class Imaging(BaseController):
         # Prepare query URL
         _query_builder = Configuration.base_uri
         _query_builder += '/html5-render'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare form parameters
@@ -303,10 +334,25 @@ class Imaging(BaseController):
             'forms': forms,
             'css': css,
             'image-width': image_width,
-            'image-height': image_height
+            'image-height': image_height,
+            'render-delay': render_delay,
+            'header-text-left': header_text_left,
+            'header-text-center': header_text_center,
+            'header-text-right': header_text_right,
+            'header-size': header_size,
+            'header-font': header_font,
+            'header-font-size': header_font_size,
+            'header-line': header_line,
+            'footer-text-left': footer_text_left,
+            'footer-text-center': footer_text_center,
+            'footer-text-right': footer_text_right,
+            'footer-size': footer_size,
+            'footer-font': footer_font,
+            'footer-font-size': footer_font_size,
+            'footer-line': footer_line,
+            'page-width': page_width,
+            'page-height': page_height
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, parameters=_form_parameters)

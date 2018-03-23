@@ -24,9 +24,9 @@ class PhoneVerifyResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "number_valid" : "numberValid",
-        "calling" : "calling",
-        "security_code" : "securityCode"
+        "number_valid":'numberValid',
+        "calling":'calling',
+        "security_code":'securityCode'
     }
 
     def __init__(self,
@@ -59,9 +59,9 @@ class PhoneVerifyResponse(object):
             return None
 
         # Extract variables from the dictionary
-        number_valid = dictionary.get("numberValid")
-        calling = dictionary.get("calling")
-        security_code = dictionary.get("securityCode")
+        number_valid = dictionary.get('numberValid')
+        calling = dictionary.get('calling')
+        security_code = dictionary.get('securityCode')
 
         # Return an object of this model
         return cls(number_valid,

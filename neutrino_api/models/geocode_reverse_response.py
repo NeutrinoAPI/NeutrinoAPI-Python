@@ -29,14 +29,14 @@ class GeocodeReverseResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "country" : "country",
-        "found" : "found",
-        "address" : "address",
-        "city" : "city",
-        "country_code" : "countryCode",
-        "postal_code" : "postalCode",
-        "state" : "state",
-        "address_components" : "addressComponents"
+        "country":'country',
+        "found":'found',
+        "address":'address',
+        "city":'city',
+        "country_code":'countryCode',
+        "postal_code":'postalCode',
+        "state":'state',
+        "address_components":'addressComponents'
     }
 
     def __init__(self,
@@ -79,14 +79,14 @@ class GeocodeReverseResponse(object):
             return None
 
         # Extract variables from the dictionary
-        country = dictionary.get("country")
-        found = dictionary.get("found")
-        address = dictionary.get("address")
-        city = dictionary.get("city")
-        country_code = dictionary.get("countryCode")
-        postal_code = dictionary.get("postalCode")
-        state = dictionary.get("state")
-        address_components = dictionary.get("addressComponents")
+        country = dictionary.get('country')
+        found = dictionary.get('found')
+        address = dictionary.get('address')
+        city = dictionary.get('city')
+        country_code = dictionary.get('countryCode')
+        postal_code = dictionary.get('postalCode')
+        state = dictionary.get('state')
+        address_components = dictionary.get('addressComponents')
 
         # Return an object of this model
         return cls(country,

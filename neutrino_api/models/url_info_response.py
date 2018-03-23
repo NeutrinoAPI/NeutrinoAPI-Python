@@ -52,29 +52,29 @@ class URLInfoResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "http_status_message" : "httpStatusMessage",
-        "server_region" : "serverRegion",
-        "query" : "query",
-        "server_name" : "serverName",
-        "url_port" : "urlPort",
-        "server_country" : "serverCountry",
-        "real" : "real",
-        "server_city" : "serverCity",
-        "url_path" : "urlPath",
-        "url" : "url",
-        "valid" : "valid",
-        "server_hostname" : "serverHostname",
-        "load_time" : "loadTime",
-        "http_ok" : "httpOk",
-        "content_size" : "contentSize",
-        "http_status" : "httpStatus",
-        "server_country_code" : "serverCountryCode",
-        "content_encoding" : "contentEncoding",
-        "server_ip" : "serverIp",
-        "url_protocol" : "urlProtocol",
-        "content_type" : "contentType",
-        "http_redirect" : "httpRedirect",
-        "content" : "content"
+        "http_status_message":'httpStatusMessage',
+        "server_region":'serverRegion',
+        "query":'query',
+        "server_name":'serverName',
+        "url_port":'urlPort',
+        "server_country":'serverCountry',
+        "real":'real',
+        "server_city":'serverCity',
+        "url_path":'urlPath',
+        "url":'url',
+        "valid":'valid',
+        "server_hostname":'serverHostname',
+        "load_time":'loadTime',
+        "http_ok":'httpOk',
+        "content_size":'contentSize',
+        "http_status":'httpStatus',
+        "server_country_code":'serverCountryCode',
+        "content_encoding":'contentEncoding',
+        "server_ip":'serverIp',
+        "url_protocol":'urlProtocol',
+        "content_type":'contentType',
+        "http_redirect":'httpRedirect',
+        "content":'content'
     }
 
     def __init__(self,
@@ -147,29 +147,29 @@ class URLInfoResponse(object):
             return None
 
         # Extract variables from the dictionary
-        http_status_message = dictionary.get("httpStatusMessage")
-        server_region = dictionary.get("serverRegion")
-        query = dictionary.get("query")
-        server_name = dictionary.get("serverName")
-        url_port = dictionary.get("urlPort")
-        server_country = dictionary.get("serverCountry")
-        real = dictionary.get("real")
-        server_city = dictionary.get("serverCity")
-        url_path = dictionary.get("urlPath")
-        url = dictionary.get("url")
-        valid = dictionary.get("valid")
-        server_hostname = dictionary.get("serverHostname")
-        load_time = dictionary.get("loadTime")
-        http_ok = dictionary.get("httpOk")
-        content_size = dictionary.get("contentSize")
-        http_status = dictionary.get("httpStatus")
-        server_country_code = dictionary.get("serverCountryCode")
-        content_encoding = dictionary.get("contentEncoding")
-        server_ip = dictionary.get("serverIp")
-        url_protocol = dictionary.get("urlProtocol")
-        content_type = dictionary.get("contentType")
-        http_redirect = dictionary.get("httpRedirect")
-        content = dictionary.get("content")
+        http_status_message = dictionary.get('httpStatusMessage')
+        server_region = dictionary.get('serverRegion')
+        query = dictionary.get('query')
+        server_name = dictionary.get('serverName')
+        url_port = dictionary.get('urlPort')
+        server_country = dictionary.get('serverCountry')
+        real = dictionary.get('real')
+        server_city = dictionary.get('serverCity')
+        url_path = dictionary.get('urlPath')
+        url = dictionary.get('url')
+        valid = dictionary.get('valid')
+        server_hostname = dictionary.get('serverHostname')
+        load_time = dictionary.get('loadTime')
+        http_ok = dictionary.get('httpOk')
+        content_size = dictionary.get('contentSize')
+        http_status = dictionary.get('httpStatus')
+        server_country_code = dictionary.get('serverCountryCode')
+        content_encoding = dictionary.get('contentEncoding')
+        server_ip = dictionary.get('serverIp')
+        url_protocol = dictionary.get('urlProtocol')
+        content_type = dictionary.get('contentType')
+        http_redirect = dictionary.get('httpRedirect')
+        content = dictionary.get('content')
 
         # Return an object of this model
         return cls(http_status_message,

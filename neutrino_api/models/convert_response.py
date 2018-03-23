@@ -25,11 +25,11 @@ class ConvertResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "valid" : "valid",
-        "result" : "result",
-        "from_value" : "fromValue",
-        "to_type" : "toType",
-        "from_type" : "fromType"
+        "valid":'valid',
+        "result":'result',
+        "from_value":'fromValue',
+        "to_type":'toType',
+        "from_type":'fromType'
     }
 
     def __init__(self,
@@ -66,11 +66,11 @@ class ConvertResponse(object):
             return None
 
         # Extract variables from the dictionary
-        valid = dictionary.get("valid")
-        result = dictionary.get("result")
-        from_value = dictionary.get("fromValue")
-        to_type = dictionary.get("toType")
-        from_type = dictionary.get("fromType")
+        valid = dictionary.get('valid')
+        result = dictionary.get('result')
+        from_value = dictionary.get('fromValue')
+        to_type = dictionary.get('toType')
+        from_type = dictionary.get('fromType')
 
         # Return an object of this model
         return cls(valid,

@@ -21,8 +21,8 @@ class HTMLExtractResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "total" : "total",
-        "values" : "values"
+        "total":'total',
+        "values":'values'
     }
 
     def __init__(self,
@@ -53,8 +53,8 @@ class HTMLExtractResponse(object):
             return None
 
         # Extract variables from the dictionary
-        total = dictionary.get("total")
-        values = dictionary.get("values")
+        total = dictionary.get('total')
+        values = dictionary.get('values')
 
         # Return an object of this model
         return cls(total,

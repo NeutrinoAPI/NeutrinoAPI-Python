@@ -21,8 +21,8 @@ class GeocodeAddressResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "found" : "found",
-        "locations" : "locations"
+        "found":'found',
+        "locations":'locations'
     }
 
     def __init__(self,
@@ -53,11 +53,11 @@ class GeocodeAddressResponse(object):
             return None
 
         # Extract variables from the dictionary
-        found = dictionary.get("found")
+        found = dictionary.get('found')
         locations = None
-        if dictionary.get("locations") != None:
+        if dictionary.get('locations') != None:
             locations = list()
-            for structure in dictionary.get("locations"):
+            for structure in dictionary.get('locations'):
                 locations.append(neutrino_api.models.location.Location.from_dictionary(structure))
 
         # Return an object of this model

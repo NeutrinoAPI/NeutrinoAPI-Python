@@ -11,9 +11,9 @@ from ..api_helper import APIHelper
 from ..configuration import Configuration
 from ..http.auth.custom_query_auth import CustomQueryAuth
 from ..models.hlr_lookup_response import HLRLookupResponse
+from ..models.phone_playback_response import PhonePlaybackResponse
 from ..models.verify_security_code_response import VerifySecurityCodeResponse
 from ..models.sms_verify_response import SMSVerifyResponse
-from ..models.phone_playback_response import PhonePlaybackResponse
 from ..models.phone_verify_response import PhoneVerifyResponse
 
 class Telephony(BaseController):
@@ -50,11 +50,6 @@ class Telephony(BaseController):
         # Prepare query URL
         _query_builder = Configuration.base_uri
         _query_builder += '/hlr-lookup'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -68,8 +63,6 @@ class Telephony(BaseController):
             'number': number,
             'country-code': country_code
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
@@ -79,6 +72,57 @@ class Telephony(BaseController):
 
         # Return appropriate type
         return APIHelper.json_deserialize(_context.response.raw_body, HLRLookupResponse.from_dictionary)
+
+    def phone_playback(self,
+                       number,
+                       audio_url):
+        """Does a POST request to /phone-playback.
+
+        Make an automated call to any valid phone number and playback an audio
+        message
+
+        Args:
+            number (string): The phone number to call. Must be valid
+                international format
+            audio_url (string): A URL to a valid audio file. Accepted audio
+                formats are: MP3, WAV, OGG
+
+        Returns:
+            PhonePlaybackResponse: Response from the API. 
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _query_builder = Configuration.base_uri
+        _query_builder += '/phone-playback'
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json'
+        }
+
+        # Prepare form parameters
+        _form_parameters = {
+            'output-case': 'camel',
+            'number': number,
+            'audio-url': audio_url
+        }
+
+        # Prepare and execute request
+        _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
+        CustomQueryAuth.apply(_request)
+        _context = self.execute_request(_request)
+        self.validate_response(_context)
+
+        # Return appropriate type
+        return APIHelper.json_deserialize(_context.response.raw_body, PhonePlaybackResponse.from_dictionary)
 
     def verify_security_code(self,
                              security_code):
@@ -103,11 +147,6 @@ class Telephony(BaseController):
         # Prepare query URL
         _query_builder = Configuration.base_uri
         _query_builder += '/verify-security-code'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -120,8 +159,6 @@ class Telephony(BaseController):
             'output-case': 'camel',
             'security-code': security_code
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
@@ -173,11 +210,6 @@ class Telephony(BaseController):
         # Prepare query URL
         _query_builder = Configuration.base_uri
         _query_builder += '/sms-verify'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -194,8 +226,6 @@ class Telephony(BaseController):
             'country-code': country_code,
             'language-code': language_code
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
@@ -205,64 +235,6 @@ class Telephony(BaseController):
 
         # Return appropriate type
         return APIHelper.json_deserialize(_context.response.raw_body, SMSVerifyResponse.from_dictionary)
-
-    def phone_playback(self,
-                       number,
-                       audio_url):
-        """Does a POST request to /phone-playback.
-
-        Make an automated call to any valid phone number and playback an audio
-        message
-
-        Args:
-            number (string): The phone number to call. Must be valid
-                international format
-            audio_url (string): A URL to a valid audio file. Accepted audio
-                formats are: MP3, WAV, OGG
-
-        Returns:
-            PhonePlaybackResponse: Response from the API. 
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _query_builder = Configuration.base_uri
-        _query_builder += '/phone-playback'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json'
-        }
-
-        # Prepare form parameters
-        _form_parameters = {
-            'output-case': 'camel',
-            'number': number,
-            'audio-url': audio_url
-        }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
-
-        # Prepare and execute request
-        _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
-        CustomQueryAuth.apply(_request)
-        _context = self.execute_request(_request)
-        self.validate_response(_context)
-
-        # Return appropriate type
-        return APIHelper.json_deserialize(_context.response.raw_body, PhonePlaybackResponse.from_dictionary)
 
     def phone_verify(self,
                      number,
@@ -310,11 +282,6 @@ class Telephony(BaseController):
         # Prepare query URL
         _query_builder = Configuration.base_uri
         _query_builder += '/phone-verify'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -332,8 +299,6 @@ class Telephony(BaseController):
             'country-code': country_code,
             'language-code': language_code
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)

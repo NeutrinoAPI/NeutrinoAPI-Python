@@ -41,22 +41,22 @@ class BINLookupResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "country" : "country",
-        "ip_city" : "ipCity",
-        "ip_matches_bin" : "ipMatchesBin",
-        "card_type" : "cardType",
-        "card_category" : "cardCategory",
-        "ip_country_code" : "ipCountryCode",
-        "ip_country" : "ipCountry",
-        "issuer" : "issuer",
-        "ip_blocklisted" : "ipBlocklisted",
-        "valid" : "valid",
-        "ip_blocklists" : "ipBlocklists",
-        "issuer_website" : "issuerWebsite",
-        "country_code" : "countryCode",
-        "ip_region" : "ipRegion",
-        "card_brand" : "cardBrand",
-        "issuer_phone" : "issuerPhone"
+        "country":'country',
+        "ip_city":'ipCity',
+        "ip_matches_bin":'ipMatchesBin',
+        "card_type":'cardType',
+        "card_category":'cardCategory',
+        "ip_country_code":'ipCountryCode',
+        "ip_country":'ipCountry',
+        "issuer":'issuer',
+        "ip_blocklisted":'ipBlocklisted',
+        "valid":'valid',
+        "ip_blocklists":'ipBlocklists',
+        "issuer_website":'issuerWebsite',
+        "country_code":'countryCode',
+        "ip_region":'ipRegion',
+        "card_brand":'cardBrand',
+        "issuer_phone":'issuerPhone'
     }
 
     def __init__(self,
@@ -115,22 +115,22 @@ class BINLookupResponse(object):
             return None
 
         # Extract variables from the dictionary
-        country = dictionary.get("country")
-        ip_city = dictionary.get("ipCity")
-        ip_matches_bin = dictionary.get("ipMatchesBin")
-        card_type = dictionary.get("cardType")
-        card_category = dictionary.get("cardCategory")
-        ip_country_code = dictionary.get("ipCountryCode")
-        ip_country = dictionary.get("ipCountry")
-        issuer = dictionary.get("issuer")
-        ip_blocklisted = dictionary.get("ipBlocklisted")
-        valid = dictionary.get("valid")
-        ip_blocklists = dictionary.get("ipBlocklists")
-        issuer_website = dictionary.get("issuerWebsite")
-        country_code = dictionary.get("countryCode")
-        ip_region = dictionary.get("ipRegion")
-        card_brand = dictionary.get("cardBrand")
-        issuer_phone = dictionary.get("issuerPhone")
+        country = dictionary.get('country')
+        ip_city = dictionary.get('ipCity')
+        ip_matches_bin = dictionary.get('ipMatchesBin')
+        card_type = dictionary.get('cardType')
+        card_category = dictionary.get('cardCategory')
+        ip_country_code = dictionary.get('ipCountryCode')
+        ip_country = dictionary.get('ipCountry')
+        issuer = dictionary.get('issuer')
+        ip_blocklisted = dictionary.get('ipBlocklisted')
+        valid = dictionary.get('valid')
+        ip_blocklists = dictionary.get('ipBlocklists')
+        issuer_website = dictionary.get('issuerWebsite')
+        country_code = dictionary.get('countryCode')
+        ip_region = dictionary.get('ipRegion')
+        card_brand = dictionary.get('cardBrand')
+        issuer_phone = dictionary.get('issuerPhone')
 
         # Return an object of this model
         return cls(country,

@@ -21,8 +21,8 @@ class PhonePlaybackResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "calling" : "calling",
-        "number_valid" : "number-valid"
+        "calling":'calling',
+        "number_valid":'number-valid'
     }
 
     def __init__(self,
@@ -53,8 +53,8 @@ class PhonePlaybackResponse(object):
             return None
 
         # Extract variables from the dictionary
-        calling = dictionary.get("calling")
-        number_valid = dictionary.get("number-valid")
+        calling = dictionary.get('calling')
+        number_valid = dictionary.get('number-valid')
 
         # Return an object of this model
         return cls(calling,

@@ -33,26 +33,30 @@ class UserAgentInfoResponse(object):
             this is the OS name without any version information
         operating_system_version (string): The operating system version number
             (if detectable)
+        engine (string): The browser engine name
+        engine_version (string): The browser engine version (if detectable)
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "mobile_screen_width" : "mobileScreenWidth",
-        "mobile_brand" : "mobileBrand",
-        "mobile_model" : "mobileModel",
-        "producer" : "producer",
-        "browser_name" : "browserName",
-        "mobile_screen_height" : "mobileScreenHeight",
-        "is_mobile" : "isMobile",
-        "mtype" : "type",
-        "version" : "version",
-        "operating_system" : "operatingSystem",
-        "mobile_browser" : "mobileBrowser",
-        "is_android" : "isAndroid",
-        "is_ios" : "isIos",
-        "operating_system_family" : "operatingSystemFamily",
-        "operating_system_version" : "operatingSystemVersion"
+        "mobile_screen_width":'mobileScreenWidth',
+        "mobile_brand":'mobileBrand',
+        "mobile_model":'mobileModel',
+        "producer":'producer',
+        "browser_name":'browserName',
+        "mobile_screen_height":'mobileScreenHeight',
+        "is_mobile":'isMobile',
+        "mtype":'type',
+        "version":'version',
+        "operating_system":'operatingSystem',
+        "mobile_browser":'mobileBrowser',
+        "is_android":'isAndroid',
+        "is_ios":'isIos',
+        "operating_system_family":'operatingSystemFamily',
+        "operating_system_version":'operatingSystemVersion',
+        "engine":'engine',
+        "engine_version":'engineVersion'
     }
 
     def __init__(self,
@@ -70,7 +74,9 @@ class UserAgentInfoResponse(object):
                  is_android=None,
                  is_ios=None,
                  operating_system_family=None,
-                 operating_system_version=None):
+                 operating_system_version=None,
+                 engine=None,
+                 engine_version=None):
         """Constructor for the UserAgentInfoResponse class"""
 
         # Initialize members of the class
@@ -89,6 +95,8 @@ class UserAgentInfoResponse(object):
         self.is_ios = is_ios
         self.operating_system_family = operating_system_family
         self.operating_system_version = operating_system_version
+        self.engine = engine
+        self.engine_version = engine_version
 
 
     @classmethod
@@ -109,21 +117,23 @@ class UserAgentInfoResponse(object):
             return None
 
         # Extract variables from the dictionary
-        mobile_screen_width = dictionary.get("mobileScreenWidth")
-        mobile_brand = dictionary.get("mobileBrand")
-        mobile_model = dictionary.get("mobileModel")
-        producer = dictionary.get("producer")
-        browser_name = dictionary.get("browserName")
-        mobile_screen_height = dictionary.get("mobileScreenHeight")
-        is_mobile = dictionary.get("isMobile")
-        mtype = dictionary.get("type")
-        version = dictionary.get("version")
-        operating_system = dictionary.get("operatingSystem")
-        mobile_browser = dictionary.get("mobileBrowser")
-        is_android = dictionary.get("isAndroid")
-        is_ios = dictionary.get("isIos")
-        operating_system_family = dictionary.get("operatingSystemFamily")
-        operating_system_version = dictionary.get("operatingSystemVersion")
+        mobile_screen_width = dictionary.get('mobileScreenWidth')
+        mobile_brand = dictionary.get('mobileBrand')
+        mobile_model = dictionary.get('mobileModel')
+        producer = dictionary.get('producer')
+        browser_name = dictionary.get('browserName')
+        mobile_screen_height = dictionary.get('mobileScreenHeight')
+        is_mobile = dictionary.get('isMobile')
+        mtype = dictionary.get('type')
+        version = dictionary.get('version')
+        operating_system = dictionary.get('operatingSystem')
+        mobile_browser = dictionary.get('mobileBrowser')
+        is_android = dictionary.get('isAndroid')
+        is_ios = dictionary.get('isIos')
+        operating_system_family = dictionary.get('operatingSystemFamily')
+        operating_system_version = dictionary.get('operatingSystemVersion')
+        engine = dictionary.get('engine')
+        engine_version = dictionary.get('engineVersion')
 
         # Return an object of this model
         return cls(mobile_screen_width,
@@ -140,6 +150,8 @@ class UserAgentInfoResponse(object):
                    is_android,
                    is_ios,
                    operating_system_family,
-                   operating_system_version)
+                   operating_system_version,
+                   engine,
+                   engine_version)
 
 

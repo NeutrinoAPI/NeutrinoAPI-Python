@@ -30,15 +30,15 @@ class Location(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "country" : "country",
-        "address" : "address",
-        "city" : "city",
-        "country_code" : "countryCode",
-        "latitude" : "latitude",
-        "postal_code" : "postalCode",
-        "longitude" : "longitude",
-        "state" : "state",
-        "address_components" : "addressComponents"
+        "country":'country',
+        "address":'address',
+        "city":'city',
+        "country_code":'countryCode',
+        "latitude":'latitude',
+        "postal_code":'postalCode',
+        "longitude":'longitude',
+        "state":'state',
+        "address_components":'addressComponents'
     }
 
     def __init__(self,
@@ -83,15 +83,15 @@ class Location(object):
             return None
 
         # Extract variables from the dictionary
-        country = dictionary.get("country")
-        address = dictionary.get("address")
-        city = dictionary.get("city")
-        country_code = dictionary.get("countryCode")
-        latitude = dictionary.get("latitude")
-        postal_code = dictionary.get("postalCode")
-        longitude = dictionary.get("longitude")
-        state = dictionary.get("state")
-        address_components = dictionary.get("addressComponents")
+        country = dictionary.get('country')
+        address = dictionary.get('address')
+        city = dictionary.get('city')
+        country_code = dictionary.get('countryCode')
+        latitude = dictionary.get('latitude')
+        postal_code = dictionary.get('postalCode')
+        longitude = dictionary.get('longitude')
+        state = dictionary.get('state')
+        address_components = dictionary.get('addressComponents')
 
         # Return an object of this model
         return cls(country,

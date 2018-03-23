@@ -16,8 +16,8 @@ class IPProbeResponse(object):
     Attributes:
         valid (bool): Is this a valid IPv4 or IPv6 address
         country (string): Full country name
-        provider_type (string): The detected provider type. See API docs for
-            specific provider type details
+        provider_type (string): The detected provider type. See online API
+            docs for specific provider type details
         country_code (string): ISO 2-letter country code
         hostname (string): The IPs hostname (PTR)
         provider_domain (string): The domain name of the provider
@@ -27,22 +27,33 @@ class IPProbeResponse(object):
         region (string): Full region name (if detectable)
         provider_description (string): A description of the provider, usually
             extracted from the providers website or WHOIS record
+        continent_code (string): ISO 2-letter continent code
+        is_hosting (bool): True if this IP belongs to a hosting company. Note
+            that this can still be true even if the provider type is
+            VPN/proxy, this occurs in the case that the IP is detected as both
+            types
+        is_isp (bool): True if this IP belongs to an ISP. Note that this can
+            still be true even if the provider type is VPN/proxy, this occurs
+            in the case that the IP is detected as both types
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "valid" : "valid",
-        "country" : "country",
-        "provider_type" : "provider-type",
-        "country_code" : "country-code",
-        "hostname" : "hostname",
-        "provider_domain" : "provider-domain",
-        "city" : "city",
-        "provider_website" : "provider-website",
-        "ip" : "ip",
-        "region" : "region",
-        "provider_description" : "provider-description"
+        "valid":'valid',
+        "country":'country',
+        "provider_type":'providerType',
+        "country_code":'countryCode',
+        "hostname":'hostname',
+        "provider_domain":'providerDomain',
+        "city":'city',
+        "provider_website":'providerWebsite',
+        "ip":'ip',
+        "region":'region',
+        "provider_description":'providerDescription',
+        "continent_code":'continentCode',
+        "is_hosting":'isHosting',
+        "is_isp":'isIsp'
     }
 
     def __init__(self,
@@ -56,7 +67,10 @@ class IPProbeResponse(object):
                  provider_website=None,
                  ip=None,
                  region=None,
-                 provider_description=None):
+                 provider_description=None,
+                 continent_code=None,
+                 is_hosting=None,
+                 is_isp=None):
         """Constructor for the IPProbeResponse class"""
 
         # Initialize members of the class
@@ -71,6 +85,9 @@ class IPProbeResponse(object):
         self.ip = ip
         self.region = region
         self.provider_description = provider_description
+        self.continent_code = continent_code
+        self.is_hosting = is_hosting
+        self.is_isp = is_isp
 
 
     @classmethod
@@ -91,17 +108,20 @@ class IPProbeResponse(object):
             return None
 
         # Extract variables from the dictionary
-        valid = dictionary.get("valid")
-        country = dictionary.get("country")
-        provider_type = dictionary.get("provider-type")
-        country_code = dictionary.get("country-code")
-        hostname = dictionary.get("hostname")
-        provider_domain = dictionary.get("provider-domain")
-        city = dictionary.get("city")
-        provider_website = dictionary.get("provider-website")
-        ip = dictionary.get("ip")
-        region = dictionary.get("region")
-        provider_description = dictionary.get("provider-description")
+        valid = dictionary.get('valid')
+        country = dictionary.get('country')
+        provider_type = dictionary.get('providerType')
+        country_code = dictionary.get('countryCode')
+        hostname = dictionary.get('hostname')
+        provider_domain = dictionary.get('providerDomain')
+        city = dictionary.get('city')
+        provider_website = dictionary.get('providerWebsite')
+        ip = dictionary.get('ip')
+        region = dictionary.get('region')
+        provider_description = dictionary.get('providerDescription')
+        continent_code = dictionary.get('continentCode')
+        is_hosting = dictionary.get('isHosting')
+        is_isp = dictionary.get('isIsp')
 
         # Return an object of this model
         return cls(valid,
@@ -114,6 +134,9 @@ class IPProbeResponse(object):
                    provider_website,
                    ip,
                    region,
-                   provider_description)
+                   provider_description,
+                   continent_code,
+                   is_hosting,
+                   is_isp)
 
 

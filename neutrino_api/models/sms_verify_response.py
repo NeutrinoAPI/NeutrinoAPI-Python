@@ -24,9 +24,9 @@ class SMSVerifyResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "number_valid" : "numberValid",
-        "security_code" : "securityCode",
-        "sent" : "sent"
+        "number_valid":'numberValid',
+        "security_code":'securityCode',
+        "sent":'sent'
     }
 
     def __init__(self,
@@ -59,9 +59,9 @@ class SMSVerifyResponse(object):
             return None
 
         # Extract variables from the dictionary
-        number_valid = dictionary.get("numberValid")
-        security_code = dictionary.get("securityCode")
-        sent = dictionary.get("sent")
+        number_valid = dictionary.get('numberValid')
+        security_code = dictionary.get('securityCode')
+        sent = dictionary.get('sent')
 
         # Return an object of this model
         return cls(number_valid,

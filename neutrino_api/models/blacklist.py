@@ -27,12 +27,12 @@ class Blacklist(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "is_listed" : "isListed",
-        "list_host" : "listHost",
-        "list_rating" : "listRating",
-        "list_name" : "listName",
-        "txt_record" : "txtRecord",
-        "response_time" : "responseTime"
+        "is_listed":'isListed',
+        "list_host":'listHost',
+        "list_rating":'listRating',
+        "list_name":'listName',
+        "txt_record":'txtRecord',
+        "response_time":'responseTime'
     }
 
     def __init__(self,
@@ -71,12 +71,12 @@ class Blacklist(object):
             return None
 
         # Extract variables from the dictionary
-        is_listed = dictionary.get("isListed")
-        list_host = dictionary.get("listHost")
-        list_rating = dictionary.get("listRating")
-        list_name = dictionary.get("listName")
-        txt_record = dictionary.get("txtRecord")
-        response_time = dictionary.get("responseTime")
+        is_listed = dictionary.get('isListed')
+        list_host = dictionary.get('listHost')
+        list_rating = dictionary.get('listRating')
+        list_name = dictionary.get('listName')
+        txt_record = dictionary.get('txtRecord')
+        response_time = dictionary.get('responseTime')
 
         # Return an object of this model
         return cls(is_listed,

@@ -20,7 +20,7 @@ class VerifySecurityCodeResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "verified" : "verified"
+        "verified":'verified'
     }
 
     def __init__(self,
@@ -49,7 +49,7 @@ class VerifySecurityCodeResponse(object):
             return None
 
         # Extract variables from the dictionary
-        verified = dictionary.get("verified")
+        verified = dictionary.get('verified')
 
         # Return an object of this model
         return cls(verified)

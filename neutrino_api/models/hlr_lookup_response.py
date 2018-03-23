@@ -49,25 +49,25 @@ class HLRLookupResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "number_valid" : "numberValid",
-        "international_calling_code" : "internationalCallingCode",
-        "mnc" : "mnc",
-        "number_type" : "numberType",
-        "hlr_valid" : "hlrValid",
-        "hlr_status" : "hlrStatus",
-        "ported_network" : "portedNetwork",
-        "imsi" : "imsi",
-        "mcc" : "mcc",
-        "international_number" : "internationalNumber",
-        "local_number" : "localNumber",
-        "country_code" : "countryCode",
-        "is_ported" : "isPorted",
-        "msin" : "msin",
-        "location" : "location",
-        "origin_network" : "originNetwork",
-        "is_mobile" : "isMobile",
-        "is_roaming" : "isRoaming",
-        "country" : "country"
+        "number_valid":'numberValid',
+        "international_calling_code":'internationalCallingCode',
+        "mnc":'mnc',
+        "number_type":'numberType',
+        "hlr_valid":'hlrValid',
+        "hlr_status":'hlrStatus',
+        "ported_network":'portedNetwork',
+        "imsi":'imsi',
+        "mcc":'mcc',
+        "international_number":'internationalNumber',
+        "local_number":'localNumber',
+        "country_code":'countryCode',
+        "is_ported":'isPorted',
+        "msin":'msin',
+        "location":'location',
+        "origin_network":'originNetwork',
+        "is_mobile":'isMobile',
+        "is_roaming":'isRoaming',
+        "country":'country'
     }
 
     def __init__(self,
@@ -132,25 +132,25 @@ class HLRLookupResponse(object):
             return None
 
         # Extract variables from the dictionary
-        number_valid = dictionary.get("numberValid")
-        international_calling_code = dictionary.get("internationalCallingCode")
-        mnc = dictionary.get("mnc")
-        number_type = dictionary.get("numberType")
-        hlr_valid = dictionary.get("hlrValid")
-        hlr_status = dictionary.get("hlrStatus")
-        ported_network = dictionary.get("portedNetwork")
-        imsi = dictionary.get("imsi")
-        mcc = dictionary.get("mcc")
-        international_number = dictionary.get("internationalNumber")
-        local_number = dictionary.get("localNumber")
-        country_code = dictionary.get("countryCode")
-        is_ported = dictionary.get("isPorted")
-        msin = dictionary.get("msin")
-        location = dictionary.get("location")
-        origin_network = dictionary.get("originNetwork")
-        is_mobile = dictionary.get("isMobile")
-        is_roaming = dictionary.get("isRoaming")
-        country = dictionary.get("country")
+        number_valid = dictionary.get('numberValid')
+        international_calling_code = dictionary.get('internationalCallingCode')
+        mnc = dictionary.get('mnc')
+        number_type = dictionary.get('numberType')
+        hlr_valid = dictionary.get('hlrValid')
+        hlr_status = dictionary.get('hlrStatus')
+        ported_network = dictionary.get('portedNetwork')
+        imsi = dictionary.get('imsi')
+        mcc = dictionary.get('mcc')
+        international_number = dictionary.get('internationalNumber')
+        local_number = dictionary.get('localNumber')
+        country_code = dictionary.get('countryCode')
+        is_ported = dictionary.get('isPorted')
+        msin = dictionary.get('msin')
+        location = dictionary.get('location')
+        origin_network = dictionary.get('originNetwork')
+        is_mobile = dictionary.get('isMobile')
+        is_roaming = dictionary.get('isRoaming')
+        country = dictionary.get('country')
 
         # Return an object of this model
         return cls(number_valid,

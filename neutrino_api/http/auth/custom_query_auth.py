@@ -19,5 +19,5 @@ class CustomQueryAuth:
                 authentication will be added.
 
         """                
-        http_request.query_parameters["user-id"] = Configuration.user_id
-        http_request.query_parameters["api-key"] = Configuration.api_key
+        http_request.add_query_parameter("user-id", Configuration.user_id)
+        http_request.add_query_parameter("api-key", Configuration.api_key)

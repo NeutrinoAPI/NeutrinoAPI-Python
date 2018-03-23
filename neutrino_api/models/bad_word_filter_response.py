@@ -24,10 +24,10 @@ class BadWordFilterResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "bad_words_list" : "badWordsList",
-        "bad_words_total" : "badWordsTotal",
-        "censored_content" : "censoredContent",
-        "is_bad" : "isBad"
+        "bad_words_list":'badWordsList',
+        "bad_words_total":'badWordsTotal',
+        "censored_content":'censoredContent',
+        "is_bad":'isBad'
     }
 
     def __init__(self,
@@ -62,10 +62,10 @@ class BadWordFilterResponse(object):
             return None
 
         # Extract variables from the dictionary
-        bad_words_list = dictionary.get("badWordsList")
-        bad_words_total = dictionary.get("badWordsTotal")
-        censored_content = dictionary.get("censoredContent")
-        is_bad = dictionary.get("isBad")
+        bad_words_list = dictionary.get('badWordsList')
+        bad_words_total = dictionary.get('badWordsTotal')
+        censored_content = dictionary.get('censoredContent')
+        is_bad = dictionary.get('isBad')
 
         # Return an object of this model
         return cls(bad_words_list,

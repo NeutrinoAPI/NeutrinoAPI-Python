@@ -32,15 +32,15 @@ class PhoneValidateResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "valid" : "valid",
-        "international_calling_code" : "internationalCallingCode",
-        "country_code" : "countryCode",
-        "location" : "location",
-        "is_mobile" : "isMobile",
-        "mtype" : "type",
-        "international_number" : "internationalNumber",
-        "local_number" : "localNumber",
-        "country" : "country"
+        "valid":'valid',
+        "international_calling_code":'internationalCallingCode',
+        "country_code":'countryCode',
+        "location":'location',
+        "is_mobile":'isMobile',
+        "mtype":'type',
+        "international_number":'internationalNumber',
+        "local_number":'localNumber',
+        "country":'country'
     }
 
     def __init__(self,
@@ -85,15 +85,15 @@ class PhoneValidateResponse(object):
             return None
 
         # Extract variables from the dictionary
-        valid = dictionary.get("valid")
-        international_calling_code = dictionary.get("internationalCallingCode")
-        country_code = dictionary.get("countryCode")
-        location = dictionary.get("location")
-        is_mobile = dictionary.get("isMobile")
-        mtype = dictionary.get("type")
-        international_number = dictionary.get("internationalNumber")
-        local_number = dictionary.get("localNumber")
-        country = dictionary.get("country")
+        valid = dictionary.get('valid')
+        international_calling_code = dictionary.get('internationalCallingCode')
+        country_code = dictionary.get('countryCode')
+        location = dictionary.get('location')
+        is_mobile = dictionary.get('isMobile')
+        mtype = dictionary.get('type')
+        international_number = dictionary.get('internationalNumber')
+        local_number = dictionary.get('localNumber')
+        country = dictionary.get('country')
 
         # Return an object of this model
         return cls(valid,

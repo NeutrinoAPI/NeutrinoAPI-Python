@@ -10,33 +10,32 @@ from .base_controller import BaseController
 from ..api_helper import APIHelper
 from ..configuration import Configuration
 from ..http.auth.custom_query_auth import CustomQueryAuth
-from ..models.convert_response import ConvertResponse
-from ..models.bad_word_filter_response import BadWordFilterResponse
 from ..models.email_validate_response import EmailValidateResponse
+from ..models.bad_word_filter_response import BadWordFilterResponse
+from ..models.convert_response import ConvertResponse
+from ..models.phone_validate_response import PhoneValidateResponse
 from ..models.user_agent_info_response import UserAgentInfoResponse
 from ..models.html_extract_response import HTMLExtractResponse
-from ..models.phone_validate_response import PhoneValidateResponse
 
 class DataTools(BaseController):
 
     """A Controller to access Endpoints in the neutrino_api API."""
 
 
-    def convert(self,
-                from_value,
-                from_type,
-                to_type):
-        """Does a POST request to /convert.
+    def email_validate(self,
+                       email,
+                       fix_typos=False):
+        """Does a POST request to /email-validate.
 
-        A powerful unit and currency conversion tool
+        Parse, validate and clean an email address
 
         Args:
-            from_value (string): The value to convert from
-            from_type (string): The type of the value to convert from
-            to_type (string): The type to convert to
+            email (string): The email address
+            fix_typos (bool, optional): Automatically attempt to fix typos in
+                the address
 
         Returns:
-            ConvertResponse: Response from the API. 
+            EmailValidateResponse: Response from the API. 
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -48,12 +47,7 @@ class DataTools(BaseController):
 
         # Prepare query URL
         _query_builder = Configuration.base_uri
-        _query_builder += '/convert'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
+        _query_builder += '/email-validate'
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -64,12 +58,9 @@ class DataTools(BaseController):
         # Prepare form parameters
         _form_parameters = {
             'output-case': 'camel',
-            'from-value': from_value,
-            'from-type': from_type,
-            'to-type': to_type
+            'email': email,
+            'fix-typos': fix_typos
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
@@ -78,7 +69,7 @@ class DataTools(BaseController):
         self.validate_response(_context)
 
         # Return appropriate type
-        return APIHelper.json_deserialize(_context.response.raw_body, ConvertResponse.from_dictionary)
+        return APIHelper.json_deserialize(_context.response.raw_body, EmailValidateResponse.from_dictionary)
 
     def bad_word_filter(self,
                         content,
@@ -107,11 +98,6 @@ class DataTools(BaseController):
         # Prepare query URL
         _query_builder = Configuration.base_uri
         _query_builder += '/bad-word-filter'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -125,8 +111,6 @@ class DataTools(BaseController):
             'content': content,
             'censor-character': censor_character
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
@@ -137,20 +121,21 @@ class DataTools(BaseController):
         # Return appropriate type
         return APIHelper.json_deserialize(_context.response.raw_body, BadWordFilterResponse.from_dictionary)
 
-    def email_validate(self,
-                       email,
-                       fix_typos=False):
-        """Does a POST request to /email-validate.
+    def convert(self,
+                from_value,
+                from_type,
+                to_type):
+        """Does a POST request to /convert.
 
-        Parse, validate and clean an email address
+        A powerful unit and currency conversion tool
 
         Args:
-            email (string): The email address
-            fix_typos (bool, optional): Automatically attempt to fix typos in
-                the address
+            from_value (string): The value to convert from
+            from_type (string): The type of the value to convert from
+            to_type (string): The type to convert to
 
         Returns:
-            EmailValidateResponse: Response from the API. 
+            ConvertResponse: Response from the API. 
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -162,12 +147,7 @@ class DataTools(BaseController):
 
         # Prepare query URL
         _query_builder = Configuration.base_uri
-        _query_builder += '/email-validate'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
+        _query_builder += '/convert'
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -178,11 +158,10 @@ class DataTools(BaseController):
         # Prepare form parameters
         _form_parameters = {
             'output-case': 'camel',
-            'email': email,
-            'fix-typos': fix_typos
+            'from-value': from_value,
+            'from-type': from_type,
+            'to-type': to_type
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
@@ -191,7 +170,108 @@ class DataTools(BaseController):
         self.validate_response(_context)
 
         # Return appropriate type
-        return APIHelper.json_deserialize(_context.response.raw_body, EmailValidateResponse.from_dictionary)
+        return APIHelper.json_deserialize(_context.response.raw_body, ConvertResponse.from_dictionary)
+
+    def phone_validate(self,
+                       number,
+                       country_code=None,
+                       ip=None):
+        """Does a POST request to /phone-validate.
+
+        Parse, validate and get location information about a phone number
+
+        Args:
+            number (string): The phone number
+            country_code (string, optional): ISO 2-letter country code, assume
+                numbers are based in this country. If not set numbers are
+                assumed to be in international format (with or without the
+                leading + sign)
+            ip (string, optional): Pass in a users IP address and we will
+                assume numbers are based in the country of the IP address
+
+        Returns:
+            PhoneValidateResponse: Response from the API. 
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _query_builder = Configuration.base_uri
+        _query_builder += '/phone-validate'
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json'
+        }
+
+        # Prepare form parameters
+        _form_parameters = {
+            'output-case': 'camel',
+            'number': number,
+            'country-code': country_code,
+            'ip': ip
+        }
+
+        # Prepare and execute request
+        _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
+        CustomQueryAuth.apply(_request)
+        _context = self.execute_request(_request)
+        self.validate_response(_context)
+
+        # Return appropriate type
+        return APIHelper.json_deserialize(_context.response.raw_body, PhoneValidateResponse.from_dictionary)
+
+    def user_agent_info(self,
+                        user_agent):
+        """Does a POST request to /user-agent-info.
+
+        Parse, validate and get detailed user-agent information from a user
+        agent string
+
+        Args:
+            user_agent (string): A user-agent string
+
+        Returns:
+            UserAgentInfoResponse: Response from the API. 
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _query_builder = Configuration.base_uri
+        _query_builder += '/user-agent-info'
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json'
+        }
+
+        # Prepare form parameters
+        _form_parameters = {
+            'output-case': 'camel',
+            'user-agent': user_agent
+        }
+
+        # Prepare and execute request
+        _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
+        CustomQueryAuth.apply(_request)
+        _context = self.execute_request(_request)
+        self.validate_response(_context)
+
+        # Return appropriate type
+        return APIHelper.json_deserialize(_context.response.raw_body, UserAgentInfoResponse.from_dictionary)
 
     def html_clean(self,
                    content,
@@ -221,11 +301,6 @@ class DataTools(BaseController):
         # Prepare query URL
         _query_builder = Configuration.base_uri
         _query_builder += '/html-clean'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare form parameters
@@ -233,8 +308,6 @@ class DataTools(BaseController):
             'content': content,
             'output-type': output_type
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, parameters=_form_parameters)
@@ -244,115 +317,6 @@ class DataTools(BaseController):
 
         # Return appropriate type
         return _context.response.raw_body
-
-    def code_highlight(self,
-                       content,
-                       mtype,
-                       add_keyword_links=False):
-        """Does a POST request to /code-highlight.
-
-        Code highlight will take raw source code and convert into nicely
-        formatted HTML with syntax and keyword highlighting
-
-        Args:
-            content (string): The source content. This can be either a URL to
-                load from or an actual content string
-            mtype (string): The code type. See the API docs for all supported
-                types
-            add_keyword_links (bool, optional): Add links on source code
-                keywords to the relevant language documentation
-
-        Returns:
-            binary: Response from the API. 
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _query_builder = Configuration.base_uri
-        _query_builder += '/code-highlight'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare form parameters
-        _form_parameters = {
-            'content': content,
-            'type': mtype,
-            'add-keyword-links': add_keyword_links
-        }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
-
-        # Prepare and execute request
-        _request = self.http_client.post(_query_url, parameters=_form_parameters)
-        CustomQueryAuth.apply(_request)
-        _context = self.execute_request(_request, binary = True)
-        self.validate_response(_context)
-
-        # Return appropriate type
-        return _context.response.raw_body
-
-    def user_agent_info(self,
-                        user_agent):
-        """Does a POST request to /user-agent-info.
-
-        Parse, validate and get detailed user-agent information from a user
-        agent string
-
-        Args:
-            user_agent (string): A user-agent string
-
-        Returns:
-            UserAgentInfoResponse: Response from the API. 
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _query_builder = Configuration.base_uri
-        _query_builder += '/user-agent-info'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json'
-        }
-
-        # Prepare form parameters
-        _form_parameters = {
-            'output-case': 'camel',
-            'user-agent': user_agent
-        }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
-
-        # Prepare and execute request
-        _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
-        CustomQueryAuth.apply(_request)
-        _context = self.execute_request(_request)
-        self.validate_response(_context)
-
-        # Return appropriate type
-        return APIHelper.json_deserialize(_context.response.raw_body, UserAgentInfoResponse.from_dictionary)
 
     def html_extract(self,
                      content,
@@ -390,11 +354,6 @@ class DataTools(BaseController):
         # Prepare query URL
         _query_builder = Configuration.base_uri
         _query_builder += '/html-extract-tags'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -410,8 +369,6 @@ class DataTools(BaseController):
             'attribute': attribute,
             'base-url': base_url
         }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
 
         # Prepare and execute request
         _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
@@ -421,65 +378,3 @@ class DataTools(BaseController):
 
         # Return appropriate type
         return APIHelper.json_deserialize(_context.response.raw_body, HTMLExtractResponse.from_dictionary)
-
-    def phone_validate(self,
-                       number,
-                       country_code=None,
-                       ip=None):
-        """Does a POST request to /phone-validate.
-
-        Parse, validate and get location information about a phone number
-
-        Args:
-            number (string): The phone number
-            country_code (string, optional): ISO 2-letter country code, assume
-                numbers are based in this country. If not set numbers are
-                assumed to be in international format (with or without the
-                leading + sign)
-            ip (string, optional): Pass in a users IP address and we will
-                assume numbers are based in the country of the IP address
-
-        Returns:
-            PhoneValidateResponse: Response from the API. 
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _query_builder = Configuration.base_uri
-        _query_builder += '/phone-validate'
-        _query_parameters = {
-
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json'
-        }
-
-        # Prepare form parameters
-        _form_parameters = {
-            'output-case': 'camel',
-            'number': number,
-            'country-code': country_code,
-            'ip': ip
-        }
-        _form_parameters = APIHelper.form_encode_parameters(_form_parameters,
-            Configuration.array_serialization)
-
-        # Prepare and execute request
-        _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
-        CustomQueryAuth.apply(_request)
-        _context = self.execute_request(_request)
-        self.validate_response(_context)
-
-        # Return appropriate type
-        return APIHelper.json_deserialize(_context.response.raw_body, PhoneValidateResponse.from_dictionary)

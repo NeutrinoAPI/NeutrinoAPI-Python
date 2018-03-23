@@ -22,9 +22,9 @@ class HostReputationResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "is_listed" : "isListed",
-        "lists" : "lists",
-        "list_count" : "listCount"
+        "is_listed":'isListed',
+        "lists":'lists',
+        "list_count":'listCount'
     }
 
     def __init__(self,
@@ -57,13 +57,13 @@ class HostReputationResponse(object):
             return None
 
         # Extract variables from the dictionary
-        is_listed = dictionary.get("isListed")
+        is_listed = dictionary.get('isListed')
         lists = None
-        if dictionary.get("lists") != None:
+        if dictionary.get('lists') != None:
             lists = list()
-            for structure in dictionary.get("lists"):
+            for structure in dictionary.get('lists'):
                 lists.append(neutrino_api.models.blacklist.Blacklist.from_dictionary(structure))
-        list_count = dictionary.get("listCount")
+        list_count = dictionary.get('listCount')
 
         # Return an object of this model
         return cls(is_listed,

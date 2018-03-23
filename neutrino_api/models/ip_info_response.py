@@ -23,19 +23,21 @@ class IPInfoResponse(object):
         latitude (float): Location latitude
         region (string): Full region name (if detectable)
         longitude (float): Location longitude
+        continent_code (string): ISO 2-letter continent code
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "valid" : "valid",
-        "country" : "country",
-        "hostname" : "hostname",
-        "city" : "city",
-        "country_code" : "countryCode",
-        "latitude" : "latitude",
-        "region" : "region",
-        "longitude" : "longitude"
+        "valid":'valid',
+        "country":'country',
+        "hostname":'hostname',
+        "city":'city',
+        "country_code":'countryCode',
+        "latitude":'latitude',
+        "region":'region',
+        "longitude":'longitude',
+        "continent_code":'continentCode'
     }
 
     def __init__(self,
@@ -46,7 +48,8 @@ class IPInfoResponse(object):
                  country_code=None,
                  latitude=None,
                  region=None,
-                 longitude=None):
+                 longitude=None,
+                 continent_code=None):
         """Constructor for the IPInfoResponse class"""
 
         # Initialize members of the class
@@ -58,6 +61,7 @@ class IPInfoResponse(object):
         self.latitude = latitude
         self.region = region
         self.longitude = longitude
+        self.continent_code = continent_code
 
 
     @classmethod
@@ -78,14 +82,15 @@ class IPInfoResponse(object):
             return None
 
         # Extract variables from the dictionary
-        valid = dictionary.get("valid")
-        country = dictionary.get("country")
-        hostname = dictionary.get("hostname")
-        city = dictionary.get("city")
-        country_code = dictionary.get("countryCode")
-        latitude = dictionary.get("latitude")
-        region = dictionary.get("region")
-        longitude = dictionary.get("longitude")
+        valid = dictionary.get('valid')
+        country = dictionary.get('country')
+        hostname = dictionary.get('hostname')
+        city = dictionary.get('city')
+        country_code = dictionary.get('countryCode')
+        latitude = dictionary.get('latitude')
+        region = dictionary.get('region')
+        longitude = dictionary.get('longitude')
+        continent_code = dictionary.get('continentCode')
 
         # Return an object of this model
         return cls(valid,
@@ -95,6 +100,7 @@ class IPInfoResponse(object):
                    country_code,
                    latitude,
                    region,
-                   longitude)
+                   longitude,
+                   continent_code)
 
 
