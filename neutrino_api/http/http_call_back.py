@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.http.http_call_back
+    neutrino_api
 
     This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """

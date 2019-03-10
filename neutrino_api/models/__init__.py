@@ -4,6 +4,7 @@ __all__ = [
     'phone_verify_response',
     'host_reputation_response',
     'sms_verify_response',
+    'sms_message_response',
     'blacklist',
     'geocode_reverse_response',
     'phone_playback_response',
@@ -12,7 +13,6 @@ __all__ = [
     'convert_response',
     'location',
     'hlr_lookup_response',
-    'html_extract_response',
     'url_info_response',
     'email_validate_response',
     'phone_validate_response',
@@ -20,5 +20,6 @@ __all__ = [
     'ip_blocklist_response',
     'email_verify_response',
     'ip_probe_response',
+    'browser_bot_response',
     'user_agent_info_response',
 ]

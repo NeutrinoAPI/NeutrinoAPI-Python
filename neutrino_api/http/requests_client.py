@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.http.requests_client
+    neutrino_api
 
     This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
@@ -12,9 +12,10 @@ from cachecontrol import CacheControl
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
-from .http_client import HttpClient
-from .http_response import HttpResponse
-from .http_method_enum import HttpMethodEnum
+from neutrino_api.http.http_client import HttpClient
+from neutrino_api.http.http_method_enum import HttpMethodEnum
+from neutrino_api.http.http_response import HttpResponse
+
 
 class RequestsClient(HttpClient):
 

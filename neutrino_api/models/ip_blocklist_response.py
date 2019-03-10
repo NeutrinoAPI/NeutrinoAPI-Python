@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.ip_blocklist_response
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -15,25 +15,27 @@ class IPBlocklistResponse(object):
 
     Attributes:
         ip (string): The IP address
-        is_bot (bool): IP is hosting a malicious bot or is part of a botnet
-        is_exploit_bot (bool): IP is hosting an exploit finding bot or exploit
-            scanning software
-        is_malware (bool): IP is involved in distributing malware
-        is_spider (bool): IP is a hostile spider or crawler
-        is_dshield (bool): IP has been flagged on DShield (dshield.org)
+        is_bot (bool): IP is hosting a malicious bot or is part of a botnet.
+            Includes brute-force crackers
+        is_exploit_bot (bool): IP is hosting an exploit finding bot or is
+            running exploit scanning software
+        is_malware (bool): IP is involved in distributing or is running
+            malware
+        is_spider (bool): IP is running a hostile web spider / web crawler
+        is_dshield (bool): IP has been flagged as an attack source on DShield
+            (dshield.org)
         list_count (int): The number of blocklists the IP is listed on
         is_proxy (bool): IP has been detected as an anonymous web proxy or
             anonymous HTTP proxy
-        is_hijacked (bool): hijacked netblocks or netblocks controlled by
-            criminal organizations
-        is_tor (bool): IP is coming from a Tor node
-        is_spyware (bool): IP is being used by spyware, malware, botnets or
-            for other malicious activities
+        is_hijacked (bool): IP is part of a hijacked netblock or a netblock
+            controlled by a criminal organization
+        is_tor (bool): IP is a Tor node or running a Tor related service
+        is_spyware (bool): IP is involved in distributing or is running
+            spyware
         is_spam_bot (bool): IP address is hosting a spam bot, comment spamming
-            or other spamming software
+            or any other spamming type software
         is_listed (bool): Is this IP on a blocklist
-        is_vpn (bool): IP has been detected as coming from a VPN hosting
-            provider
+        is_vpn (bool): IP has been detected as belonging to a VPN provider
         last_seen (int): The last time this IP was seen on a blocklist (in
             Unix time or 0 if not listed recently)
         blocklists (list of string): An array of strings indicating which

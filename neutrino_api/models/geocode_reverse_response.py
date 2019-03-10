@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.geocode_reverse_response
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -22,8 +22,30 @@ class GeocodeReverseResponse(object):
         postal_code (string): The postal code for the location
         state (string): The state of the location
         address_components (dict<object, string>): The components which make
-            up the address such as road, city, state etc. May also include
-            additional metadata about the address
+            up the address such as road, city, state, etc
+        country_code_3 (string): The ISO 3-letter country code of the
+            location
+        currency_code (string): ISO 4217 currency code associated with the
+            country
+        location_type (string): The detected location type ordered roughly
+            from most to least precise, possible values
+            are:<br/><ul><li>address - indicates a precise street
+            address</li><li>street - accurate to the street level but may not
+            point to the exact location of the house/building
+            number</li><li>city - accurate to the city level, this includes
+            villages, towns, suburbs, etc</li><li>postal-code - indicates a
+            postal code area (no house or street information
+            present)</li><li>railway - location is part of a rail network such
+            as a station or railway track</li><li>natural - indicates a
+            natural feature, for example a mountain peak or a
+            waterway</li><li>island - location is an island or
+            archipelago</li><li>administrative - indicates an administrative
+            boundary such as a country, state or province</li></ul>
+        location_tags (list of string): Array of strings containing any
+            location tags associated with the address. Tags are additional
+            pieces of metadata about a specific location, there are thousands
+            of different tags. Some examples of tags: shop, office, cafe,
+            bank, pub
 
     """
 
@@ -36,7 +58,11 @@ class GeocodeReverseResponse(object):
         "country_code":'countryCode',
         "postal_code":'postalCode',
         "state":'state',
-        "address_components":'addressComponents'
+        "address_components":'addressComponents',
+        "country_code_3":'countryCode3',
+        "currency_code":'currencyCode',
+        "location_type":'locationType',
+        "location_tags":'locationTags'
     }
 
     def __init__(self,
@@ -47,7 +73,11 @@ class GeocodeReverseResponse(object):
                  country_code=None,
                  postal_code=None,
                  state=None,
-                 address_components=None):
+                 address_components=None,
+                 country_code_3=None,
+                 currency_code=None,
+                 location_type=None,
+                 location_tags=None):
         """Constructor for the GeocodeReverseResponse class"""
 
         # Initialize members of the class
@@ -59,6 +89,10 @@ class GeocodeReverseResponse(object):
         self.postal_code = postal_code
         self.state = state
         self.address_components = address_components
+        self.country_code_3 = country_code_3
+        self.currency_code = currency_code
+        self.location_type = location_type
+        self.location_tags = location_tags
 
 
     @classmethod
@@ -87,6 +121,10 @@ class GeocodeReverseResponse(object):
         postal_code = dictionary.get('postalCode')
         state = dictionary.get('state')
         address_components = dictionary.get('addressComponents')
+        country_code_3 = dictionary.get('countryCode3')
+        currency_code = dictionary.get('currencyCode')
+        location_type = dictionary.get('locationType')
+        location_tags = dictionary.get('locationTags')
 
         # Return an object of this model
         return cls(country,
@@ -96,6 +134,10 @@ class GeocodeReverseResponse(object):
                    country_code,
                    postal_code,
                    state,
-                   address_components)
+                   address_components,
+                   country_code_3,
+                   currency_code,
+                   location_type,
+                   location_tags)
 
 

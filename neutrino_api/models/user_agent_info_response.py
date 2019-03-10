@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.user_agent_info_response
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -14,19 +14,25 @@ class UserAgentInfoResponse(object):
     TODO: type model description here.
 
     Attributes:
-        mobile_screen_width (int): Mobile device screen width (in px)
-        mobile_brand (string): Mobile device brand
-        mobile_model (string): Mobile device model
-        producer (string): Producer or manufacturer
-        browser_name (string): Browser software name
-        mobile_screen_height (int): Mobile device screen height (in px)
-        is_mobile (bool): True if this is a mobile user-agent
-        mtype (string): The user-agent type, possible values are:
-            desktop-browser, email-client, feed-reader, software-library,
-            media-player, mobile-browser, robot, unknown
-        version (string): Software version
-        operating_system (string): Operating system
-        mobile_browser (string): Mobile device browser
+        mobile_screen_width (int): The estimated mobile device screen width in
+            CSS 'px'
+        mobile_brand (string): The mobile device brand
+        mobile_model (string): The mobile device model
+        producer (string): The producer or manufacturer of the user agent
+        browser_name (string): The browser software name
+        mobile_screen_height (int): The estimated mobile device screen height
+            in CSS 'px'
+        is_mobile (bool): True if this is a mobile user agent
+        mtype (string): The user agent type, possible values
+            are:<br/><ul><li>desktop-browser</li><li>mobile-browser</li><li>ema
+            il-client</li><li>feed-reader</li><li>software-library</li><li>medi
+            a-player (includes smart
+            TVs)</li><li>robot</li><li>unknown</li></ul>
+        version (string): The browser software version
+        operating_system (string): The full operating system name which may
+            include the major version number or code name
+        mobile_browser (string): The mobile device browser name (this is
+            usually the same as the browser name)
         is_android (bool): True if this is an Android based mobile user agent
         is_ios (bool): True if this is an iOS based mobile user agent
         operating_system_family (string): The operating system family name,

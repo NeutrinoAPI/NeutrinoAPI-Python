@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.phone_validate_response
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -15,18 +15,29 @@ class PhoneValidateResponse(object):
 
     Attributes:
         valid (bool): Is this a valid phone number
-        international_calling_code (string): Numbers international calling
-            code
-        country_code (string): Number location ISO 2-letter country code
-        location (string): Number location (could be a city, region or
-            country)
-        is_mobile (bool): Is this a mobile number
-        mtype (string): The number type, possible values are: mobile,
-            fixed-line, premium-rate, toll-free, voip, unknown
-        international_number (string): Number represented in international
-            format
-        local_number (string): Number represented in local format
+        international_calling_code (int): The international calling code
+        country_code (string): The phone number country as an ISO 2-letter
+            country code
+        location (string): The phone number location. Could be a city, region
+            or country depending on the type of number
+        is_mobile (bool): True if this is a mobile number (only true with 100%
+            certainty, if the number type is unknown this value will be
+            false)
+        mtype (string): The predicted number type.<br/>Note: type detection is
+            not possible in some countries which have no predictable prefix
+            pattern (you can use the HLR Lookup API in these cases)<br/>
+            Possible values
+            are:<br/><ul><li>mobile</li><li>fixed-line</li><li>premium-rate</li
+            ><li>toll-free</li><li>voip</li><li>unknown (use HLR lookup
+            instead)</li></ul>
+        international_number (string): The number represented in full
+            international format (E.164)
+        local_number (string): The number represented in local dialing format
         country (string): The phone number country
+        country_code_3 (string): The phone number country as an ISO 3-letter
+            country code
+        currency_code (string): ISO 4217 currency code associated with the
+            country
 
     """
 
@@ -40,7 +51,9 @@ class PhoneValidateResponse(object):
         "mtype":'type',
         "international_number":'internationalNumber',
         "local_number":'localNumber',
-        "country":'country'
+        "country":'country',
+        "country_code_3":'countryCode3',
+        "currency_code":'currencyCode'
     }
 
     def __init__(self,
@@ -52,7 +65,9 @@ class PhoneValidateResponse(object):
                  mtype=None,
                  international_number=None,
                  local_number=None,
-                 country=None):
+                 country=None,
+                 country_code_3=None,
+                 currency_code=None):
         """Constructor for the PhoneValidateResponse class"""
 
         # Initialize members of the class
@@ -65,6 +80,8 @@ class PhoneValidateResponse(object):
         self.international_number = international_number
         self.local_number = local_number
         self.country = country
+        self.country_code_3 = country_code_3
+        self.currency_code = currency_code
 
 
     @classmethod
@@ -94,6 +111,8 @@ class PhoneValidateResponse(object):
         international_number = dictionary.get('internationalNumber')
         local_number = dictionary.get('localNumber')
         country = dictionary.get('country')
+        country_code_3 = dictionary.get('countryCode3')
+        currency_code = dictionary.get('currencyCode')
 
         # Return an object of this model
         return cls(valid,
@@ -104,6 +123,8 @@ class PhoneValidateResponse(object):
                    mtype,
                    international_number,
                    local_number,
-                   country)
+                   country,
+                   country_code_3,
+                   currency_code)
 
 

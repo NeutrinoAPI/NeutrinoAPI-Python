@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
 """
-   neutrino_api.configuration
+    neutrino_api
 
-   This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
-from .api_helper import APIHelper
+
+from neutrino_api.api_helper import APIHelper
+
 
 class Configuration(object):
 
@@ -25,9 +27,9 @@ class Configuration(object):
 
     # Your user ID
     # TODO: Set an appropriate value
-    user_id = "TODO: Replace"
+    user_id = None
 
     # Your API key
     # TODO: Set an appropriate value
-    api_key = "TODO: Replace"
+    api_key = None
 

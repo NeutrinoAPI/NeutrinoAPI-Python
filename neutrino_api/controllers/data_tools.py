@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.controllers.data_tools
+    neutrino_api
 
     This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
-from .base_controller import BaseController
-from ..api_helper import APIHelper
-from ..configuration import Configuration
-from ..http.auth.custom_query_auth import CustomQueryAuth
-from ..models.email_validate_response import EmailValidateResponse
-from ..models.bad_word_filter_response import BadWordFilterResponse
-from ..models.convert_response import ConvertResponse
-from ..models.phone_validate_response import PhoneValidateResponse
-from ..models.user_agent_info_response import UserAgentInfoResponse
-from ..models.html_extract_response import HTMLExtractResponse
+from neutrino_api.api_helper import APIHelper
+from neutrino_api.configuration import Configuration
+from neutrino_api.controllers.base_controller import BaseController
+from neutrino_api.http.auth.custom_query_auth import CustomQueryAuth
+from neutrino_api.models.email_validate_response import EmailValidateResponse
+from neutrino_api.models.bad_word_filter_response import BadWordFilterResponse
+from neutrino_api.models.convert_response import ConvertResponse
+from neutrino_api.models.phone_validate_response import PhoneValidateResponse
+from neutrino_api.models.user_agent_info_response import UserAgentInfoResponse
 
 class DataTools(BaseController):
 
@@ -27,10 +26,11 @@ class DataTools(BaseController):
                        fix_typos=False):
         """Does a POST request to /email-validate.
 
-        Parse, validate and clean an email address
+        Parse, validate and clean an email address. See:
+        https://www.neutrinoapi.com/api/email-validate/
 
         Args:
-            email (string): The email address
+            email (string): An email address
             fix_typos (bool, optional): Automatically attempt to fix typos in
                 the address
 
@@ -46,8 +46,9 @@ class DataTools(BaseController):
         """
 
         # Prepare query URL
+        _url_path = '/email-validate'
         _query_builder = Configuration.base_uri
-        _query_builder += '/email-validate'
+        _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -76,11 +77,12 @@ class DataTools(BaseController):
                         censor_character=None):
         """Does a POST request to /bad-word-filter.
 
-        Detect bad words, swear words and profanity in a given text
+        Detect bad words, swear words and profanity in a given text. See:
+        https://www.neutrinoapi.com/api/bad-word-filter/
 
         Args:
-            content (string): The text content to check. This can be either a
-                URL to load content from or an actual content string
+            content (string): The content to scan. This can be either a URL to
+                load content from or an actual content string
             censor_character (string, optional): The character to use to
                 censor out the bad words found
 
@@ -96,8 +98,9 @@ class DataTools(BaseController):
         """
 
         # Prepare query URL
+        _url_path = '/bad-word-filter'
         _query_builder = Configuration.base_uri
-        _query_builder += '/bad-word-filter'
+        _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -127,12 +130,14 @@ class DataTools(BaseController):
                 to_type):
         """Does a POST request to /convert.
 
-        A powerful unit and currency conversion tool
+        A powerful unit conversion tool. See:
+        https://www.neutrinoapi.com/api/convert/
 
         Args:
-            from_value (string): The value to convert from
-            from_type (string): The type of the value to convert from
-            to_type (string): The type to convert to
+            from_value (string): The value to convert from (e.g. 10.95)
+            from_type (string): The type of the value to convert from (e.g.
+                USD)
+            to_type (string): The type to convert to (e.g. EUR)
 
         Returns:
             ConvertResponse: Response from the API. 
@@ -146,8 +151,9 @@ class DataTools(BaseController):
         """
 
         # Prepare query URL
+        _url_path = '/convert'
         _query_builder = Configuration.base_uri
-        _query_builder += '/convert'
+        _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -178,12 +184,15 @@ class DataTools(BaseController):
                        ip=None):
         """Does a POST request to /phone-validate.
 
-        Parse, validate and get location information about a phone number
+        Parse, validate and get location information about a phone number.
+        See: https://www.neutrinoapi.com/api/phone-validate/
 
         Args:
-            number (string): The phone number
+            number (string): A phone number. This can be in international
+                format (E.164) or local format. If passing local format you
+                should use the 'country-code' or 'ip' options as well
             country_code (string, optional): ISO 2-letter country code, assume
-                numbers are based in this country. If not set numbers are
+                numbers are based in this country.<br/>If not set numbers are
                 assumed to be in international format (with or without the
                 leading + sign)
             ip (string, optional): Pass in a users IP address and we will
@@ -201,8 +210,9 @@ class DataTools(BaseController):
         """
 
         # Prepare query URL
+        _url_path = '/phone-validate'
         _query_builder = Configuration.base_uri
-        _query_builder += '/phone-validate'
+        _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -232,10 +242,10 @@ class DataTools(BaseController):
         """Does a POST request to /user-agent-info.
 
         Parse, validate and get detailed user-agent information from a user
-        agent string
+        agent string. See: https://www.neutrinoapi.com/api/user-agent-info/
 
         Args:
-            user_agent (string): A user-agent string
+            user_agent (string): A user agent string
 
         Returns:
             UserAgentInfoResponse: Response from the API. 
@@ -249,8 +259,9 @@ class DataTools(BaseController):
         """
 
         # Prepare query URL
+        _url_path = '/user-agent-info'
         _query_builder = Configuration.base_uri
-        _query_builder += '/user-agent-info'
+        _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -272,109 +283,3 @@ class DataTools(BaseController):
 
         # Return appropriate type
         return APIHelper.json_deserialize(_context.response.raw_body, UserAgentInfoResponse.from_dictionary)
-
-    def html_clean(self,
-                   content,
-                   output_type):
-        """Does a POST request to /html-clean.
-
-        Clean and sanitize untrusted HTML
-
-        Args:
-            content (string): The HTML content. This can be either a URL to
-                load HTML from or an actual HTML content string
-            output_type (string): The level of sanitization, possible values
-                are: plain-text, simple-text, basic-html,
-                basic-html-with-images, advanced-html
-
-        Returns:
-            binary: Response from the API. 
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _query_builder = Configuration.base_uri
-        _query_builder += '/html-clean'
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare form parameters
-        _form_parameters = {
-            'content': content,
-            'output-type': output_type
-        }
-
-        # Prepare and execute request
-        _request = self.http_client.post(_query_url, parameters=_form_parameters)
-        CustomQueryAuth.apply(_request)
-        _context = self.execute_request(_request, binary = True)
-        self.validate_response(_context)
-
-        # Return appropriate type
-        return _context.response.raw_body
-
-    def html_extract(self,
-                     content,
-                     tag,
-                     attribute=None,
-                     base_url=None):
-        """Does a POST request to /html-extract-tags.
-
-        Extract specific HTML tag contents or attributes from complex HTML or
-        XHTML content
-
-        Args:
-            content (string): The HTML content. This can be either a URL to
-                load HTML from or an actual HTML content string
-            tag (string): The HTML tag(s) to extract data from. This can just
-                be a simple tag name like 'img' OR a CSS/jQuery style
-                selector
-            attribute (string, optional): If set, then extract data from the
-                specified tag attribute. If not set, then data will be
-                extracted from the tags inner content
-            base_url (string, optional): The base URL to replace into realive
-                links
-
-        Returns:
-            HTMLExtractResponse: Response from the API. 
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _query_builder = Configuration.base_uri
-        _query_builder += '/html-extract-tags'
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json'
-        }
-
-        # Prepare form parameters
-        _form_parameters = {
-            'output-case': 'camel',
-            'content': content,
-            'tag': tag,
-            'attribute': attribute,
-            'base-url': base_url
-        }
-
-        # Prepare and execute request
-        _request = self.http_client.post(_query_url, headers=_headers, parameters=_form_parameters)
-        CustomQueryAuth.apply(_request)
-        _context = self.execute_request(_request)
-        self.validate_response(_context)
-
-        # Return appropriate type
-        return APIHelper.json_deserialize(_context.response.raw_body, HTMLExtractResponse.from_dictionary)

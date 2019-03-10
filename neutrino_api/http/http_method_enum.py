@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.http.http_method_enum
+    neutrino_api
 
     This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
@@ -29,6 +29,7 @@ class HttpMethodEnum(object):
 
     DELETE = "DELETE"
 
+    HEAD = "HEAD"
 
     @classmethod
     def to_string(cls, val):

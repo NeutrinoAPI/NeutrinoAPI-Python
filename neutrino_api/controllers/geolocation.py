@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.controllers.geolocation
+    neutrino_api
 
     This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
-from .base_controller import BaseController
-from ..api_helper import APIHelper
-from ..configuration import Configuration
-from ..http.auth.custom_query_auth import CustomQueryAuth
-from ..models.geocode_reverse_response import GeocodeReverseResponse
-from ..models.ip_info_response import IPInfoResponse
-from ..models.geocode_address_response import GeocodeAddressResponse
+from neutrino_api.api_helper import APIHelper
+from neutrino_api.configuration import Configuration
+from neutrino_api.controllers.base_controller import BaseController
+from neutrino_api.http.auth.custom_query_auth import CustomQueryAuth
+from neutrino_api.models.geocode_reverse_response import GeocodeReverseResponse
+from neutrino_api.models.ip_info_response import IPInfoResponse
+from neutrino_api.models.geocode_address_response import GeocodeAddressResponse
 
 class Geolocation(BaseController):
 
@@ -26,13 +26,17 @@ class Geolocation(BaseController):
         """Does a POST request to /geocode-reverse.
 
         Convert a geographic coordinate (latitude and longitude) into a real
-        world address or location.
+        world address or location. See:
+        https://www.neutrinoapi.com/api/geocode-reverse/
 
         Args:
-            latitude (float): The location latitude
-            longitude (float): The location longitude
+            latitude (string): The location latitude in decimal degrees
+                format
+            longitude (string): The location longitude in decimal degrees
+                format
             language_code (string, optional): The language to display results
-                in, available languages are: de, en, es, fr, it, pt, ru
+                in, available languages are:<ul><li>de, en, es, fr, it, pt,
+                ru</li></ul>
 
         Returns:
             GeocodeReverseResponse: Response from the API. 
@@ -46,8 +50,9 @@ class Geolocation(BaseController):
         """
 
         # Prepare query URL
+        _url_path = '/geocode-reverse'
         _query_builder = Configuration.base_uri
-        _query_builder += '/geocode-reverse'
+        _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -78,10 +83,10 @@ class Geolocation(BaseController):
         """Does a POST request to /ip-info.
 
         Get location information about an IP address and do reverse DNS (PTR)
-        lookups.
+        lookups. See: https://www.neutrinoapi.com/api/ip-info/
 
         Args:
-            ip (string): The IP address
+            ip (string): IPv4 or IPv6 address
             reverse_lookup (bool, optional): Do a reverse DNS (PTR) lookup.
                 This option can add extra delay to the request so only use it
                 if you need it
@@ -98,8 +103,9 @@ class Geolocation(BaseController):
         """
 
         # Prepare query URL
+        _url_path = '/ip-info'
         _query_builder = Configuration.base_uri
-        _query_builder += '/ip-info'
+        _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -130,15 +136,17 @@ class Geolocation(BaseController):
                         fuzzy_search=False):
         """Does a POST request to /geocode-address.
 
-        Geocode an address, partial address or the name of a location
+        Geocode an address, partial address or just the name of a place. See:
+        https://www.neutrinoapi.com/api/geocode-address/
 
         Args:
-            address (string): The address or partial address to try and
-                locate
+            address (string): The address, partial address or name of a place
+                to try and locate
             country_code (string, optional): The ISO 2-letter country code to
-                be biased towards (default is no country bias)
+                be biased towards (the default is no country bias)
             language_code (string, optional): The language to display results
-                in, available languages are: de, en, es, fr, it, pt, ru
+                in, available languages are:<ul><li>de, en, es, fr, it, pt,
+                ru</li></ul>
             fuzzy_search (bool, optional): If no matches are found for the
                 given address, start performing a recursive fuzzy search until
                 a geolocation is found. We use a combination of approximate
@@ -157,8 +165,9 @@ class Geolocation(BaseController):
         """
 
         # Prepare query URL
+        _url_path = '/geocode-address'
         _query_builder = Configuration.base_uri
-        _query_builder += '/geocode-address'
+        _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers

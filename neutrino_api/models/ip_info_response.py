@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.ip_info_response
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -14,16 +14,20 @@ class IPInfoResponse(object):
     TODO: type model description here.
 
     Attributes:
-        valid (bool): Is this a valid IP address
+        valid (bool): Is this a valid IPv4 or IPv6 address
         country (string): Full country name
         hostname (string): The IPs hostname (only set if reverse-lookup has
             been used)
         city (string): Full city name (if detectable)
         country_code (string): ISO 2-letter country code
-        latitude (float): Location latitude
+        latitude (int): Location latitude
         region (string): Full region name (if detectable)
-        longitude (float): Location longitude
+        longitude (int): Location longitude
         continent_code (string): ISO 2-letter continent code
+        ip (string): The IP address
+        country_code_3 (string): ISO 3-letter country code
+        currency_code (string): ISO 4217 currency code associated with the
+            country
 
     """
 
@@ -37,7 +41,10 @@ class IPInfoResponse(object):
         "latitude":'latitude',
         "region":'region',
         "longitude":'longitude',
-        "continent_code":'continentCode'
+        "continent_code":'continentCode',
+        "ip":'ip',
+        "country_code_3":'countryCode3',
+        "currency_code":'currencyCode'
     }
 
     def __init__(self,
@@ -49,7 +56,10 @@ class IPInfoResponse(object):
                  latitude=None,
                  region=None,
                  longitude=None,
-                 continent_code=None):
+                 continent_code=None,
+                 ip=None,
+                 country_code_3=None,
+                 currency_code=None):
         """Constructor for the IPInfoResponse class"""
 
         # Initialize members of the class
@@ -62,6 +72,9 @@ class IPInfoResponse(object):
         self.region = region
         self.longitude = longitude
         self.continent_code = continent_code
+        self.ip = ip
+        self.country_code_3 = country_code_3
+        self.currency_code = currency_code
 
 
     @classmethod
@@ -91,6 +104,9 @@ class IPInfoResponse(object):
         region = dictionary.get('region')
         longitude = dictionary.get('longitude')
         continent_code = dictionary.get('continentCode')
+        ip = dictionary.get('ip')
+        country_code_3 = dictionary.get('countryCode3')
+        currency_code = dictionary.get('currencyCode')
 
         # Return an object of this model
         return cls(valid,
@@ -101,6 +117,9 @@ class IPInfoResponse(object):
                    latitude,
                    region,
                    longitude,
-                   continent_code)
+                   continent_code,
+                   ip,
+                   country_code_3,
+                   currency_code)
 
 

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.phone_playback_response
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -15,14 +15,14 @@ class PhonePlaybackResponse(object):
 
     Attributes:
         calling (bool): True if the call is being made now
-        number_valid (bool): Is this a valid phone number
+        number_valid (bool): True if this a valid phone number
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
         "calling":'calling',
-        "number_valid":'number-valid'
+        "number_valid":'numberValid'
     }
 
     def __init__(self,
@@ -54,7 +54,7 @@ class PhonePlaybackResponse(object):
 
         # Extract variables from the dictionary
         calling = dictionary.get('calling')
-        number_valid = dictionary.get('number-valid')
+        number_valid = dictionary.get('numberValid')
 
         # Return an object of this model
         return cls(calling,

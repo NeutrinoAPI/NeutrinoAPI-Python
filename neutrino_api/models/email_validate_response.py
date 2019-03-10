@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.email_validate_response
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -21,7 +21,7 @@ class EmailValidateResponse(object):
             valid mail server records)
         is_freemail (bool): True if this address is a free-mail address
         email (string): The full email address (this could be different to the
-            supplied address if fix-typos is used)
+            supplied address if typos-fixed is true)
         is_disposable (bool): True if this address is a disposable, temporary
             or darknet related email address
         typos_fixed (bool): True if typos have been fixed

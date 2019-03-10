@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.bin_lookup_response
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -14,28 +14,36 @@ class BINLookupResponse(object):
     TODO: type model description here.
 
     Attributes:
-        country (string): Full country name of the issuer
-        ip_city (string): The city name (if detectable) from the customer IP
-        ip_matches_bin (bool): True if the customer IP address country matches
-            the BIN country
+        country (string): The full country name of the issuer
+        ip_city (string): The city of the customers IP (if detectable)
+        ip_matches_bin (bool): True if the customers IP country matches the
+            BIN country
         card_type (string): The card type, will always be one of: DEBIT,
             CREDIT, CHARGE CARD
-        card_category (string): The card category (if known)
-        ip_country_code (string): The ISO 2-letter country code detected from
-            the customer IP
-        ip_country (string): The country detected from the customer IP
-        issuer (string): The card issuer (if known)
-        ip_blocklisted (bool): True if the customer IP is listed on one of our
-            blocklists, see the IP Blocklist API for more details
+        card_category (string): The card category. There are many different
+            card categories the most common card categories are: CLASSIC,
+            BUSINESS, CORPORATE, PLATINUM, PREPAID
+        ip_country_code (string): The ISO 2-letter country code of the
+            customers IP
+        ip_country (string): The country of the customers IP
+        issuer (string): The card issuer
+        ip_blocklisted (bool): True if the customers IP is listed on one of
+            our blocklists, see the <a
+            href="http://www.neutrinoapi.com/api/ip-blocklist/">IP Blocklist
+            API</a>
         valid (bool): Is this a valid BIN or IIN number
         ip_blocklists (list of string): An array of strings indicating which
             blocklists this IP is listed on
-        issuer_website (string): The card issuer website (if known)
-        country_code (string): ISO 2-letter country code of the issuer
-        ip_region (string): The region name (if detectable) from the customer
-            IP
+        issuer_website (string): The card issuers website
+        country_code (string): The ISO 2-letter country code of the issuer
+        ip_region (string): The region of the customers IP (if detectable)
         card_brand (string): The card brand (e.g. Visa or Mastercard)
-        issuer_phone (string): The card issuer phone number (if known)
+        issuer_phone (string): The card issuers phone number
+        country_code_3 (string): The ISO 3-letter country code of the issuer
+        currency_code (string): ISO 4217 currency code associated with the
+            country of the issuer
+        ip_country_code_3 (string): The ISO 3-letter country code of the
+            customers IP
 
     """
 
@@ -56,7 +64,10 @@ class BINLookupResponse(object):
         "country_code":'countryCode',
         "ip_region":'ipRegion',
         "card_brand":'cardBrand',
-        "issuer_phone":'issuerPhone'
+        "issuer_phone":'issuerPhone',
+        "country_code_3":'countryCode3',
+        "currency_code":'currencyCode',
+        "ip_country_code_3":'ipCountryCode3'
     }
 
     def __init__(self,
@@ -75,7 +86,10 @@ class BINLookupResponse(object):
                  country_code=None,
                  ip_region=None,
                  card_brand=None,
-                 issuer_phone=None):
+                 issuer_phone=None,
+                 country_code_3=None,
+                 currency_code=None,
+                 ip_country_code_3=None):
         """Constructor for the BINLookupResponse class"""
 
         # Initialize members of the class
@@ -95,6 +109,9 @@ class BINLookupResponse(object):
         self.ip_region = ip_region
         self.card_brand = card_brand
         self.issuer_phone = issuer_phone
+        self.country_code_3 = country_code_3
+        self.currency_code = currency_code
+        self.ip_country_code_3 = ip_country_code_3
 
 
     @classmethod
@@ -131,6 +148,9 @@ class BINLookupResponse(object):
         ip_region = dictionary.get('ipRegion')
         card_brand = dictionary.get('cardBrand')
         issuer_phone = dictionary.get('issuerPhone')
+        country_code_3 = dictionary.get('countryCode3')
+        currency_code = dictionary.get('currencyCode')
+        ip_country_code_3 = dictionary.get('ipCountryCode3')
 
         # Return an object of this model
         return cls(country,
@@ -148,6 +168,9 @@ class BINLookupResponse(object):
                    country_code,
                    ip_region,
                    card_brand,
-                   issuer_phone)
+                   issuer_phone,
+                   country_code_3,
+                   currency_code,
+                   ip_country_code_3)
 
 

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.location
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -18,6 +18,8 @@ class Location(object):
         address (string): The fully formatted address
         city (string): The city of the location
         country_code (string): The ISO 2-letter country code of the location
+        country_code_3 (string): The ISO 3-letter country code of the
+            location
         latitude (float): The location latitude
         postal_code (string): The postal code for the location
         longitude (float): The location longitude
@@ -34,6 +36,7 @@ class Location(object):
         "address":'address',
         "city":'city',
         "country_code":'countryCode',
+        "country_code_3":'countryCode3',
         "latitude":'latitude',
         "postal_code":'postalCode',
         "longitude":'longitude',
@@ -46,6 +49,7 @@ class Location(object):
                  address=None,
                  city=None,
                  country_code=None,
+                 country_code_3=None,
                  latitude=None,
                  postal_code=None,
                  longitude=None,
@@ -58,6 +62,7 @@ class Location(object):
         self.address = address
         self.city = city
         self.country_code = country_code
+        self.country_code_3 = country_code_3
         self.latitude = latitude
         self.postal_code = postal_code
         self.longitude = longitude
@@ -87,6 +92,7 @@ class Location(object):
         address = dictionary.get('address')
         city = dictionary.get('city')
         country_code = dictionary.get('countryCode')
+        country_code_3 = dictionary.get('countryCode3')
         latitude = dictionary.get('latitude')
         postal_code = dictionary.get('postalCode')
         longitude = dictionary.get('longitude')
@@ -98,6 +104,7 @@ class Location(object):
                    address,
                    city,
                    country_code,
+                   country_code_3,
                    latitude,
                    postal_code,
                    longitude,

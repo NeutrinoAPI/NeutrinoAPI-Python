@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-   neutrino_api.exceptions.api_exception
+    neutrino_api
 
-   This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 class APIException(Exception):
@@ -11,7 +11,7 @@ class APIException(Exception):
     """Class that handles HTTP Exceptions when fetching API Endpoints.
 
     Attributes:
-		response_code (int): The status code of the response.
+        response_code (int): The status code of the response.
         context (HttpContext): The HttpContext of the API call.
 
     """

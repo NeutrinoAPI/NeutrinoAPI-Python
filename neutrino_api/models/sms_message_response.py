@@ -7,28 +7,32 @@
 """
 
 
-class VerifySecurityCodeResponse(object):
+class SMSMessageResponse(object):
 
-    """Implementation of the 'Verify Security Code Response' model.
+    """Implementation of the 'SMS Message Response' model.
 
     TODO: type model description here.
 
     Attributes:
-        verified (bool): True if the code is valid
+        number_valid (bool): True if this a valid phone number
+        sent (bool): True if the SMS has been sent
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "verified":'verified'
+        "number_valid":'numberValid',
+        "sent":'sent'
     }
 
     def __init__(self,
-                 verified=None):
-        """Constructor for the VerifySecurityCodeResponse class"""
+                 number_valid=None,
+                 sent=None):
+        """Constructor for the SMSMessageResponse class"""
 
         # Initialize members of the class
-        self.verified = verified
+        self.number_valid = number_valid
+        self.sent = sent
 
 
     @classmethod
@@ -49,9 +53,11 @@ class VerifySecurityCodeResponse(object):
             return None
 
         # Extract variables from the dictionary
-        verified = dictionary.get('verified')
+        number_valid = dictionary.get('numberValid')
+        sent = dictionary.get('sent')
 
         # Return an object of this model
-        return cls(verified)
+        return cls(number_valid,
+                   sent)
 
 

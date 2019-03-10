@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_apicontrollers.base_controller
+    neutrino_api
 
     This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
-from ..api_helper import APIHelper
-from ..http.http_context import HttpContext
-from ..http.requests_client import RequestsClient
-from ..exceptions.api_error_exception import APIErrorException
-from ..exceptions.api_exception import APIException
+from neutrino_api.api_helper import APIHelper
+from neutrino_api.http.http_context import HttpContext
+from neutrino_api.http.requests_client import RequestsClient
+from neutrino_api.exceptions.api_error_exception import APIErrorException
+from neutrino_api.exceptions.api_exception import APIException
 
 class BaseController(object):
 
@@ -28,7 +28,7 @@ class BaseController(object):
 
     """
 
-    http_client = RequestsClient(timeout=30)
+    http_client = RequestsClient(timeout=45)
 
     http_call_back = None
 

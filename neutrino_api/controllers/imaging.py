@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.controllers.imaging
+    neutrino_api
 
     This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
-from .base_controller import BaseController
-from ..api_helper import APIHelper
-from ..configuration import Configuration
-from ..http.auth.custom_query_auth import CustomQueryAuth
+from neutrino_api.api_helper import APIHelper
+from neutrino_api.configuration import Configuration
+from neutrino_api.controllers.base_controller import BaseController
+from neutrino_api.http.auth.custom_query_auth import CustomQueryAuth
 
 class Imaging(BaseController):
 
@@ -28,8 +28,10 @@ class Imaging(BaseController):
 
         Args:
             image_url (string): The URL to the source image
-            width (int): Width to resize to (in px)
-            height (int): Height to resize to (in px)
+            width (int): The width to resize to (in px) while preserving
+                aspect ratio
+            height (int): The height to resize to (in px) while preserving
+                aspect ratio
             format (string, optional): The output image format, can be either
                 png or jpg
 
@@ -45,8 +47,9 @@ class Imaging(BaseController):
         """
 
         # Prepare query URL
+        _url_path = '/image-resize'
         _query_builder = Configuration.base_uri
-        _query_builder += '/image-resize'
+        _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare form parameters
@@ -68,8 +71,8 @@ class Imaging(BaseController):
 
     def qr_code(self,
                 content,
-                width=250,
-                height=250,
+                width=256,
+                height=256,
                 fg_color='#000000',
                 bg_color='#ffffff'):
         """Does a POST request to /qr-code.
@@ -82,10 +85,8 @@ class Imaging(BaseController):
                 URL or a phone number)
             width (int, optional): The width of the QR code (in px)
             height (int, optional): The height of the QR code (in px)
-            fg_color (string, optional): The QR code foreground color (you
-                should always use a dark color for this)
-            bg_color (string, optional): The QR code background color (you
-                should always use a light color for this)
+            fg_color (string, optional): The QR code foreground color
+            bg_color (string, optional): The QR code background color
 
         Returns:
             binary: Response from the API. 
@@ -99,8 +100,9 @@ class Imaging(BaseController):
         """
 
         # Prepare query URL
+        _url_path = '/qr-code'
         _query_builder = Configuration.base_uri
-        _query_builder += '/qr-code'
+        _query_builder += _url_path
         _query_parameters = {
             'width': width
         }
@@ -145,12 +147,12 @@ class Imaging(BaseController):
             format (string, optional): The output image format, can be either
                 png or jpg
             position (string, optional): The position of the watermark image,
-                possible values are: center, top-left, top-center, top-right,
-                bottom-left, bottom-center, bottom-right
+                possible values are:<br/>center, top-left, top-center,
+                top-right, bottom-left, bottom-center, bottom-right
             width (int, optional): If set resize the resulting image to this
-                width (preserving aspect ratio)
+                width (in px) while preserving aspect ratio
             height (int, optional): If set resize the resulting image to this
-                height (preserving aspect ratio)
+                height (in px) while preserving aspect ratio
 
         Returns:
             binary: Response from the API. 
@@ -164,8 +166,9 @@ class Imaging(BaseController):
         """
 
         # Prepare query URL
+        _url_path = '/image-watermark'
         _query_builder = Configuration.base_uri
-        _query_builder += '/image-watermark'
+        _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare form parameters
@@ -207,13 +210,13 @@ class Imaging(BaseController):
                       css=None,
                       image_width=1024,
                       image_height=None,
-                      render_delay=None,
+                      render_delay=0,
                       header_text_left=None,
                       header_text_center=None,
                       header_text_right=None,
                       header_size=9,
                       header_font='Courier',
-                      header_font_size='11',
+                      header_font_size=11,
                       header_line=False,
                       footer_text_left=None,
                       footer_text_center=None,
@@ -226,7 +229,8 @@ class Imaging(BaseController):
                       page_height=None):
         """Does a POST request to /html5-render.
 
-        Render HTML and HTML5 content to PDF, JPG or PNG
+        Render HTML content to PDF, JPG or PNG. See:
+        https://www.neutrinoapi.com/api/html5-render/
 
         Args:
             content (string): The HTML content. This can be either a URL to
@@ -243,8 +247,8 @@ class Imaging(BaseController):
             margin_bottom (int, optional): The document bottom margin (in mm)
             landscape (bool, optional): Set the document to lanscape
                 orientation
-            zoom (float, optional): Set the zoom factor when rendering the
-                page (2.0 for double size, 0.5 for half size)
+            zoom (int, optional): Set the zoom factor when rendering the page
+                (2.0 for double size, 0.5 for half size)
             grayscale (bool, optional): Render the final document in
                 grayscale
             media_print (bool, optional): Use @media print CSS styles to
@@ -275,7 +279,7 @@ class Imaging(BaseController):
             header_size (int, optional): The height of your header (in mm)
             header_font (string, optional): Set the header font. Fonts
                 available: Times, Courier, Helvetica, Arial
-            header_font_size (string, optional): Set the header font size (in
+            header_font_size (int, optional): Set the header font size (in
                 pt)
             header_line (bool, optional): Draw a full page width horizontal
                 line under your header
@@ -310,8 +314,9 @@ class Imaging(BaseController):
         """
 
         # Prepare query URL
+        _url_path = '/html5-render'
         _query_builder = Configuration.base_uri
-        _query_builder += '/html5-render'
+        _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare form parameters

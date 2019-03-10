@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.http.http_request
+    neutrino_api
 
     This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
-from ..api_helper import APIHelper
+
+from neutrino_api.api_helper import APIHelper
+
 
 class HttpRequest(object):
 

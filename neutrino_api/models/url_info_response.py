@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.url_info_response
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -14,37 +14,39 @@ class URLInfoResponse(object):
     TODO: type model description here.
 
     Attributes:
-        http_status_message (string): The HTTP status message assoicated with
-            the status code
-        server_region (string): Server IP geo-location: full region name (if
-            detectable)
-        query (dict<object, object>): A key:value map of the URL query
+        http_status_message (int): The HTTP status message assoicated with the
+            status code
+        server_region (string): The servers IP geo-location: full region name
+            (if detectable)
+        query (dict<object, string>): A key-value map of the URL query
             paramaters
         server_name (string): The name of the server software hosting this
             URL
         url_port (int): The URL port
-        server_country (string): Server IP geo-location: full country name
+        server_country (string): The servers IP geo-location: full country
+            name
         real (bool): Is this URL actually serving real content
-        server_city (string): Server IP geo-location: full city name (if
+        server_city (string): The servers IP geo-location: full city name (if
             detectable)
         url_path (string): The URL path
         url (string): The fully qualified URL. This may be different to the
-            URL requested if http-redirect is True
+            URL requested if http-redirect is true
         valid (bool): Is this a valid well-formed URL
-        server_hostname (string): The server hostname (PTR)
-        load_time (float): The time taken to load the URL content (in
-            seconds)
+        server_hostname (string): The servers hostname (PTR record)
+        load_time (int): The time taken to load the URL content in seconds
         http_ok (bool): True if this URL responded with an HTTP OK (200)
             status
         content_size (int): The size of the URL content in bytes
-        http_status (int): The HTTP status code this URL responded with
-        server_country_code (string): Server IP geo-location: ISO 2-letter
-            country code
-        content_encoding (string): The encoding type the URL uses
+        http_status (int): The HTTP status code this URL responded with. An
+            HTTP status of 0 indicates a network level issue
+        server_country_code (string): The servers IP geo-location: ISO
+            2-letter country code
+        content_encoding (string): The encoding format the URL uses
         server_ip (string): The IP address of the server hosting this URL
-        url_protocol (string): The URL protocol (usually http or https)
-        content_type (string): The content-type the URL points to
-        http_redirect (bool): True if this URL responded with a HTTP redirect
+        url_protocol (string): The URL protocol, usually http or https
+        content_type (string): The content-type this URL serves
+        http_redirect (bool): True if this URL responded with an HTTP
+            redirect
         content (string): The actual content this URL responded with. Only set
             if the 'fetch-content' option was used
 

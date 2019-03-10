@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.convert_response
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -14,8 +14,8 @@ class ConvertResponse(object):
     TODO: type model description here.
 
     Attributes:
-        valid (bool): Was the coversion successful and produced a valid
-            result
+        valid (bool): True if the coversion was successful and produced a
+            valid result
         result (string): The result of the conversion
         from_value (string): The value being converted from
         to_type (string): The type being converted to

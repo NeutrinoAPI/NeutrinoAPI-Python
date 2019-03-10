@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
 """
-   neutrino_api.http.auth.custom_query_auth
+    neutrino_api
 
-   This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
-from ...configuration import Configuration
+from neutrino_api.configuration import Configuration
+
 
 class CustomQueryAuth:
 

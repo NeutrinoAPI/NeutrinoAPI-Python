@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.neutrino_api_client
+    neutrino_api
 
     This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
-from .decorators import lazy_property
-from .configuration import Configuration
-from .controllers.imaging import Imaging
-from .controllers.telephony import Telephony
-from .controllers.data_tools import DataTools
-from .controllers.security_and_networking import SecurityAndNetworking
-from .controllers.geolocation import Geolocation
-from .controllers.e_commerce import ECommerce
+
+from neutrino_api.decorators import lazy_property
+from neutrino_api.configuration import Configuration
+from neutrino_api.controllers.imaging import Imaging
+from neutrino_api.controllers.telephony import Telephony
+from neutrino_api.controllers.data_tools import DataTools
+from neutrino_api.controllers.security_and_networking import SecurityAndNetworking
+from neutrino_api.controllers.geolocation import Geolocation
+from neutrino_api.controllers.e_commerce import ECommerce
+from neutrino_api.controllers.www import WWW
+
 
 class NeutrinoApiClient(object):
 
@@ -42,10 +45,14 @@ class NeutrinoApiClient(object):
     def e_commerce(self):
         return ECommerce()
 
+    @lazy_property
+    def www(self):
+        return WWW()
 
-    def __init__(self, 
-                 user_id = None,
-                 api_key = None):
+
+    def __init__(self,
+                 user_id=None,
+                 api_key=None):
         if user_id != None:
             Configuration.user_id = user_id
         if api_key != None:

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-   neutrino_api.decorators
+    neutrino_api
 
-   This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 class lazy_property(object):

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-   neutrino_api.api_helper
+    neutrino_api
 
-   This file was automatically generated for NeutrinoAPI  by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 import re
@@ -138,8 +138,7 @@ class APIHelper(object):
         return tuples
 
     @staticmethod
-    def append_url_with_template_parameters(url,
-                                            parameters):
+    def append_url_with_template_parameters(url, parameters, encode=True):
         """Replaces template parameters in the given url.
 
         Args:
@@ -159,15 +158,15 @@ class APIHelper(object):
         # Iterate and replace parameters
         for key in parameters:
             element = parameters[key]
-            replace_value = ""
+            replace_value = ''
 
             # Load parameter value
             if element is None:
-                replace_value = ""
+                replace_value = ''
             elif isinstance(element, list):
-                replace_value = "/".join(quote(str(x), safe='') for x in element)
+                replace_value = "/".join((quote(str(x), safe='') if encode else str(x)) for x in element)
             else:
-                replace_value = quote(str(element), safe='')
+                replace_value = quote(str(element), safe='') if encode else str(element)
 
             url = url.replace('{{{0}}}'.format(key), str(replace_value))
 
@@ -332,6 +331,10 @@ class APIHelper(object):
 
         # Return the result
         return dictionary
+
+    @staticmethod
+    def when_defined(func, value):
+        return func(value) if value else None
 
     class CustomDate(object):
 

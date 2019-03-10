@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.api_error_exception
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
-from ..api_helper import APIHelper
+
+from neutrino_api.api_helper import APIHelper
 import neutrino_api.exceptions.api_exception
 
 class APIErrorException(neutrino_api.exceptions.api_exception.APIException):

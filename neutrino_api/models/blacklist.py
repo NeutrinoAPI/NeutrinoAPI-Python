@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.blacklist
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -21,6 +21,8 @@ class Blacklist(object):
         list_name (string): the name of the DNSBL
         txt_record (string): the TXT record returned for this listing (if
             listed)
+        return_code (string): the specific return code for this listing (if
+            listed)
         response_time (int): the DNSBL server response time in milliseconds
 
     """
@@ -32,6 +34,7 @@ class Blacklist(object):
         "list_rating":'listRating',
         "list_name":'listName',
         "txt_record":'txtRecord',
+        "return_code":'returnCode',
         "response_time":'responseTime'
     }
 
@@ -41,6 +44,7 @@ class Blacklist(object):
                  list_rating=None,
                  list_name=None,
                  txt_record=None,
+                 return_code=None,
                  response_time=None):
         """Constructor for the Blacklist class"""
 
@@ -50,6 +54,7 @@ class Blacklist(object):
         self.list_rating = list_rating
         self.list_name = list_name
         self.txt_record = txt_record
+        self.return_code = return_code
         self.response_time = response_time
 
 
@@ -76,6 +81,7 @@ class Blacklist(object):
         list_rating = dictionary.get('listRating')
         list_name = dictionary.get('listName')
         txt_record = dictionary.get('txtRecord')
+        return_code = dictionary.get('returnCode')
         response_time = dictionary.get('responseTime')
 
         # Return an object of this model
@@ -84,6 +90,7 @@ class Blacklist(object):
                    list_rating,
                    list_name,
                    txt_record,
+                   return_code,
                    response_time)
 
 

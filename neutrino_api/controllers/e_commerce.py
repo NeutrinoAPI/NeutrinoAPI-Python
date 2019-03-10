@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.controllers.e_commerce
+    neutrino_api
 
     This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
-from .base_controller import BaseController
-from ..api_helper import APIHelper
-from ..configuration import Configuration
-from ..http.auth.custom_query_auth import CustomQueryAuth
-from ..models.bin_lookup_response import BINLookupResponse
+from neutrino_api.api_helper import APIHelper
+from neutrino_api.configuration import Configuration
+from neutrino_api.controllers.base_controller import BaseController
+from neutrino_api.http.auth.custom_query_auth import CustomQueryAuth
+from neutrino_api.models.bin_lookup_response import BINLookupResponse
 
 class ECommerce(BaseController):
 
@@ -29,10 +29,8 @@ class ECommerce(BaseController):
         Args:
             bin_number (string): The BIN or IIN number (the first 6 digits of
                 a credit card number)
-            customer_ip (string, optional): Pass in a customers remote IP
-                address. The API will then determine the country of the IP
-                address and match it against the BIN country. This feature is
-                designed for fraud prevention and detection checks.
+            customer_ip (string, optional): Pass in the customers IP address
+                and we will return some extra information about them
 
         Returns:
             BINLookupResponse: Response from the API. 
@@ -46,8 +44,9 @@ class ECommerce(BaseController):
         """
 
         # Prepare query URL
+        _url_path = '/bin-lookup'
         _query_builder = Configuration.base_uri
-        _query_builder += '/bin-lookup'
+        _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers

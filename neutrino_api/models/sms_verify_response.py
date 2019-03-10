@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.sms_verify_response
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -14,10 +14,11 @@ class SMSVerifyResponse(object):
     TODO: type model description here.
 
     Attributes:
-        number_valid (bool): Is this a valid phone number
+        number_valid (bool): True if this a valid phone number
         security_code (string): The security code generated, you can save this
-            code to perform your own verification or you can use the Verify
-            Security Code API
+            code to perform your own verification or you can use the <a
+            href='https://www.neutrinoapi.com/api/verify-security-code/'>Verify
+            Security Code API</a>
         sent (bool): True if the SMS has been sent
 
     """

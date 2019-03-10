@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    neutrino_api.models.bad_word_filter_response
+    neutrino_api
 
-    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io )
+    This file was automatically generated for NeutrinoAPI by APIMATIC v2.0 ( https://apimatic.io ).
 """
 
 
@@ -14,7 +14,7 @@ class BadWordFilterResponse(object):
     TODO: type model description here.
 
     Attributes:
-        bad_words_list (list of string): Array of the bad words found
+        bad_words_list (list of string): An array of the bad words found
         bad_words_total (int): Total number of bad words detected
         censored_content (string): The censored content (only set if
             censor-character has been set)
