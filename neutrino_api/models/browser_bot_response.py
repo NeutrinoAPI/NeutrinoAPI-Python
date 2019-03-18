@@ -34,7 +34,7 @@ class BrowserBotResponse(object):
         http_redirect_url (string): The redirected URL if the URL responded
             with an HTTP redirect
         server_ip (string): The HTTP servers IP address
-        load_time (int): The number of seconds taken to load the page (from
+        load_time (float): The number of seconds taken to load the page (from
             initial request until DOM ready)
         response_headers (dict<object, string>): Map containing all the HTTP
             response headers the URL responded with

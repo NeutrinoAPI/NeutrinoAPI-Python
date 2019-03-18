@@ -1,10 +1,10 @@
 __all__ = [
     'base_controller',
+    'www',
     'imaging',
     'telephony',
-    'data_tools',
-    'security_and_networking',
-    'geolocation',
     'e_commerce',
-    'www',
+    'geolocation',
+    'security_and_networking',
+    'data_tools',
 ]

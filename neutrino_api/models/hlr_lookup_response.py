@@ -17,7 +17,7 @@ class HLRLookupResponse(object):
         number_valid (bool): True if this a valid phone number
         international_calling_code (int): The numbers international calling
             code
-        mnc (string): The mobile MNC number
+        mnc (string): The mobile MNC number (Mobile Network Code)
         number_type (string): The number type, possible values
             are:<br/><ul><li>mobile</li><li>fixed-line</li><li>premium-rate</li
             ><li>toll-free</li><li>voip</li><li>unknown</li></ul>
@@ -36,15 +36,17 @@ class HLRLookupResponse(object):
             determine the real status of this number</li></ul>
         ported_network (string): If the number has been ported, the ported to
             carrier name
-        imsi (string): The mobile IMSI number
-        mcc (string): The mobile MCC number
+        imsi (string): The mobile IMSI number (International Mobile Subscriber
+            Identity)
+        mcc (string): The mobile MCC number (Mobile Country Code)
         international_number (string): The number represented in full
             international format
         local_number (string): The number represented in local dialing format
         country_code (string): The number location as an ISO 2-letter country
             code
         is_ported (bool): Has this number been ported to another network
-        msin (string): The mobile MSIN number
+        msin (string): The mobile MSIN number (Mobile Subscription
+            Identification Number)
         location (string): The number location. Could be a city, region or
             country depending on the type of number
         origin_network (string): The origin mobile carrier name
@@ -60,6 +62,7 @@ class HLRLookupResponse(object):
             country
         roaming_country_code (string): If the number is currently roaming, the
             ISO 2-letter country code of the roaming in country
+        msc (string): The mobile MSC number (Mobile Switching Center)
 
     """
 
@@ -86,7 +89,8 @@ class HLRLookupResponse(object):
         "country":'country',
         "country_code_3":'countryCode3',
         "currency_code":'currencyCode',
-        "roaming_country_code":'roamingCountryCode'
+        "roaming_country_code":'roamingCountryCode',
+        "msc":'msc'
     }
 
     def __init__(self,
@@ -111,7 +115,8 @@ class HLRLookupResponse(object):
                  country=None,
                  country_code_3=None,
                  currency_code=None,
-                 roaming_country_code=None):
+                 roaming_country_code=None,
+                 msc=None):
         """Constructor for the HLRLookupResponse class"""
 
         # Initialize members of the class
@@ -137,6 +142,7 @@ class HLRLookupResponse(object):
         self.country_code_3 = country_code_3
         self.currency_code = currency_code
         self.roaming_country_code = roaming_country_code
+        self.msc = msc
 
 
     @classmethod
@@ -179,6 +185,7 @@ class HLRLookupResponse(object):
         country_code_3 = dictionary.get('countryCode3')
         currency_code = dictionary.get('currencyCode')
         roaming_country_code = dictionary.get('roamingCountryCode')
+        msc = dictionary.get('msc')
 
         # Return an object of this model
         return cls(number_valid,
@@ -202,6 +209,7 @@ class HLRLookupResponse(object):
                    country,
                    country_code_3,
                    currency_code,
-                   roaming_country_code)
+                   roaming_country_code,
+                   msc)
 
 

@@ -9,12 +9,12 @@ except(IOError, ImportError):
 
 setup(
     name='neutrino_api',
-    version='3.4.0',
+    version='3.4.1',
     description='The general-purpose API',
     long_description=long_description,
-    author='APIMatic SDK Generator',
-    author_email='support@apimatic.io',
-    url='https://apimatic.io',
+    author='NeutrinoAPI',
+    author_email='tech@neutrinoapi.com',
+    url='https://www.neutrinoapi.com/contact-us/',
     packages=find_packages(),
     install_requires=[
         'requests>=2.9.1, <3.0',

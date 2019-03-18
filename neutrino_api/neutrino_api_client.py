@@ -8,18 +8,22 @@
 
 from neutrino_api.decorators import lazy_property
 from neutrino_api.configuration import Configuration
+from neutrino_api.controllers.www import WWW
 from neutrino_api.controllers.imaging import Imaging
 from neutrino_api.controllers.telephony import Telephony
-from neutrino_api.controllers.data_tools import DataTools
-from neutrino_api.controllers.security_and_networking import SecurityAndNetworking
-from neutrino_api.controllers.geolocation import Geolocation
 from neutrino_api.controllers.e_commerce import ECommerce
-from neutrino_api.controllers.www import WWW
+from neutrino_api.controllers.geolocation import Geolocation
+from neutrino_api.controllers.security_and_networking import SecurityAndNetworking
+from neutrino_api.controllers.data_tools import DataTools
 
 
 class NeutrinoApiClient(object):
 
     config = Configuration
+
+    @lazy_property
+    def www(self):
+        return WWW()
 
     @lazy_property
     def imaging(self):
@@ -30,24 +34,20 @@ class NeutrinoApiClient(object):
         return Telephony()
 
     @lazy_property
-    def data_tools(self):
-        return DataTools()
-
-    @lazy_property
-    def security_and_networking(self):
-        return SecurityAndNetworking()
+    def e_commerce(self):
+        return ECommerce()
 
     @lazy_property
     def geolocation(self):
         return Geolocation()
 
     @lazy_property
-    def e_commerce(self):
-        return ECommerce()
+    def security_and_networking(self):
+        return SecurityAndNetworking()
 
     @lazy_property
-    def www(self):
-        return WWW()
+    def data_tools(self):
+        return DataTools()
 
 
     def __init__(self,

@@ -16,117 +16,6 @@ class Imaging(BaseController):
     """A Controller to access Endpoints in the neutrino_api API."""
 
 
-    def image_resize(self,
-                     image_url,
-                     width,
-                     height,
-                     format='png'):
-        """Does a POST request to /image-resize.
-
-        Resize an image and output as either JPEG or PNG. See:
-        https://www.neutrinoapi.com/api/image-resize/
-
-        Args:
-            image_url (string): The URL to the source image
-            width (int): The width to resize to (in px) while preserving
-                aspect ratio
-            height (int): The height to resize to (in px) while preserving
-                aspect ratio
-            format (string, optional): The output image format, can be either
-                png or jpg
-
-        Returns:
-            binary: Response from the API. 
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/image-resize'
-        _query_builder = Configuration.base_uri
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare form parameters
-        _form_parameters = {
-            'image-url': image_url,
-            'width': width,
-            'height': height,
-            'format': format
-        }
-
-        # Prepare and execute request
-        _request = self.http_client.post(_query_url, parameters=_form_parameters)
-        CustomQueryAuth.apply(_request)
-        _context = self.execute_request(_request, binary = True)
-        self.validate_response(_context)
-
-        # Return appropriate type
-        return _context.response.raw_body
-
-    def qr_code(self,
-                content,
-                width=256,
-                height=256,
-                fg_color='#000000',
-                bg_color='#ffffff'):
-        """Does a POST request to /qr-code.
-
-        Generate a QR code as a PNG image. See:
-        https://www.neutrinoapi.com/api/qr-code/
-
-        Args:
-            content (string): The content to encode into the QR code (e.g. a
-                URL or a phone number)
-            width (int, optional): The width of the QR code (in px)
-            height (int, optional): The height of the QR code (in px)
-            fg_color (string, optional): The QR code foreground color
-            bg_color (string, optional): The QR code background color
-
-        Returns:
-            binary: Response from the API. 
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/qr-code'
-        _query_builder = Configuration.base_uri
-        _query_builder += _url_path
-        _query_parameters = {
-            'width': width
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-            _query_parameters, Configuration.array_serialization)
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare form parameters
-        _form_parameters = {
-            'content': content,
-            'height': height,
-            'fg-color': fg_color,
-            'bg-color': bg_color
-        }
-
-        # Prepare and execute request
-        _request = self.http_client.post(_query_url, parameters=_form_parameters)
-        CustomQueryAuth.apply(_request)
-        _context = self.execute_request(_request, binary = True)
-        self.validate_response(_context)
-
-        # Return appropriate type
-        return _context.response.raw_body
-
     def image_watermark(self,
                         image_url,
                         watermark_url,
@@ -191,6 +80,113 @@ class Imaging(BaseController):
         # Return appropriate type
         return _context.response.raw_body
 
+    def qr_code(self,
+                content,
+                width=256,
+                height=256,
+                fg_color='#000000',
+                bg_color='#ffffff'):
+        """Does a POST request to /qr-code.
+
+        Generate a QR code as a PNG image. See:
+        https://www.neutrinoapi.com/api/qr-code/
+
+        Args:
+            content (string): The content to encode into the QR code (e.g. a
+                URL or a phone number)
+            width (int, optional): The width of the QR code (in px)
+            height (int, optional): The height of the QR code (in px)
+            fg_color (string, optional): The QR code foreground color
+            bg_color (string, optional): The QR code background color
+
+        Returns:
+            binary: Response from the API. 
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/qr-code'
+        _query_builder = Configuration.base_uri
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare form parameters
+        _form_parameters = {
+            'content': content,
+            'width': width,
+            'height': height,
+            'fg-color': fg_color,
+            'bg-color': bg_color
+        }
+
+        # Prepare and execute request
+        _request = self.http_client.post(_query_url, parameters=_form_parameters)
+        CustomQueryAuth.apply(_request)
+        _context = self.execute_request(_request, binary = True)
+        self.validate_response(_context)
+
+        # Return appropriate type
+        return _context.response.raw_body
+
+    def image_resize(self,
+                     image_url,
+                     width,
+                     height,
+                     format='png'):
+        """Does a POST request to /image-resize.
+
+        Resize an image and output as either JPEG or PNG. See:
+        https://www.neutrinoapi.com/api/image-resize/
+
+        Args:
+            image_url (string): The URL to the source image
+            width (int): The width to resize to (in px) while preserving
+                aspect ratio
+            height (int): The height to resize to (in px) while preserving
+                aspect ratio
+            format (string, optional): The output image format, can be either
+                png or jpg
+
+        Returns:
+            binary: Response from the API. 
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/image-resize'
+        _query_builder = Configuration.base_uri
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare form parameters
+        _form_parameters = {
+            'image-url': image_url,
+            'width': width,
+            'height': height,
+            'format': format
+        }
+
+        # Prepare and execute request
+        _request = self.http_client.post(_query_url, parameters=_form_parameters)
+        CustomQueryAuth.apply(_request)
+        _context = self.execute_request(_request, binary = True)
+        self.validate_response(_context)
+
+        # Return appropriate type
+        return _context.response.raw_body
+
     def html_5_render(self,
                       content,
                       format='PDF',
@@ -202,7 +198,7 @@ class Imaging(BaseController):
                       margin_top=0,
                       margin_bottom=0,
                       landscape=False,
-                      zoom=1.0,
+                      zoom=1,
                       grayscale=False,
                       media_print=False,
                       media_queries=False,
@@ -247,8 +243,8 @@ class Imaging(BaseController):
             margin_bottom (int, optional): The document bottom margin (in mm)
             landscape (bool, optional): Set the document to lanscape
                 orientation
-            zoom (int, optional): Set the zoom factor when rendering the page
-                (2.0 for double size, 0.5 for half size)
+            zoom (float, optional): Set the zoom factor when rendering the
+                page (2.0 for double size, 0.5 for half size)
             grayscale (bool, optional): Render the final document in
                 grayscale
             media_print (bool, optional): Use @media print CSS styles to

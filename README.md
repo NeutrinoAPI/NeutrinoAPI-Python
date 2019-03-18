@@ -109,13 +109,131 @@ client = NeutrinoApiClient(user_id, api_key)
 
 ## <a name="list_of_controllers"></a>List of Controllers
 
+* [WWW](#www)
 * [Imaging](#imaging)
 * [Telephony](#telephony)
-* [DataTools](#data_tools)
-* [SecurityAndNetworking](#security_and_networking)
-* [Geolocation](#geolocation)
 * [ECommerce](#e_commerce)
-* [WWW](#www)
+* [Geolocation](#geolocation)
+* [SecurityAndNetworking](#security_and_networking)
+* [DataTools](#data_tools)
+
+## <a name="www"></a>![Class: ](https://apidocs.io/img/class.png ".WWW") WWW
+
+### Get controller instance
+
+An instance of the ``` WWW ``` class can be accessed from the API Client.
+
+```python
+ www_controller = client.www
+```
+
+### <a name="browser_bot"></a>![Method: ](https://apidocs.io/img/method.png ".WWW.browser_bot") browser_bot
+
+> Browser bot can extract content, interact with keyboard and mouse events, and execute JavaScript on a website. See: https://www.neutrinoapi.com/api/browser-bot/
+
+```python
+def browser_bot(self,
+                    url,
+                    timeout=30,
+                    delay=2,
+                    selector=None,
+                    mexec=,
+                    user_agent=None,
+                    ignore_certificate_errors=False)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| url |  ``` Required ```  | The URL to load |
+| timeout |  ``` Optional ```  ``` DefaultValue ```  | Timeout in seconds. Give up if still trying to load the page after this number of seconds |
+| delay |  ``` Optional ```  ``` DefaultValue ```  | Delay in seconds to wait before executing any selectors or JavaScript |
+| selector |  ``` Optional ```  | Extract content from the page DOM using this selector. Commonly known as a CSS selector, you can find a good reference <a href="https://www.w3schools.com/cssref/css_selectors.asp" target="_blank">here</a> |
+| mexec |  ``` Optional ```  ``` Collection ```  ``` DefaultValue ```  | Execute JavaScript on the page. Each array element should contain a valid JavaScript statement in string form. If a statement returns any kind of value it will be returned in the 'exec-results' response.<br/><br/>For your convenience you can also use the following special shortcut functions:<br/><div style='padding-left:32px; font-family:inherit; font-size:inherit;'>sleep(seconds); Just wait/sleep for the specified number of seconds.<br/>click('selector'); Click on the first element matching the given selector.<br/>focus('selector'); Focus on the first element matching the given selector.<br/>keys('characters'); Send the specified keyboard characters. Use click() or focus() first to send keys to a specific element.<br/>enter(); Send the Enter key.<br/>tab(); Send the Tab key.<br/></div><br/>Example:<br/><div style='padding-left:32px; font-family:inherit; font-size:inherit;'>[ "click('#button-id')", "sleep(1)", "click('.field-class')", "keys('1234')", "enter()" ]</div> |
+| userAgent |  ``` Optional ```  | Override the browsers default user-agent string with this one |
+| ignoreCertificateErrors |  ``` Optional ```  ``` DefaultValue ```  | Ignore any TLS/SSL certificate errors and load the page anyway |
+
+
+
+#### Example Usage
+
+```python
+url = 'url'
+timeout = 30
+delay = 2
+selector = 'selector'
+mexec_value = '[]'
+mexec = json.loads(mexec_value)
+user_agent = 'user-agent'
+ignore_certificate_errors = False
+
+result = www_controller.browser_bot(url, timeout, delay, selector, mexec, user_agent, ignore_certificate_errors)
+
+```
+
+
+### <a name="html_clean"></a>![Method: ](https://apidocs.io/img/method.png ".WWW.html_clean") html_clean
+
+> Clean and sanitize untrusted HTML. See: https://www.neutrinoapi.com/api/html-clean/
+
+```python
+def html_clean(self,
+                   content,
+                   output_type)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| content |  ``` Required ```  | The HTML content. This can be either a URL to load HTML from or an actual HTML content string |
+| outputType |  ``` Required ```  | The level of sanitization, possible values are:<br/><b>plain-text</b>: reduce the content to plain text only (no HTML tags at all)<br/><br/><b>simple-text</b>: allow only very basic text formatting tags like b, em, i, strong, u<br/><br/><b>basic-html</b>: allow advanced text formatting and hyper links<br/><br/><b>basic-html-with-images</b>: same as basic html but also allows image tags<br/><br/><b>advanced-html</b>: same as basic html with images but also allows many more common HTML tags like table, ul, dl, pre<br/> |
+
+
+
+#### Example Usage
+
+```python
+content = 'content'
+output_type = 'output-type'
+
+result = www_controller.html_clean(content, output_type)
+
+```
+
+
+### <a name="url_info"></a>![Method: ](https://apidocs.io/img/method.png ".WWW.url_info") url_info
+
+> Parse, analyze and retrieve content from the supplied URL. See: https://www.neutrinoapi.com/api/url-info/
+
+```python
+def url_info(self,
+                 url,
+                 fetch_content=False)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| url |  ``` Required ```  | The URL to probe |
+| fetchContent |  ``` Optional ```  ``` DefaultValue ```  | If this URL responds with html, text, json or xml then return the response. This option is useful if you want to perform further processing on the URL content (e.g. with the HTML Extract or HTML Clean APIs) |
+
+
+
+#### Example Usage
+
+```python
+url = 'url'
+fetch_content = False
+
+result = www_controller.url_info(url, fetch_content)
+
+```
+
+
+[Back to List of Controllers](#list_of_controllers)
 
 ## <a name="imaging"></a>![Class: ](https://apidocs.io/img/class.png ".Imaging") Imaging
 
@@ -127,16 +245,19 @@ An instance of the ``` Imaging ``` class can be accessed from the API Client.
  imaging_controller = client.imaging
 ```
 
-### <a name="image_resize"></a>![Method: ](https://apidocs.io/img/method.png ".Imaging.image_resize") image_resize
+### <a name="image_watermark"></a>![Method: ](https://apidocs.io/img/method.png ".Imaging.image_watermark") image_watermark
 
-> Resize an image and output as either JPEG or PNG. See: https://www.neutrinoapi.com/api/image-resize/
+> Watermark one image with another image. See: https://www.neutrinoapi.com/api/image-watermark/
 
 ```python
-def image_resize(self,
-                     image_url,
-                     width,
-                     height,
-                     format='png')
+def image_watermark(self,
+                        image_url,
+                        watermark_url,
+                        opacity=50,
+                        format='png',
+                        position='center',
+                        width=None,
+                        height=None)
 ```
 
 #### Parameters
@@ -144,9 +265,12 @@ def image_resize(self,
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | imageUrl |  ``` Required ```  | The URL to the source image |
-| width |  ``` Required ```  | The width to resize to (in px) while preserving aspect ratio |
-| height |  ``` Required ```  | The height to resize to (in px) while preserving aspect ratio |
+| watermarkUrl |  ``` Required ```  | The URL to the watermark image |
+| opacity |  ``` Optional ```  ``` DefaultValue ```  | The opacity of the watermark (0 to 100) |
 | format |  ``` Optional ```  ``` DefaultValue ```  | The output image format, can be either png or jpg |
+| position |  ``` Optional ```  ``` DefaultValue ```  | The position of the watermark image, possible values are:<br/>center, top-left, top-center, top-right, bottom-left, bottom-center, bottom-right |
+| width |  ``` Optional ```  | If set resize the resulting image to this width (in px) while preserving aspect ratio |
+| height |  ``` Optional ```  | If set resize the resulting image to this height (in px) while preserving aspect ratio |
 
 
 
@@ -154,11 +278,14 @@ def image_resize(self,
 
 ```python
 image_url = 'image-url'
-width = 144
-height = 144
+watermark_url = 'watermark-url'
+opacity = 50
 format = 'png'
+position = 'center'
+width = 214
+height = 214
 
-result = imaging_controller.image_resize(image_url, width, height, format)
+result = imaging_controller.image_watermark(image_url, watermark_url, opacity, format, position, width, height)
 
 ```
 
@@ -202,19 +329,16 @@ result = imaging_controller.qr_code(content, width, height, fg_color, bg_color)
 ```
 
 
-### <a name="image_watermark"></a>![Method: ](https://apidocs.io/img/method.png ".Imaging.image_watermark") image_watermark
+### <a name="image_resize"></a>![Method: ](https://apidocs.io/img/method.png ".Imaging.image_resize") image_resize
 
-> Watermark one image with another image. See: https://www.neutrinoapi.com/api/image-watermark/
+> Resize an image and output as either JPEG or PNG. See: https://www.neutrinoapi.com/api/image-resize/
 
 ```python
-def image_watermark(self,
-                        image_url,
-                        watermark_url,
-                        opacity=50,
-                        format='png',
-                        position='center',
-                        width=None,
-                        height=None)
+def image_resize(self,
+                     image_url,
+                     width,
+                     height,
+                     format='png')
 ```
 
 #### Parameters
@@ -222,12 +346,9 @@ def image_watermark(self,
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | imageUrl |  ``` Required ```  | The URL to the source image |
-| watermarkUrl |  ``` Required ```  | The URL to the watermark image |
-| opacity |  ``` Optional ```  ``` DefaultValue ```  | The opacity of the watermark (0 to 100) |
+| width |  ``` Required ```  | The width to resize to (in px) while preserving aspect ratio |
+| height |  ``` Required ```  | The height to resize to (in px) while preserving aspect ratio |
 | format |  ``` Optional ```  ``` DefaultValue ```  | The output image format, can be either png or jpg |
-| position |  ``` Optional ```  ``` DefaultValue ```  | The position of the watermark image, possible values are:<br/>center, top-left, top-center, top-right, bottom-left, bottom-center, bottom-right |
-| width |  ``` Optional ```  | If set resize the resulting image to this width (in px) while preserving aspect ratio |
-| height |  ``` Optional ```  | If set resize the resulting image to this height (in px) while preserving aspect ratio |
 
 
 
@@ -235,14 +356,11 @@ def image_watermark(self,
 
 ```python
 image_url = 'image-url'
-watermark_url = 'watermark-url'
-opacity = 50
+width = 214
+height = 214
 format = 'png'
-position = 'center'
-width = 144
-height = 144
 
-result = imaging_controller.image_watermark(image_url, watermark_url, opacity, format, position, width, height)
+result = imaging_controller.image_resize(image_url, width, height, format)
 
 ```
 
@@ -263,7 +381,7 @@ def html_5_render(self,
                       margin_top=0,
                       margin_bottom=0,
                       landscape=False,
-                      zoom=1.0,
+                      zoom=1,
                       grayscale=False,
                       media_print=False,
                       media_queries=False,
@@ -345,14 +463,14 @@ margin_right = 0
 margin_top = 0
 margin_bottom = 0
 landscape = False
-zoom = 1.0
+zoom = 1
 grayscale = False
 media_print = False
 media_queries = False
 forms = False
 css = 'css'
 image_width = 1024
-image_height = 144
+image_height = 50
 render_delay = 0
 header_text_left = 'header-text-left'
 header_text_center = 'header-text-center'
@@ -368,8 +486,8 @@ footer_size = 9
 footer_font = 'Courier'
 footer_font_size = 11
 footer_line = False
-page_width = 144
-page_height = 144
+page_width = 50
+page_height = 50
 
 result = imaging_controller.html_5_render(content, format, page_size, title, margin, margin_left, margin_right, margin_top, margin_bottom, landscape, zoom, grayscale, media_print, media_queries, forms, css, image_width, image_height, render_delay, header_text_left, header_text_center, header_text_right, header_size, header_font, header_font_size, header_line, footer_text_left, footer_text_center, footer_text_right, footer_size, footer_font, footer_font_size, footer_line, page_width, page_height)
 
@@ -388,115 +506,30 @@ An instance of the ``` Telephony ``` class can be accessed from the API Client.
  telephony_controller = client.telephony
 ```
 
-### <a name="hlr_lookup"></a>![Method: ](https://apidocs.io/img/method.png ".Telephony.hlr_lookup") hlr_lookup
+### <a name="phone_verify"></a>![Method: ](https://apidocs.io/img/method.png ".Telephony.phone_verify") phone_verify
 
-> Connect to the global mobile cellular network and retrieve the status of a mobile device. See: https://www.neutrinoapi.com/api/hlr-lookup/
+> Make an automated call to any valid phone number and playback a unique security code. See: https://www.neutrinoapi.com/api/phone-verify/
 
 ```python
-def hlr_lookup(self,
-                   number,
-                   country_code=None)
+def phone_verify(self,
+                     number,
+                     code_length=6,
+                     security_code=None,
+                     playback_delay=800,
+                     country_code=None,
+                     language_code='en')
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| number |  ``` Required ```  | A phone number |
-| countryCode |  ``` Optional ```  | ISO 2-letter country code, assume numbers are based in this country.<br/>If not set numbers are assumed to be in international format (with or without the leading + sign) |
-
-
-
-#### Example Usage
-
-```python
-number = 'number'
-country_code = 'country-code'
-
-result = telephony_controller.hlr_lookup(number, country_code)
-
-```
-
-
-### <a name="phone_playback"></a>![Method: ](https://apidocs.io/img/method.png ".Telephony.phone_playback") phone_playback
-
-> Make an automated call to any valid phone number and playback an audio message. See: https://www.neutrinoapi.com/api/phone-playback/
-
-```python
-def phone_playback(self,
-                       number,
-                       audio_url)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| number |  ``` Required ```  | The phone number to call. Must be in valid international format |
-| audioUrl |  ``` Required ```  | A URL to a valid audio file. Accepted audio formats are:<ul><li>MP3</li><li>WAV</li><li>OGG</ul></ul>You can use the following MP3 URL for testing:<br/>https://www.neutrinoapi.com/test-files/test1.mp3 |
-
-
-
-#### Example Usage
-
-```python
-number = 'number'
-audio_url = 'audio-url'
-
-result = telephony_controller.phone_playback(number, audio_url)
-
-```
-
-
-### <a name="verify_security_code"></a>![Method: ](https://apidocs.io/img/method.png ".Telephony.verify_security_code") verify_security_code
-
-> Check if a security code from one of the verify APIs is valid. See: https://www.neutrinoapi.com/api/verify-security-code/
-
-```python
-def verify_security_code(self,
-                             security_code)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| securityCode |  ``` Required ```  | The security code to verify |
-
-
-
-#### Example Usage
-
-```python
-security_code = 'security-code'
-
-result = telephony_controller.verify_security_code(security_code)
-
-```
-
-
-### <a name="sms_verify"></a>![Method: ](https://apidocs.io/img/method.png ".Telephony.sms_verify") sms_verify
-
-> Send a unique security code to any mobile device via SMS. See: https://www.neutrinoapi.com/api/sms-verify/
-
-```python
-def sms_verify(self,
-                   number,
-                   code_length=5,
-                   security_code=None,
-                   country_code=None,
-                   language_code='en')
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| number |  ``` Required ```  | The phone number to send a verification code to |
-| codeLength |  ``` Optional ```  ``` DefaultValue ```  | The number of digits to use in the security code (must be between 4 and 12) |
+| number |  ``` Required ```  | The phone number to send the verification code to |
+| codeLength |  ``` Optional ```  ``` DefaultValue ```  | The number of digits to use in the security code (between 4 and 12) |
 | securityCode |  ``` Optional ```  | Pass in your own security code. This is useful if you have implemented TOTP or similar 2FA methods. If not set then we will generate a secure random code |
+| playbackDelay |  ``` Optional ```  ``` DefaultValue ```  | The delay in milliseconds between the playback of each security code |
 | countryCode |  ``` Optional ```  | ISO 2-letter country code, assume numbers are based in this country.<br/>If not set numbers are assumed to be in international format (with or without the leading + sign) |
-| languageCode |  ``` Optional ```  ``` DefaultValue ```  | The language to send the verification code in, available languages are:<ul><li>de - German</li><li>en - English</li><li>es - Spanish</li><li>fr - French</li><li>it - Italian</li><li>pt - Portuguese</li><li>ru - Russian</li></ul> |
+| languageCode |  ``` Optional ```  ``` DefaultValue ```  | The language to playback the verification code in, available languages are:<ul><li>de - German</li><li>en - English</li><li>es - Spanish</li><li>fr - French</li><li>it - Italian</li><li>pt - Portuguese</li><li>ru - Russian</li></ul> |
 
 
 
@@ -504,12 +537,13 @@ def sms_verify(self,
 
 ```python
 number = 'number'
-code_length = 5
-security_code = 144
+code_length = 6
+security_code = 50
+playback_delay = 800
 country_code = 'country-code'
 language_code = 'en'
 
-result = telephony_controller.sms_verify(number, code_length, security_code, country_code, language_code)
+result = telephony_controller.phone_verify(number, code_length, security_code, playback_delay, country_code, language_code)
 
 ```
 
@@ -547,30 +581,28 @@ result = telephony_controller.sms_message(number, message, country_code)
 ```
 
 
-### <a name="phone_verify"></a>![Method: ](https://apidocs.io/img/method.png ".Telephony.phone_verify") phone_verify
+### <a name="sms_verify"></a>![Method: ](https://apidocs.io/img/method.png ".Telephony.sms_verify") sms_verify
 
-> Make an automated call to any valid phone number and playback a unique security code. See: https://www.neutrinoapi.com/api/phone-verify/
+> Send a unique security code to any mobile device via SMS. See: https://www.neutrinoapi.com/api/sms-verify/
 
 ```python
-def phone_verify(self,
-                     number,
-                     code_length=6,
-                     security_code=None,
-                     playback_delay=800,
-                     country_code=None,
-                     language_code='en')
+def sms_verify(self,
+                   number,
+                   code_length=5,
+                   security_code=None,
+                   country_code=None,
+                   language_code='en')
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| number |  ``` Required ```  | The phone number to send the verification code to |
-| codeLength |  ``` Optional ```  ``` DefaultValue ```  | The number of digits to use in the security code (between 4 and 12) |
+| number |  ``` Required ```  | The phone number to send a verification code to |
+| codeLength |  ``` Optional ```  ``` DefaultValue ```  | The number of digits to use in the security code (must be between 4 and 12) |
 | securityCode |  ``` Optional ```  | Pass in your own security code. This is useful if you have implemented TOTP or similar 2FA methods. If not set then we will generate a secure random code |
-| playbackDelay |  ``` Optional ```  ``` DefaultValue ```  | The delay in milliseconds between the playback of each security code |
 | countryCode |  ``` Optional ```  | ISO 2-letter country code, assume numbers are based in this country.<br/>If not set numbers are assumed to be in international format (with or without the leading + sign) |
-| languageCode |  ``` Optional ```  ``` DefaultValue ```  | The language to playback the verification code in, available languages are:<ul><li>de - German</li><li>en - English</li><li>es - Spanish</li><li>fr - French</li><li>it - Italian</li><li>pt - Portuguese</li><li>ru - Russian</li></ul> |
+| languageCode |  ``` Optional ```  ``` DefaultValue ```  | The language to send the verification code in, available languages are:<ul><li>de - German</li><li>en - English</li><li>es - Spanish</li><li>fr - French</li><li>it - Italian</li><li>pt - Portuguese</li><li>ru - Russian</li></ul> |
 
 
 
@@ -578,178 +610,252 @@ def phone_verify(self,
 
 ```python
 number = 'number'
-code_length = 6
-security_code = 144
-playback_delay = 800
+code_length = 5
+security_code = 50
 country_code = 'country-code'
 language_code = 'en'
 
-result = telephony_controller.phone_verify(number, code_length, security_code, playback_delay, country_code, language_code)
+result = telephony_controller.sms_verify(number, code_length, security_code, country_code, language_code)
+
+```
+
+
+### <a name="verify_security_code"></a>![Method: ](https://apidocs.io/img/method.png ".Telephony.verify_security_code") verify_security_code
+
+> Check if a security code from one of the verify APIs is valid. See: https://www.neutrinoapi.com/api/verify-security-code/
+
+```python
+def verify_security_code(self,
+                             security_code)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| securityCode |  ``` Required ```  | The security code to verify |
+
+
+
+#### Example Usage
+
+```python
+security_code = 'security-code'
+
+result = telephony_controller.verify_security_code(security_code)
+
+```
+
+
+### <a name="phone_playback"></a>![Method: ](https://apidocs.io/img/method.png ".Telephony.phone_playback") phone_playback
+
+> Make an automated call to any valid phone number and playback an audio message. See: https://www.neutrinoapi.com/api/phone-playback/
+
+```python
+def phone_playback(self,
+                       number,
+                       audio_url)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| number |  ``` Required ```  | The phone number to call. Must be in valid international format |
+| audioUrl |  ``` Required ```  | A URL to a valid audio file. Accepted audio formats are:<ul><li>MP3</li><li>WAV</li><li>OGG</ul></ul>You can use the following MP3 URL for testing:<br/>https://www.neutrinoapi.com/test-files/test1.mp3 |
+
+
+
+#### Example Usage
+
+```python
+number = 'number'
+audio_url = 'audio-url'
+
+result = telephony_controller.phone_playback(number, audio_url)
+
+```
+
+
+### <a name="hlr_lookup"></a>![Method: ](https://apidocs.io/img/method.png ".Telephony.hlr_lookup") hlr_lookup
+
+> Connect to the global mobile cellular network and retrieve the status of a mobile device. See: https://www.neutrinoapi.com/api/hlr-lookup/
+
+```python
+def hlr_lookup(self,
+                   number,
+                   country_code=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| number |  ``` Required ```  | A phone number |
+| countryCode |  ``` Optional ```  | ISO 2-letter country code, assume numbers are based in this country.<br/>If not set numbers are assumed to be in international format (with or without the leading + sign) |
+
+
+
+#### Example Usage
+
+```python
+number = 'number'
+country_code = 'country-code'
+
+result = telephony_controller.hlr_lookup(number, country_code)
 
 ```
 
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="data_tools"></a>![Class: ](https://apidocs.io/img/class.png ".DataTools") DataTools
+## <a name="e_commerce"></a>![Class: ](https://apidocs.io/img/class.png ".ECommerce") ECommerce
 
 ### Get controller instance
 
-An instance of the ``` DataTools ``` class can be accessed from the API Client.
+An instance of the ``` ECommerce ``` class can be accessed from the API Client.
 
 ```python
- data_tools_controller = client.data_tools
+ e_commerce_controller = client.e_commerce
 ```
 
-### <a name="email_validate"></a>![Method: ](https://apidocs.io/img/method.png ".DataTools.email_validate") email_validate
+### <a name="bin_lookup"></a>![Method: ](https://apidocs.io/img/method.png ".ECommerce.bin_lookup") bin_lookup
 
-> Parse, validate and clean an email address. See: https://www.neutrinoapi.com/api/email-validate/
-
-```python
-def email_validate(self,
-                       email,
-                       fix_typos=False)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| email |  ``` Required ```  | An email address |
-| fixTypos |  ``` Optional ```  ``` DefaultValue ```  | Automatically attempt to fix typos in the address |
-
-
-
-#### Example Usage
+> Perform a BIN (Bank Identification Number) or IIN (Issuer Identification Number) lookup. See: https://www.neutrinoapi.com/api/bin-lookup/
 
 ```python
-email = 'email'
-fix_typos = False
-
-result = data_tools_controller.email_validate(email, fix_typos)
-
-```
-
-
-### <a name="bad_word_filter"></a>![Method: ](https://apidocs.io/img/method.png ".DataTools.bad_word_filter") bad_word_filter
-
-> Detect bad words, swear words and profanity in a given text. See: https://www.neutrinoapi.com/api/bad-word-filter/
-
-```python
-def bad_word_filter(self,
-                        content,
-                        censor_character=None)
+def bin_lookup(self,
+                   bin_number,
+                   customer_ip=None)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| content |  ``` Required ```  | The content to scan. This can be either a URL to load content from or an actual content string |
-| censorCharacter |  ``` Optional ```  | The character to use to censor out the bad words found |
+| binNumber |  ``` Required ```  | The BIN or IIN number (the first 6 digits of a credit card number) |
+| customerIp |  ``` Optional ```  | Pass in the customers IP address and we will return some extra information about them |
 
 
 
 #### Example Usage
 
 ```python
-content = 'content'
-censor_character = 'censor-character'
+bin_number = 'bin-number'
+customer_ip = 'customer-ip'
 
-result = data_tools_controller.bad_word_filter(content, censor_character)
+result = e_commerce_controller.bin_lookup(bin_number, customer_ip)
 
 ```
 
 
-### <a name="convert"></a>![Method: ](https://apidocs.io/img/method.png ".DataTools.convert") convert
+[Back to List of Controllers](#list_of_controllers)
 
-> A powerful unit conversion tool. See: https://www.neutrinoapi.com/api/convert/
+## <a name="geolocation"></a>![Class: ](https://apidocs.io/img/class.png ".Geolocation") Geolocation
+
+### Get controller instance
+
+An instance of the ``` Geolocation ``` class can be accessed from the API Client.
 
 ```python
-def convert(self,
-                from_value,
-                from_type,
-                to_type)
+ geolocation_controller = client.geolocation
+```
+
+### <a name="geocode_address"></a>![Method: ](https://apidocs.io/img/method.png ".Geolocation.geocode_address") geocode_address
+
+> Geocode an address, partial address or just the name of a place. See: https://www.neutrinoapi.com/api/geocode-address/
+
+```python
+def geocode_address(self,
+                        address,
+                        country_code=None,
+                        language_code='en',
+                        fuzzy_search=False)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| fromValue |  ``` Required ```  | The value to convert from (e.g. 10.95) |
-| fromType |  ``` Required ```  | The type of the value to convert from (e.g. USD) |
-| toType |  ``` Required ```  | The type to convert to (e.g. EUR) |
+| address |  ``` Required ```  | The address, partial address or name of a place to try and locate |
+| countryCode |  ``` Optional ```  | The ISO 2-letter country code to be biased towards (the default is no country bias) |
+| languageCode |  ``` Optional ```  ``` DefaultValue ```  | The language to display results in, available languages are:<ul><li>de, en, es, fr, it, pt, ru</li></ul> |
+| fuzzySearch |  ``` Optional ```  ``` DefaultValue ```  | If no matches are found for the given address, start performing a recursive fuzzy search until a geolocation is found. We use a combination of approximate string matching and data cleansing to find possible location matches |
 
 
 
 #### Example Usage
 
 ```python
-from_value = 'from-value'
-from_type = 'from-type'
-to_type = 'to-type'
-
-result = data_tools_controller.convert(from_value, from_type, to_type)
-
-```
-
-
-### <a name="phone_validate"></a>![Method: ](https://apidocs.io/img/method.png ".DataTools.phone_validate") phone_validate
-
-> Parse, validate and get location information about a phone number. See: https://www.neutrinoapi.com/api/phone-validate/
-
-```python
-def phone_validate(self,
-                       number,
-                       country_code=None,
-                       ip=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| number |  ``` Required ```  | A phone number. This can be in international format (E.164) or local format. If passing local format you should use the 'country-code' or 'ip' options as well |
-| countryCode |  ``` Optional ```  | ISO 2-letter country code, assume numbers are based in this country.<br/>If not set numbers are assumed to be in international format (with or without the leading + sign) |
-| ip |  ``` Optional ```  | Pass in a users IP address and we will assume numbers are based in the country of the IP address |
-
-
-
-#### Example Usage
-
-```python
-number = 'number'
+address = 'address'
 country_code = 'country-code'
-ip = 'ip'
+language_code = 'en'
+fuzzy_search = False
 
-result = data_tools_controller.phone_validate(number, country_code, ip)
+result = geolocation_controller.geocode_address(address, country_code, language_code, fuzzy_search)
 
 ```
 
 
-### <a name="user_agent_info"></a>![Method: ](https://apidocs.io/img/method.png ".DataTools.user_agent_info") user_agent_info
+### <a name="ip_info"></a>![Method: ](https://apidocs.io/img/method.png ".Geolocation.ip_info") ip_info
 
-> Parse, validate and get detailed user-agent information from a user agent string. See: https://www.neutrinoapi.com/api/user-agent-info/
+> Get location information about an IP address and do reverse DNS (PTR) lookups. See: https://www.neutrinoapi.com/api/ip-info/
 
 ```python
-def user_agent_info(self,
-                        user_agent)
+def ip_info(self,
+                ip,
+                reverse_lookup=False)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| userAgent |  ``` Required ```  | A user agent string |
+| ip |  ``` Required ```  | IPv4 or IPv6 address |
+| reverseLookup |  ``` Optional ```  ``` DefaultValue ```  | Do a reverse DNS (PTR) lookup. This option can add extra delay to the request so only use it if you need it |
 
 
 
 #### Example Usage
 
 ```python
-user_agent = 'user-agent'
+ip = 'ip'
+reverse_lookup = False
 
-result = data_tools_controller.user_agent_info(user_agent)
+result = geolocation_controller.ip_info(ip, reverse_lookup)
+
+```
+
+
+### <a name="geocode_reverse"></a>![Method: ](https://apidocs.io/img/method.png ".Geolocation.geocode_reverse") geocode_reverse
+
+> Convert a geographic coordinate (latitude and longitude) into a real world address or location. See: https://www.neutrinoapi.com/api/geocode-reverse/
+
+```python
+def geocode_reverse(self,
+                        latitude,
+                        longitude,
+                        language_code='en')
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| latitude |  ``` Required ```  | The location latitude in decimal degrees format |
+| longitude |  ``` Required ```  | The location longitude in decimal degrees format |
+| languageCode |  ``` Optional ```  ``` DefaultValue ```  | The language to display results in, available languages are:<ul><li>de, en, es, fr, it, pt, ru</li></ul> |
+
+
+
+#### Example Usage
+
+```python
+latitude = 'latitude'
+longitude = 'longitude'
+language_code = 'en'
+
+result = geolocation_controller.geocode_reverse(latitude, longitude, language_code)
 
 ```
 
@@ -765,63 +871,6 @@ An instance of the ``` SecurityAndNetworking ``` class can be accessed from the 
 ```python
  security_and_networking_controller = client.security_and_networking
 ```
-
-### <a name="host_reputation"></a>![Method: ](https://apidocs.io/img/method.png ".SecurityAndNetworking.host_reputation") host_reputation
-
-> Check the reputation of an IP address, domain name, FQDN or URL against a comprehensive list of blacklists and blocklists. See: https://www.neutrinoapi.com/api/host-reputation/
-
-```python
-def host_reputation(self,
-                        host,
-                        list_rating=3)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| host |  ``` Required ```  | An IP address, domain name, FQDN or URL.<br/>If you supply a domain/URL it will be checked against the URI DNSBL lists |
-| listRating |  ``` Optional ```  ``` DefaultValue ```  | Only check lists with this rating or better |
-
-
-
-#### Example Usage
-
-```python
-host = 'host'
-list_rating = 3
-
-result = security_and_networking_controller.host_reputation(host, list_rating)
-
-```
-
-
-### <a name="ip_probe"></a>![Method: ](https://apidocs.io/img/method.png ".SecurityAndNetworking.ip_probe") ip_probe
-
-> Analyze and extract provider information for an IP address. See: https://www.neutrinoapi.com/api/ip-probe/
-
-```python
-def ip_probe(self,
-                 ip)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| ip |  ``` Required ```  | IPv4 or IPv6 address |
-
-
-
-#### Example Usage
-
-```python
-ip = 'ip'
-
-result = security_and_networking_controller.ip_probe(ip)
-
-```
-
 
 ### <a name="ip_blocklist"></a>![Method: ](https://apidocs.io/img/method.png ".SecurityAndNetworking.ip_blocklist") ip_blocklist
 
@@ -880,59 +929,43 @@ result = security_and_networking_controller.email_verify(email, fix_typos)
 ```
 
 
-[Back to List of Controllers](#list_of_controllers)
+### <a name="host_reputation"></a>![Method: ](https://apidocs.io/img/method.png ".SecurityAndNetworking.host_reputation") host_reputation
 
-## <a name="geolocation"></a>![Class: ](https://apidocs.io/img/class.png ".Geolocation") Geolocation
-
-### Get controller instance
-
-An instance of the ``` Geolocation ``` class can be accessed from the API Client.
+> Check the reputation of an IP address, domain name, FQDN or URL against a comprehensive list of blacklists and blocklists. See: https://www.neutrinoapi.com/api/host-reputation/
 
 ```python
- geolocation_controller = client.geolocation
-```
-
-### <a name="geocode_reverse"></a>![Method: ](https://apidocs.io/img/method.png ".Geolocation.geocode_reverse") geocode_reverse
-
-> Convert a geographic coordinate (latitude and longitude) into a real world address or location. See: https://www.neutrinoapi.com/api/geocode-reverse/
-
-```python
-def geocode_reverse(self,
-                        latitude,
-                        longitude,
-                        language_code='en')
+def host_reputation(self,
+                        host,
+                        list_rating=3)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| latitude |  ``` Required ```  | The location latitude in decimal degrees format |
-| longitude |  ``` Required ```  | The location longitude in decimal degrees format |
-| languageCode |  ``` Optional ```  ``` DefaultValue ```  | The language to display results in, available languages are:<ul><li>de, en, es, fr, it, pt, ru</li></ul> |
+| host |  ``` Required ```  | An IP address, domain name, FQDN or URL.<br/>If you supply a domain/URL it will be checked against the URI DNSBL lists |
+| listRating |  ``` Optional ```  ``` DefaultValue ```  | Only check lists with this rating or better |
 
 
 
 #### Example Usage
 
 ```python
-latitude = 'latitude'
-longitude = 'longitude'
-language_code = 'en'
+host = 'host'
+list_rating = 3
 
-result = geolocation_controller.geocode_reverse(latitude, longitude, language_code)
+result = security_and_networking_controller.host_reputation(host, list_rating)
 
 ```
 
 
-### <a name="ip_info"></a>![Method: ](https://apidocs.io/img/method.png ".Geolocation.ip_info") ip_info
+### <a name="ip_probe"></a>![Method: ](https://apidocs.io/img/method.png ".SecurityAndNetworking.ip_probe") ip_probe
 
-> Get location information about an IP address and do reverse DNS (PTR) lookups. See: https://www.neutrinoapi.com/api/ip-info/
+> Analyze and extract provider information for an IP address. See: https://www.neutrinoapi.com/api/ip-probe/
 
 ```python
-def ip_info(self,
-                ip,
-                reverse_lookup=False)
+def ip_probe(self,
+                 ip)
 ```
 
 #### Parameters
@@ -940,7 +973,6 @@ def ip_info(self,
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | ip |  ``` Required ```  | IPv4 or IPv6 address |
-| reverseLookup |  ``` Optional ```  ``` DefaultValue ```  | Do a reverse DNS (PTR) lookup. This option can add extra delay to the request so only use it if you need it |
 
 
 
@@ -948,195 +980,133 @@ def ip_info(self,
 
 ```python
 ip = 'ip'
-reverse_lookup = False
 
-result = geolocation_controller.ip_info(ip, reverse_lookup)
-
-```
-
-
-### <a name="geocode_address"></a>![Method: ](https://apidocs.io/img/method.png ".Geolocation.geocode_address") geocode_address
-
-> Geocode an address, partial address or just the name of a place. See: https://www.neutrinoapi.com/api/geocode-address/
-
-```python
-def geocode_address(self,
-                        address,
-                        country_code=None,
-                        language_code='en',
-                        fuzzy_search=False)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| address |  ``` Required ```  | The address, partial address or name of a place to try and locate |
-| countryCode |  ``` Optional ```  | The ISO 2-letter country code to be biased towards (the default is no country bias) |
-| languageCode |  ``` Optional ```  ``` DefaultValue ```  | The language to display results in, available languages are:<ul><li>de, en, es, fr, it, pt, ru</li></ul> |
-| fuzzySearch |  ``` Optional ```  ``` DefaultValue ```  | If no matches are found for the given address, start performing a recursive fuzzy search until a geolocation is found. We use a combination of approximate string matching and data cleansing to find possible location matches |
-
-
-
-#### Example Usage
-
-```python
-address = 'address'
-country_code = 'country-code'
-language_code = 'en'
-fuzzy_search = False
-
-result = geolocation_controller.geocode_address(address, country_code, language_code, fuzzy_search)
+result = security_and_networking_controller.ip_probe(ip)
 
 ```
 
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="e_commerce"></a>![Class: ](https://apidocs.io/img/class.png ".ECommerce") ECommerce
+## <a name="data_tools"></a>![Class: ](https://apidocs.io/img/class.png ".DataTools") DataTools
 
 ### Get controller instance
 
-An instance of the ``` ECommerce ``` class can be accessed from the API Client.
+An instance of the ``` DataTools ``` class can be accessed from the API Client.
 
 ```python
- e_commerce_controller = client.e_commerce
+ data_tools_controller = client.data_tools
 ```
 
-### <a name="bin_lookup"></a>![Method: ](https://apidocs.io/img/method.png ".ECommerce.bin_lookup") bin_lookup
+### <a name="user_agent_info"></a>![Method: ](https://apidocs.io/img/method.png ".DataTools.user_agent_info") user_agent_info
 
-> Perform a BIN (Bank Identification Number) or IIN (Issuer Identification Number) lookup. See: https://www.neutrinoapi.com/api/bin-lookup/
-
-```python
-def bin_lookup(self,
-                   bin_number,
-                   customer_ip=None)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| binNumber |  ``` Required ```  | The BIN or IIN number (the first 6 digits of a credit card number) |
-| customerIp |  ``` Optional ```  | Pass in the customers IP address and we will return some extra information about them |
-
-
-
-#### Example Usage
+> Parse, validate and get detailed user-agent information from a user agent string. See: https://www.neutrinoapi.com/api/user-agent-info/
 
 ```python
-bin_number = 'bin-number'
-customer_ip = 'customer-ip'
-
-result = e_commerce_controller.bin_lookup(bin_number, customer_ip)
-
-```
-
-
-[Back to List of Controllers](#list_of_controllers)
-
-## <a name="www"></a>![Class: ](https://apidocs.io/img/class.png ".WWW") WWW
-
-### Get controller instance
-
-An instance of the ``` WWW ``` class can be accessed from the API Client.
-
-```python
- www_controller = client.www
-```
-
-### <a name="url_info"></a>![Method: ](https://apidocs.io/img/method.png ".WWW.url_info") url_info
-
-> Parse, analyze and retrieve content from the supplied URL. See: https://www.neutrinoapi.com/api/url-info/
-
-```python
-def url_info(self,
-                 url,
-                 fetch_content=False)
+def user_agent_info(self,
+                        user_agent)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| url |  ``` Required ```  | The URL to probe |
-| fetchContent |  ``` Optional ```  ``` DefaultValue ```  | If this URL responds with html, text, json or xml then return the response. This option is useful if you want to perform further processing on the URL content (e.g. with the HTML Extract or HTML Clean APIs) |
+| userAgent |  ``` Required ```  | A user agent string |
 
 
 
 #### Example Usage
 
 ```python
-url = 'url'
-fetch_content = False
-
-result = www_controller.url_info(url, fetch_content)
-
-```
-
-
-### <a name="browser_bot"></a>![Method: ](https://apidocs.io/img/method.png ".WWW.browser_bot") browser_bot
-
-> Browser bot can extract content, interact with keyboard and mouse events, and execute JavaScript on a website. See: https://www.neutrinoapi.com/api/browser-bot/
-
-```python
-def browser_bot(self,
-                    url,
-                    timeout=30,
-                    delay=2,
-                    selector=None,
-                    mexec=,
-                    user_agent=None,
-                    ignore_certificate_errors=False)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| url |  ``` Required ```  | The URL to load |
-| timeout |  ``` Optional ```  ``` DefaultValue ```  | Timeout in seconds. Give up if still trying to load the page after this number of seconds |
-| delay |  ``` Optional ```  ``` DefaultValue ```  | Delay in seconds to wait before executing any selectors or JavaScript |
-| selector |  ``` Optional ```  | Extract content from the page DOM using this selector. Commonly known as a CSS selector, you can find a good reference <a href="https://www.w3schools.com/cssref/css_selectors.asp" target="_blank">here</a> |
-| mexec |  ``` Optional ```  ``` Collection ```  ``` DefaultValue ```  | Execute JavaScript on the page. Each array element should contain a valid JavaScript statement in string form. If a statement returns any kind of value it will be returned in the 'exec-results' response.<br/><br/>For your convenience you can also use the following special shortcut functions:<br/><div style='padding-left:32px; font-family:inherit; font-size:inherit;'>sleep(seconds); Just wait/sleep for the specified number of seconds.<br/>click('selector'); Click on the first element matching the given selector.<br/>focus('selector'); Focus on the first element matching the given selector.<br/>keys('characters'); Send the specified keyboard characters. Use click() or focus() first to send keys to a specific element.<br/>enter(); Send the Enter key.<br/>tab(); Send the Tab key.<br/></div><br/>Example:<br/><div style='padding-left:32px; font-family:inherit; font-size:inherit;'>[ "click('#button-id')", "sleep(1)", "click('.field-class')", "keys('1234')", "enter()" ]</div> |
-| userAgent |  ``` Optional ```  | Override the browsers default user-agent string with this one |
-| ignoreCertificateErrors |  ``` Optional ```  ``` DefaultValue ```  | Ignore any TLS/SSL certificate errors and load the page anyway |
-
-
-
-#### Example Usage
-
-```python
-url = 'url'
-timeout = 30
-delay = 2
-selector = 'selector'
-mexec_value = '[]'
-mexec = json.loads(mexec_value)
 user_agent = 'user-agent'
-ignore_certificate_errors = False
 
-result = www_controller.browser_bot(url, timeout, delay, selector, mexec, user_agent, ignore_certificate_errors)
+result = data_tools_controller.user_agent_info(user_agent)
 
 ```
 
 
-### <a name="html_clean"></a>![Method: ](https://apidocs.io/img/method.png ".WWW.html_clean") html_clean
+### <a name="phone_validate"></a>![Method: ](https://apidocs.io/img/method.png ".DataTools.phone_validate") phone_validate
 
-> Clean and sanitize untrusted HTML. See: https://www.neutrinoapi.com/api/html-clean/
+> Parse, validate and get location information about a phone number. See: https://www.neutrinoapi.com/api/phone-validate/
 
 ```python
-def html_clean(self,
-                   content,
-                   output_type)
+def phone_validate(self,
+                       number,
+                       country_code=None,
+                       ip=None)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| content |  ``` Required ```  | The HTML content. This can be either a URL to load HTML from or an actual HTML content string |
-| outputType |  ``` Required ```  | The level of sanitization, possible values are:<br/><b>plain-text</b>: reduce the content to plain text only (no HTML tags at all)<br/><br/><b>simple-text</b>: allow only very basic text formatting tags like b, em, i, strong, u<br/><br/><b>basic-html</b>: allow advanced text formatting and hyper links<br/><br/><b>basic-html-with-images</b>: same as basic html but also allows image tags<br/><br/><b>advanced-html</b>: same as basic html with images but also allows many more common HTML tags like table, ul, dl, pre<br/> |
+| number |  ``` Required ```  | A phone number. This can be in international format (E.164) or local format. If passing local format you should use the 'country-code' or 'ip' options as well |
+| countryCode |  ``` Optional ```  | ISO 2-letter country code, assume numbers are based in this country.<br/>If not set numbers are assumed to be in international format (with or without the leading + sign) |
+| ip |  ``` Optional ```  | Pass in a users IP address and we will assume numbers are based in the country of the IP address |
+
+
+
+#### Example Usage
+
+```python
+number = 'number'
+country_code = 'country-code'
+ip = 'ip'
+
+result = data_tools_controller.phone_validate(number, country_code, ip)
+
+```
+
+
+### <a name="convert"></a>![Method: ](https://apidocs.io/img/method.png ".DataTools.convert") convert
+
+> A powerful unit conversion tool. See: https://www.neutrinoapi.com/api/convert/
+
+```python
+def convert(self,
+                from_value,
+                from_type,
+                to_type)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| fromValue |  ``` Required ```  | The value to convert from (e.g. 10.95) |
+| fromType |  ``` Required ```  | The type of the value to convert from (e.g. USD) |
+| toType |  ``` Required ```  | The type to convert to (e.g. EUR) |
+
+
+
+#### Example Usage
+
+```python
+from_value = 'from-value'
+from_type = 'from-type'
+to_type = 'to-type'
+
+result = data_tools_controller.convert(from_value, from_type, to_type)
+
+```
+
+
+### <a name="bad_word_filter"></a>![Method: ](https://apidocs.io/img/method.png ".DataTools.bad_word_filter") bad_word_filter
+
+> Detect bad words, swear words and profanity in a given text. See: https://www.neutrinoapi.com/api/bad-word-filter/
+
+```python
+def bad_word_filter(self,
+                        content,
+                        censor_character=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| content |  ``` Required ```  | The content to scan. This can be either a URL to load content from or an actual content string |
+| censorCharacter |  ``` Optional ```  | The character to use to censor out the bad words found |
 
 
 
@@ -1144,9 +1114,39 @@ def html_clean(self,
 
 ```python
 content = 'content'
-output_type = 'output-type'
+censor_character = 'censor-character'
 
-result = www_controller.html_clean(content, output_type)
+result = data_tools_controller.bad_word_filter(content, censor_character)
+
+```
+
+
+### <a name="email_validate"></a>![Method: ](https://apidocs.io/img/method.png ".DataTools.email_validate") email_validate
+
+> Parse, validate and clean an email address. See: https://www.neutrinoapi.com/api/email-validate/
+
+```python
+def email_validate(self,
+                       email,
+                       fix_typos=False)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| email |  ``` Required ```  | An email address |
+| fixTypos |  ``` Optional ```  ``` DefaultValue ```  | Automatically attempt to fix typos in the address |
+
+
+
+#### Example Usage
+
+```python
+email = 'email'
+fix_typos = False
+
+result = data_tools_controller.email_validate(email, fix_typos)
 
 ```
 

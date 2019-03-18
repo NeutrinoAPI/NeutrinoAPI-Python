@@ -20,9 +20,9 @@ class IPInfoResponse(object):
             been used)
         city (string): Full city name (if detectable)
         country_code (string): ISO 2-letter country code
-        latitude (int): Location latitude
+        latitude (float): Location latitude
         region (string): Full region name (if detectable)
-        longitude (int): Location longitude
+        longitude (float): Location longitude
         continent_code (string): ISO 2-letter continent code
         ip (string): The IP address
         country_code_3 (string): ISO 3-letter country code
