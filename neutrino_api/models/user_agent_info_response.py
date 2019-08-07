@@ -23,11 +23,11 @@ class UserAgentInfoResponse(object):
         mobile_screen_height (int): The estimated mobile device screen height
             in CSS 'px'
         is_mobile (bool): True if this is a mobile user agent
-        mtype (string): The user agent type, possible values
-            are:<br/><ul><li>desktop-browser</li><li>mobile-browser</li><li>ema
-            il-client</li><li>feed-reader</li><li>software-library</li><li>medi
-            a-player (includes smart
-            TVs)</li><li>robot</li><li>unknown</li></ul>
+        mtype (string): The user agent type, possible values are: <ul>
+            <li>desktop-browser</li> <li>mobile-browser</li>
+            <li>email-client</li> <li>feed-reader</li>
+            <li>software-library</li> <li>media-player (includes smart
+            TVs)</li> <li>robot</li> <li>unknown</li> </ul>
         version (string): The browser software version
         operating_system (string): The full operating system name which may
             include the major version number or code name

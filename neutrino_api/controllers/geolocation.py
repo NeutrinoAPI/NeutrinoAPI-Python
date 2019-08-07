@@ -10,41 +10,41 @@ from neutrino_api.api_helper import APIHelper
 from neutrino_api.configuration import Configuration
 from neutrino_api.controllers.base_controller import BaseController
 from neutrino_api.http.auth.custom_query_auth import CustomQueryAuth
-from neutrino_api.models.geocode_address_response import GeocodeAddressResponse
-from neutrino_api.models.ip_info_response import IPInfoResponse
 from neutrino_api.models.geocode_reverse_response import GeocodeReverseResponse
+from neutrino_api.models.ip_info_response import IPInfoResponse
+from neutrino_api.models.geocode_address_response import GeocodeAddressResponse
 
 class Geolocation(BaseController):
 
     """A Controller to access Endpoints in the neutrino_api API."""
 
 
-    def geocode_address(self,
-                        address,
-                        country_code=None,
+    def geocode_reverse(self,
+                        latitude,
+                        longitude,
                         language_code='en',
-                        fuzzy_search=False):
-        """Does a POST request to /geocode-address.
+                        zoom='address'):
+        """Does a POST request to /geocode-reverse.
 
-        Geocode an address, partial address or just the name of a place. See:
-        https://www.neutrinoapi.com/api/geocode-address/
+        Convert a geographic coordinate (latitude and longitude) into a real
+        world address. See: https://www.neutrinoapi.com/api/geocode-reverse/
 
         Args:
-            address (string): The address, partial address or name of a place
-                to try and locate
-            country_code (string, optional): The ISO 2-letter country code to
-                be biased towards (the default is no country bias)
+            latitude (string): The location latitude in decimal degrees
+                format
+            longitude (string): The location longitude in decimal degrees
+                format
             language_code (string, optional): The language to display results
-                in, available languages are:<ul><li>de, en, es, fr, it, pt,
-                ru</li></ul>
-            fuzzy_search (bool, optional): If no matches are found for the
-                given address, start performing a recursive fuzzy search until
-                a geolocation is found. We use a combination of approximate
-                string matching and data cleansing to find possible location
-                matches
+                in, available languages are: <ul> <li>de, en, es, fr, it, pt,
+                ru</li> </ul>
+            zoom (string, optional): The zoom level to respond with: <ul>
+                <li>address - the most precise address available</li>
+                <li>street - the street level</li> <li>city - the city
+                level</li> <li>state - the state level</li> <li>country - the
+                country level</li> </ul>
 
         Returns:
-            GeocodeAddressResponse: Response from the API. 
+            GeocodeReverseResponse: Response from the API. 
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -55,7 +55,7 @@ class Geolocation(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/geocode-address'
+        _url_path = '/geocode-reverse'
         _query_builder = Configuration.base_uri
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
@@ -68,10 +68,10 @@ class Geolocation(BaseController):
         # Prepare form parameters
         _form_parameters = {
             'output-case': 'camel',
-            'address': address,
-            'country-code': country_code,
+            'latitude': latitude,
+            'longitude': longitude,
             'language-code': language_code,
-            'fuzzy-search': fuzzy_search
+            'zoom': zoom
         }
 
         # Prepare and execute request
@@ -81,7 +81,7 @@ class Geolocation(BaseController):
         self.validate_response(_context)
 
         # Return appropriate type
-        return APIHelper.json_deserialize(_context.response.raw_body, GeocodeAddressResponse.from_dictionary)
+        return APIHelper.json_deserialize(_context.response.raw_body, GeocodeReverseResponse.from_dictionary)
 
     def ip_info(self,
                 ip,
@@ -135,27 +135,33 @@ class Geolocation(BaseController):
         # Return appropriate type
         return APIHelper.json_deserialize(_context.response.raw_body, IPInfoResponse.from_dictionary)
 
-    def geocode_reverse(self,
-                        latitude,
-                        longitude,
-                        language_code='en'):
-        """Does a POST request to /geocode-reverse.
+    def geocode_address(self,
+                        address,
+                        country_code=None,
+                        language_code='en',
+                        fuzzy_search=False):
+        """Does a POST request to /geocode-address.
 
-        Convert a geographic coordinate (latitude and longitude) into a real
-        world address or location. See:
-        https://www.neutrinoapi.com/api/geocode-reverse/
+        Geocode an address, partial address or just the name of a place. See:
+        https://www.neutrinoapi.com/api/geocode-address/
 
         Args:
-            latitude (string): The location latitude in decimal degrees
-                format
-            longitude (string): The location longitude in decimal degrees
-                format
+            address (string): The address, partial address or name of a place
+                to try and locate
+            country_code (string, optional): The ISO 2-letter country code to
+                be biased towards (the default is no country bias)
             language_code (string, optional): The language to display results
-                in, available languages are:<ul><li>de, en, es, fr, it, pt,
-                ru</li></ul>
+                in, available languages are: <ul> <li>de, en, es, fr, it, pt,
+                ru</li> </ul>
+            fuzzy_search (bool, optional): If no matches are found for the
+                given address, start performing a recursive fuzzy search until
+                a geolocation is found. This option is recommended for
+                processing user input or implementing auto-complete. We use a
+                combination of approximate string matching and data cleansing
+                to find possible location matches
 
         Returns:
-            GeocodeReverseResponse: Response from the API. 
+            GeocodeAddressResponse: Response from the API. 
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -166,7 +172,7 @@ class Geolocation(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/geocode-reverse'
+        _url_path = '/geocode-address'
         _query_builder = Configuration.base_uri
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
@@ -179,9 +185,10 @@ class Geolocation(BaseController):
         # Prepare form parameters
         _form_parameters = {
             'output-case': 'camel',
-            'latitude': latitude,
-            'longitude': longitude,
-            'language-code': language_code
+            'address': address,
+            'country-code': country_code,
+            'language-code': language_code,
+            'fuzzy-search': fuzzy_search
         }
 
         # Prepare and execute request
@@ -191,4 +198,4 @@ class Geolocation(BaseController):
         self.validate_response(_context)
 
         # Return appropriate type
-        return APIHelper.json_deserialize(_context.response.raw_body, GeocodeReverseResponse.from_dictionary)
+        return APIHelper.json_deserialize(_context.response.raw_body, GeocodeAddressResponse.from_dictionary)

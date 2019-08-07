@@ -16,32 +16,24 @@ class Imaging(BaseController):
     """A Controller to access Endpoints in the neutrino_api API."""
 
 
-    def image_watermark(self,
-                        image_url,
-                        watermark_url,
-                        opacity=50,
-                        format='png',
-                        position='center',
-                        width=None,
-                        height=None):
-        """Does a POST request to /image-watermark.
+    def image_resize(self,
+                     image_url,
+                     width,
+                     height,
+                     format='png'):
+        """Does a POST request to /image-resize.
 
-        Watermark one image with another image. See:
-        https://www.neutrinoapi.com/api/image-watermark/
+        Resize an image and output as either JPEG or PNG. See:
+        https://www.neutrinoapi.com/api/image-resize/
 
         Args:
             image_url (string): The URL to the source image
-            watermark_url (string): The URL to the watermark image
-            opacity (int, optional): The opacity of the watermark (0 to 100)
+            width (int): The width to resize to (in px) while preserving
+                aspect ratio
+            height (int): The height to resize to (in px) while preserving
+                aspect ratio
             format (string, optional): The output image format, can be either
                 png or jpg
-            position (string, optional): The position of the watermark image,
-                possible values are:<br/>center, top-left, top-center,
-                top-right, bottom-left, bottom-center, bottom-right
-            width (int, optional): If set resize the resulting image to this
-                width (in px) while preserving aspect ratio
-            height (int, optional): If set resize the resulting image to this
-                height (in px) while preserving aspect ratio
 
         Returns:
             binary: Response from the API. 
@@ -55,7 +47,7 @@ class Imaging(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/image-watermark'
+        _url_path = '/image-resize'
         _query_builder = Configuration.base_uri
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
@@ -63,12 +55,9 @@ class Imaging(BaseController):
         # Prepare form parameters
         _form_parameters = {
             'image-url': image_url,
-            'watermark-url': watermark_url,
-            'opacity': opacity,
-            'format': format,
-            'position': position,
             'width': width,
-            'height': height
+            'height': height,
+            'format': format
         }
 
         # Prepare and execute request
@@ -134,24 +123,32 @@ class Imaging(BaseController):
         # Return appropriate type
         return _context.response.raw_body
 
-    def image_resize(self,
-                     image_url,
-                     width,
-                     height,
-                     format='png'):
-        """Does a POST request to /image-resize.
+    def image_watermark(self,
+                        image_url,
+                        watermark_url,
+                        opacity=50,
+                        format='png',
+                        position='center',
+                        width=None,
+                        height=None):
+        """Does a POST request to /image-watermark.
 
-        Resize an image and output as either JPEG or PNG. See:
-        https://www.neutrinoapi.com/api/image-resize/
+        Watermark one image with another image. See:
+        https://www.neutrinoapi.com/api/image-watermark/
 
         Args:
             image_url (string): The URL to the source image
-            width (int): The width to resize to (in px) while preserving
-                aspect ratio
-            height (int): The height to resize to (in px) while preserving
-                aspect ratio
+            watermark_url (string): The URL to the watermark image
+            opacity (int, optional): The opacity of the watermark (0 to 100)
             format (string, optional): The output image format, can be either
                 png or jpg
+            position (string, optional): The position of the watermark image,
+                possible values are: center, top-left, top-center, top-right,
+                bottom-left, bottom-center, bottom-right
+            width (int, optional): If set resize the resulting image to this
+                width (in px) while preserving aspect ratio
+            height (int, optional): If set resize the resulting image to this
+                height (in px) while preserving aspect ratio
 
         Returns:
             binary: Response from the API. 
@@ -165,7 +162,7 @@ class Imaging(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/image-resize'
+        _url_path = '/image-watermark'
         _query_builder = Configuration.base_uri
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
@@ -173,9 +170,12 @@ class Imaging(BaseController):
         # Prepare form parameters
         _form_parameters = {
             'image-url': image_url,
+            'watermark-url': watermark_url,
+            'opacity': opacity,
+            'format': format,
+            'position': position,
             'width': width,
-            'height': height,
-            'format': format
+            'height': height
         }
 
         # Prepare and execute request
@@ -243,8 +243,8 @@ class Imaging(BaseController):
             margin_bottom (int, optional): The document bottom margin (in mm)
             landscape (bool, optional): Set the document to lanscape
                 orientation
-            zoom (float, optional): Set the zoom factor when rendering the
-                page (2.0 for double size, 0.5 for half size)
+            zoom (int, optional): Set the zoom factor when rendering the page
+                (2.0 for double size, 0.5 for half size)
             grayscale (bool, optional): Render the final document in
                 grayscale
             media_print (bool, optional): Use @media print CSS styles to

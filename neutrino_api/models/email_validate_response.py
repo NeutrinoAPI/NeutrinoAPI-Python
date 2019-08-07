@@ -20,8 +20,8 @@ class EmailValidateResponse(object):
         domain_error (bool): True if this address has a domain error (e.g. no
             valid mail server records)
         is_freemail (bool): True if this address is a free-mail address
-        email (string): The full email address (this could be different to the
-            supplied address if typos-fixed is true)
+        email (string): The email address. If you have used the fix-typos
+            option then this will be the fixed address
         is_disposable (bool): True if this address is a disposable, temporary
             or darknet related email address
         typos_fixed (bool): True if typos have been fixed

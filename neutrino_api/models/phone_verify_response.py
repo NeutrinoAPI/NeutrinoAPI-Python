@@ -18,7 +18,7 @@ class PhoneVerifyResponse(object):
         calling (bool): True if the call is being made now
         security_code (string): The security code generated, you can save this
             code to perform your own verification or you can use the <a
-            href='https://www.neutrinoapi.com/api/verify-security-code/'>Verify
+            href="https://www.neutrinoapi.com/api/verify-security-code/">Verify
             Security Code API</a>
 
     """

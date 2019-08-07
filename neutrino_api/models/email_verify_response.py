@@ -19,8 +19,8 @@ class EmailVerifyResponse(object):
         verified (bool): True if this address has passed SMTP verification.
             Check the smtp-status and smtp-response fields for specific
             verification details
-        email (string): The full email address (this could be different to the
-            supplied address if typos-fixed is true)
+        email (string): The email address. If you have used the fix-typos
+            option then this will be the fixed address
         typos_fixed (bool): True if typos have been fixed
         syntax_error (bool): True if this address has a syntax error
         domain_error (bool): True if this address has a domain error (e.g. no
@@ -32,16 +32,16 @@ class EmailVerifyResponse(object):
             or darknet related email address
         is_personal (bool): True if this address is for a person. False if
             this is a role based address, e.g. admin@, help@, office@, etc.
-        smtp_status (string): The SMTP verification status for the
-            address:<br/><ul><li>ok - SMTP verification was successful, this
-            is a real address that can receive mail</li><li>invalid - this is
-            not a valid email address (has either a domain or syntax
-            error)</li><li>absent - this address is not registered with the
-            email service provider</li><li>unresponsive - the mail server(s)
-            for this address timed-out or refused to open an SMTP
-            connection</li><li>unknown - sorry, we could not reliably
-            determine the real status of this address (this address may or may
-            not exist)</li></ul>
+        smtp_status (string): The SMTP verification status for the address:
+            <ul> <li>ok - SMTP verification was successful, this is a real
+            address that can receive mail</li> <li>invalid - this is not a
+            valid email address (has either a domain or syntax error)</li>
+            <li>absent - this address is not registered with the email service
+            provider</li> <li>unresponsive - the mail server(s) for this
+            address timed-out or refused to open an SMTP connection</li>
+            <li>unknown - sorry, we could not reliably determine the real
+            status of this address (this address may or may not exist)</li>
+            </ul>
         smtp_response (string): The raw SMTP response message received during
             verification
         is_catch_all (bool): True if this email domain has a catch-all policy

@@ -28,24 +28,31 @@ class GeocodeReverseResponse(object):
         currency_code (string): ISO 4217 currency code associated with the
             country
         location_type (string): The detected location type ordered roughly
-            from most to least precise, possible values
-            are:<br/><ul><li>address - indicates a precise street
-            address</li><li>street - accurate to the street level but may not
-            point to the exact location of the house/building
-            number</li><li>city - accurate to the city level, this includes
-            villages, towns, suburbs, etc</li><li>postal-code - indicates a
-            postal code area (no house or street information
-            present)</li><li>railway - location is part of a rail network such
-            as a station or railway track</li><li>natural - indicates a
-            natural feature, for example a mountain peak or a
-            waterway</li><li>island - location is an island or
-            archipelago</li><li>administrative - indicates an administrative
-            boundary such as a country, state or province</li></ul>
+            from most to least precise, possible values are: <ul> <li>address
+            - indicates a precise street address</li> <li>street - accurate to
+            the street level but may not point to the exact location of the
+            house/building number</li> <li>city - accurate to the city level,
+            this includes villages, towns, suburbs, etc</li> <li>postal-code -
+            indicates a postal code area (no house or street information
+            present)</li> <li>railway - location is part of a rail network
+            such as a station or railway track</li> <li>natural - indicates a
+            natural feature, for example a mountain peak or a waterway</li>
+            <li>island - location is an island or archipelago</li>
+            <li>administrative - indicates an administrative boundary such as
+            a country, state or province</li> </ul>
         location_tags (list of string): Array of strings containing any
             location tags associated with the address. Tags are additional
             pieces of metadata about a specific location, there are thousands
             of different tags. Some examples of tags: shop, office, cafe,
             bank, pub
+        latitude (int): The location latitude
+        longitude (int): The location longitude
+        timezone (dict<object, string>): Map containing timezone details for
+            the location: <ul> <li>id - the time zone ID as per the IANA time
+            zone database (tzdata)</li> <li>name - the time zone name</li>
+            <li>abbr - the time zone abbreviation</li> <li>date - the current
+            date within the time zone (ISO format)</li> <li>time - the current
+            time within the time zone (ISO format)</li> </ul>
 
     """
 
@@ -62,7 +69,10 @@ class GeocodeReverseResponse(object):
         "country_code_3":'countryCode3',
         "currency_code":'currencyCode',
         "location_type":'locationType',
-        "location_tags":'locationTags'
+        "location_tags":'locationTags',
+        "latitude":'latitude',
+        "longitude":'longitude',
+        "timezone":'timezone'
     }
 
     def __init__(self,
@@ -77,7 +87,10 @@ class GeocodeReverseResponse(object):
                  country_code_3=None,
                  currency_code=None,
                  location_type=None,
-                 location_tags=None):
+                 location_tags=None,
+                 latitude=None,
+                 longitude=None,
+                 timezone=None):
         """Constructor for the GeocodeReverseResponse class"""
 
         # Initialize members of the class
@@ -93,6 +106,9 @@ class GeocodeReverseResponse(object):
         self.currency_code = currency_code
         self.location_type = location_type
         self.location_tags = location_tags
+        self.latitude = latitude
+        self.longitude = longitude
+        self.timezone = timezone
 
 
     @classmethod
@@ -125,6 +141,9 @@ class GeocodeReverseResponse(object):
         currency_code = dictionary.get('currencyCode')
         location_type = dictionary.get('locationType')
         location_tags = dictionary.get('locationTags')
+        latitude = dictionary.get('latitude')
+        longitude = dictionary.get('longitude')
+        timezone = dictionary.get('timezone')
 
         # Return an object of this model
         return cls(country,
@@ -138,6 +157,9 @@ class GeocodeReverseResponse(object):
                    country_code_3,
                    currency_code,
                    location_type,
-                   location_tags)
+                   location_tags,
+                   latitude,
+                   longitude,
+                   timezone)
 
 

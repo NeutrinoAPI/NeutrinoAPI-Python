@@ -17,21 +17,20 @@ class IPProbeResponse(object):
         valid (bool): Is this a valid IPv4 or IPv6 address
         country (string): Full country name
         provider_type (string): The detected provider type, possible values
-            are:<br/><ul><li>isp - IP belongs to an internet service provider.
+            are: <ul> <li>isp - IP belongs to an internet service provider.
             This includes both mobile, home and business internet
-            providers</li><li>hosting - IP belongs to a hosting company. This
+            providers</li> <li>hosting - IP belongs to a hosting company. This
             includes website hosting, cloud computing platforms and colocation
-            facilities</li><li>vpn - IP belongs to a VPN
-            provider</li><li>proxy - IP belongs to a proxy service. This
-            includes HTTP/SOCKS proxies and browser based
-            proxies</li><li>university - IP belongs to a
-            university/college/campus</li><li>government - IP belongs to a
-            government department. This includes military
-            facilities</li><li>commercial - IP belongs to a commercial entity
-            such as a corporate headquarters or company office</li><li>unknown
-            - could not identify the provider type</li></ul>
+            facilities</li> <li>vpn - IP belongs to a VPN provider</li>
+            <li>proxy - IP belongs to a proxy service. This includes
+            HTTP/SOCKS proxies and browser based proxies</li> <li>university -
+            IP belongs to a university/college/campus</li> <li>government - IP
+            belongs to a government department. This includes military
+            facilities</li> <li>commercial - IP belongs to a commercial entity
+            such as a corporate headquarters or company office</li>
+            <li>unknown - could not identify the provider type</li> </ul>
         country_code (string): ISO 2-letter country code
-        hostname (string): The IPs hostname (PTR)
+        hostname (string): The IPs full hostname (PTR)
         provider_domain (string): The domain name of the provider
         city (string): Full city name (if detectable)
         provider_website (string): The website URL for the provider
@@ -65,6 +64,7 @@ class IPProbeResponse(object):
             company name
         as_age (int): The age of the autonomous system (AS) in number of years
             since registration
+        host_domain (string): The IPs host domain
 
     """
 
@@ -94,7 +94,8 @@ class IPProbeResponse(object):
         "as_country_code_3":'asCountryCode3',
         "as_domains":'asDomains',
         "as_description":'asDescription',
-        "as_age":'asAge'
+        "as_age":'asAge',
+        "host_domain":'hostDomain'
     }
 
     def __init__(self,
@@ -122,7 +123,8 @@ class IPProbeResponse(object):
                  as_country_code_3=None,
                  as_domains=None,
                  as_description=None,
-                 as_age=None):
+                 as_age=None,
+                 host_domain=None):
         """Constructor for the IPProbeResponse class"""
 
         # Initialize members of the class
@@ -151,6 +153,7 @@ class IPProbeResponse(object):
         self.as_domains = as_domains
         self.as_description = as_description
         self.as_age = as_age
+        self.host_domain = host_domain
 
 
     @classmethod
@@ -196,6 +199,7 @@ class IPProbeResponse(object):
         as_domains = dictionary.get('asDomains')
         as_description = dictionary.get('asDescription')
         as_age = dictionary.get('asAge')
+        host_domain = dictionary.get('hostDomain')
 
         # Return an object of this model
         return cls(valid,
@@ -222,6 +226,7 @@ class IPProbeResponse(object):
                    as_country_code_3,
                    as_domains,
                    as_description,
-                   as_age)
+                   as_age,
+                   host_domain)
 
 

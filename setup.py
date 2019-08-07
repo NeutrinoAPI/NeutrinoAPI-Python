@@ -1,20 +1,24 @@
+# -*- coding: utf-8 -*-
+
+import sys
 from setuptools import setup, find_packages
 
-# Try to convert markdown README to rst format for PyPI.
-try:
-    import pypandoc
-    long_description = pypandoc.convert('README.md', 'rst')
-except(IOError, ImportError):
-    long_description = open('README.md').read()
+if sys.version_info[0] < 3:
+    with open("README.md", "r") as fh:
+        long_description = fh.read()
+else:
+    with open("README.md", "r", encoding="utf-8") as fh:
+        long_description = fh.read()
 
 setup(
     name='neutrino_api',
-    version='3.4.1',
+    version='3.4.3',
     description='The general-purpose API',
     long_description=long_description,
-    author='NeutrinoAPI',
+    long_description_content_type="text/markdown",
+    author='Neutrino API',
     author_email='tech@neutrinoapi.com',
-    url='https://www.neutrinoapi.com/contact-us/',
+    url='https://www.neutrinoapi.com/',
     packages=find_packages(),
     install_requires=[
         'requests>=2.9.1, <3.0',

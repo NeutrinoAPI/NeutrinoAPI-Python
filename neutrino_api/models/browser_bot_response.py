@@ -34,7 +34,7 @@ class BrowserBotResponse(object):
         http_redirect_url (string): The redirected URL if the URL responded
             with an HTTP redirect
         server_ip (string): The HTTP servers IP address
-        load_time (float): The number of seconds taken to load the page (from
+        load_time (int): The number of seconds taken to load the page (from
             initial request until DOM ready)
         response_headers (dict<object, string>): Map containing all the HTTP
             response headers the URL responded with
@@ -42,8 +42,8 @@ class BrowserBotResponse(object):
         security_details (dict<object, string>): Map containing details of the
             TLS/SSL setup
         elements (list of string): Array containing all the elements matching
-            the supplied selector.<br/>Each element object will contain the
-            text content, HTML content and all current element attributes
+            the supplied selector. Each element object will contain the text
+            content, HTML content and all current element attributes
         exec_results (list of string): If you executed any JavaScript this
             array holds the results as objects
 

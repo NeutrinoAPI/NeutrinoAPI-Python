@@ -10,7 +10,6 @@ from neutrino_api.api_helper import APIHelper
 from neutrino_api.http.http_context import HttpContext
 from neutrino_api.http.requests_client import RequestsClient
 from neutrino_api.exceptions.api_error_exception import APIErrorException
-from neutrino_api.exceptions.api_exception import APIException
 
 class BaseController(object):
 
@@ -28,7 +27,7 @@ class BaseController(object):
 
     """
 
-    http_client = RequestsClient(timeout=45)
+    http_client = RequestsClient(timeout=90)
 
     http_call_back = None
 
@@ -92,10 +91,10 @@ class BaseController(object):
 
         """
         if context.response.status_code == 400:
-            raise APIErrorException('Your API request has been rejected. Check the error code for details', context)
+            raise APIErrorException('Your API request has been rejected. Check error code for details', context)
         elif context.response.status_code == 403:
-            raise APIException('You have failed to authenticate or are using an invalid API path', context)
+            raise APIErrorException('You have failed to authenticate', context)
         elif context.response.status_code == 500:
-            raise APIException('We messed up, sorry! Your request has caused a fatal exception', context)
+            raise APIErrorException('We messed up, sorry! Your request has caused a fatal exception', context)
         elif (context.response.status_code < 200) or (context.response.status_code > 208): #[200,208] = HTTP OK
-            raise APIException('HTTP response not OK.', context)
+            raise APIErrorException('We messed up, sorry! Your request has caused an error', context)

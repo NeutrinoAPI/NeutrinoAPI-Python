@@ -18,22 +18,22 @@ class HLRLookupResponse(object):
         international_calling_code (int): The numbers international calling
             code
         mnc (string): The mobile MNC number (Mobile Network Code)
-        number_type (string): The number type, possible values
-            are:<br/><ul><li>mobile</li><li>fixed-line</li><li>premium-rate</li
-            ><li>toll-free</li><li>voip</li><li>unknown</li></ul>
+        number_type (string): The number type, possible values are: <ul>
+            <li>mobile</li> <li>fixed-line</li> <li>premium-rate</li>
+            <li>toll-free</li> <li>voip</li> <li>unknown</li> </ul>
         hlr_valid (bool): Was the HLR lookup successful. If true then this is
             a working and registered cell-phone or mobile device (SMS and
             phone calls will be delivered)
-        hlr_status (string): The HLR lookup status, possible values
-            are:<br/><ul><li>ok - the HLR lookup was successful and the device
-            is connected</li><li>absent - the number was once registered but
-            the device has been switched off or out of network range for some
-            time</li><li>unknown - the number is not known by the mobile
-            network</li><li>invalid  - the number is not a valid mobile MSISDN
-            number</li><li>fixed-line - the number is a registered fixed-line
-            not mobile</li><li>voip - the number has been detected as a VOIP
-            line</li><li>failed - the HLR lookup has failed, we could not
-            determine the real status of this number</li></ul>
+        hlr_status (string): The HLR lookup status, possible values are: <ul>
+            <li>ok - the HLR lookup was successful and the device is
+            connected</li> <li>absent - the number was once registered but the
+            device has been switched off or out of network range for some
+            time</li> <li>unknown - the number is not known by the mobile
+            network</li> <li>invalid - the number is not a valid mobile MSISDN
+            number</li> <li>fixed-line - the number is a registered fixed-line
+            not mobile</li> <li>voip - the number has been detected as a VOIP
+            line</li> <li>failed - the HLR lookup has failed, we could not
+            determine the real status of this number</li> </ul>
         ported_network (string): If the number has been ported, the ported to
             carrier name
         imsi (string): The mobile IMSI number (International Mobile Subscriber

@@ -16,10 +16,12 @@ class ConvertResponse(object):
     Attributes:
         valid (bool): True if the coversion was successful and produced a
             valid result
-        result (string): The result of the conversion
+        result (string): The result of the conversion in string format
         from_value (string): The value being converted from
         to_type (string): The type being converted to
         from_type (string): The type of the value being converted from
+        result_float (int): The result of the conversion as a floating-point
+            number
 
     """
 
@@ -29,7 +31,8 @@ class ConvertResponse(object):
         "result":'result',
         "from_value":'fromValue',
         "to_type":'toType',
-        "from_type":'fromType'
+        "from_type":'fromType',
+        "result_float":'resultFloat'
     }
 
     def __init__(self,
@@ -37,7 +40,8 @@ class ConvertResponse(object):
                  result=None,
                  from_value=None,
                  to_type=None,
-                 from_type=None):
+                 from_type=None,
+                 result_float=None):
         """Constructor for the ConvertResponse class"""
 
         # Initialize members of the class
@@ -46,6 +50,7 @@ class ConvertResponse(object):
         self.from_value = from_value
         self.to_type = to_type
         self.from_type = from_type
+        self.result_float = result_float
 
 
     @classmethod
@@ -71,12 +76,14 @@ class ConvertResponse(object):
         from_value = dictionary.get('fromValue')
         to_type = dictionary.get('toType')
         from_type = dictionary.get('fromType')
+        result_float = dictionary.get('resultFloat')
 
         # Return an object of this model
         return cls(valid,
                    result,
                    from_value,
                    to_type,
-                   from_type)
+                   from_type,
+                   result_float)
 
 

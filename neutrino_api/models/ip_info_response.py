@@ -16,18 +16,26 @@ class IPInfoResponse(object):
     Attributes:
         valid (bool): Is this a valid IPv4 or IPv6 address
         country (string): Full country name
-        hostname (string): The IPs hostname (only set if reverse-lookup has
-            been used)
-        city (string): Full city name (if detectable)
+        hostname (string): The IPs full hostname (only set if reverse-lookup
+            has been used)
+        city (string): Name of the city (if detectable)
         country_code (string): ISO 2-letter country code
-        latitude (float): Location latitude
-        region (string): Full region name (if detectable)
-        longitude (float): Location longitude
+        latitude (int): Location latitude
+        region (string): Name of the region (if detectable)
+        longitude (int): Location longitude
         continent_code (string): ISO 2-letter continent code
         ip (string): The IP address
         country_code_3 (string): ISO 3-letter country code
         currency_code (string): ISO 4217 currency code associated with the
             country
+        host_domain (string): The IPs host domain (only set if reverse-lookup
+            has been used)
+        timezone (dict<object, string>): Map containing timezone details for
+            the location: <ul> <li>id - the time zone ID as per the IANA time
+            zone database (tzdata)</li> <li>name - the time zone name</li>
+            <li>abbr - the time zone abbreviation</li> <li>date - the current
+            date within the time zone (ISO format)</li> <li>time - the current
+            time within the time zone (ISO format)</li> </ul>
 
     """
 
@@ -44,7 +52,9 @@ class IPInfoResponse(object):
         "continent_code":'continentCode',
         "ip":'ip',
         "country_code_3":'countryCode3',
-        "currency_code":'currencyCode'
+        "currency_code":'currencyCode',
+        "host_domain":'hostDomain',
+        "timezone":'timezone'
     }
 
     def __init__(self,
@@ -59,7 +69,9 @@ class IPInfoResponse(object):
                  continent_code=None,
                  ip=None,
                  country_code_3=None,
-                 currency_code=None):
+                 currency_code=None,
+                 host_domain=None,
+                 timezone=None):
         """Constructor for the IPInfoResponse class"""
 
         # Initialize members of the class
@@ -75,6 +87,8 @@ class IPInfoResponse(object):
         self.ip = ip
         self.country_code_3 = country_code_3
         self.currency_code = currency_code
+        self.host_domain = host_domain
+        self.timezone = timezone
 
 
     @classmethod
@@ -107,6 +121,8 @@ class IPInfoResponse(object):
         ip = dictionary.get('ip')
         country_code_3 = dictionary.get('countryCode3')
         currency_code = dictionary.get('currencyCode')
+        host_domain = dictionary.get('hostDomain')
+        timezone = dictionary.get('timezone')
 
         # Return an object of this model
         return cls(valid,
@@ -120,6 +136,8 @@ class IPInfoResponse(object):
                    continent_code,
                    ip,
                    country_code_3,
-                   currency_code)
+                   currency_code,
+                   host_domain,
+                   timezone)
 
 

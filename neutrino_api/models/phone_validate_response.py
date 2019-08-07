@@ -20,16 +20,14 @@ class PhoneValidateResponse(object):
             country code
         location (string): The phone number location. Could be a city, region
             or country depending on the type of number
-        is_mobile (bool): True if this is a mobile number (only true with 100%
-            certainty, if the number type is unknown this value will be
-            false)
-        mtype (string): The predicted number type.<br/>Note: type detection is
-            not possible in some countries which have no predictable prefix
-            pattern (you can use the HLR Lookup API in these cases)<br/>
-            Possible values
-            are:<br/><ul><li>mobile</li><li>fixed-line</li><li>premium-rate</li
-            ><li>toll-free</li><li>voip</li><li>unknown (use HLR lookup
-            instead)</li></ul>
+        is_mobile (bool): True if this is a mobile number. If the number type
+            is unknown this value will be false, use HLR lookup instead
+        mtype (string): The predicted number type. Note: type detection is not
+            possible in some countries which have no predictable prefix
+            pattern (you can use the HLR Lookup API in these cases) Possible
+            values are: <ul> <li>mobile</li> <li>fixed-line</li>
+            <li>premium-rate</li> <li>toll-free</li> <li>voip</li> <li>unknown
+            (use HLR lookup)</li> </ul>
         international_number (string): The number represented in full
             international format (E.164)
         local_number (string): The number represented in local dialing format

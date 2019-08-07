@@ -40,6 +40,8 @@ class IPBlocklistResponse(object):
             Unix time or 0 if not listed recently)
         blocklists (list of string): An array of strings indicating which
             blocklists this IP is listed on (empty if not listed)
+        sensors (list of string): An array of objects containing details on
+            which sensors were used to detect this IP
 
     """
 
@@ -60,7 +62,8 @@ class IPBlocklistResponse(object):
         "is_listed":'isListed',
         "is_vpn":'isVpn',
         "last_seen":'lastSeen',
-        "blocklists":'blocklists'
+        "blocklists":'blocklists',
+        "sensors":'sensors'
     }
 
     def __init__(self,
@@ -79,7 +82,8 @@ class IPBlocklistResponse(object):
                  is_listed=None,
                  is_vpn=None,
                  last_seen=None,
-                 blocklists=None):
+                 blocklists=None,
+                 sensors=None):
         """Constructor for the IPBlocklistResponse class"""
 
         # Initialize members of the class
@@ -99,6 +103,7 @@ class IPBlocklistResponse(object):
         self.is_vpn = is_vpn
         self.last_seen = last_seen
         self.blocklists = blocklists
+        self.sensors = sensors
 
 
     @classmethod
@@ -135,6 +140,7 @@ class IPBlocklistResponse(object):
         is_vpn = dictionary.get('isVpn')
         last_seen = dictionary.get('lastSeen')
         blocklists = dictionary.get('blocklists')
+        sensors = dictionary.get('sensors')
 
         # Return an object of this model
         return cls(ip,
@@ -152,6 +158,7 @@ class IPBlocklistResponse(object):
                    is_listed,
                    is_vpn,
                    last_seen,
-                   blocklists)
+                   blocklists,
+                   sensors)
 
 

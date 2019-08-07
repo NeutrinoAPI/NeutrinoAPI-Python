@@ -49,6 +49,8 @@ class URLInfoResponse(object):
             redirect
         content (string): The actual content this URL responded with. Only set
             if the 'fetch-content' option was used
+        is_timeout (bool): True if a timeout occurred while loading the URL.
+            You can set the timeout with the request parameter 'timeout'
 
     """
 
@@ -76,7 +78,8 @@ class URLInfoResponse(object):
         "url_protocol":'urlProtocol',
         "content_type":'contentType',
         "http_redirect":'httpRedirect',
-        "content":'content'
+        "content":'content',
+        "is_timeout":'isTimeout'
     }
 
     def __init__(self,
@@ -102,7 +105,8 @@ class URLInfoResponse(object):
                  url_protocol=None,
                  content_type=None,
                  http_redirect=None,
-                 content=None):
+                 content=None,
+                 is_timeout=None):
         """Constructor for the URLInfoResponse class"""
 
         # Initialize members of the class
@@ -129,6 +133,7 @@ class URLInfoResponse(object):
         self.content_type = content_type
         self.http_redirect = http_redirect
         self.content = content
+        self.is_timeout = is_timeout
 
 
     @classmethod
@@ -172,6 +177,7 @@ class URLInfoResponse(object):
         content_type = dictionary.get('contentType')
         http_redirect = dictionary.get('httpRedirect')
         content = dictionary.get('content')
+        is_timeout = dictionary.get('isTimeout')
 
         # Return an object of this model
         return cls(http_status_message,
@@ -196,6 +202,7 @@ class URLInfoResponse(object):
                    url_protocol,
                    content_type,
                    http_redirect,
-                   content)
+                   content,
+                   is_timeout)
 
 
