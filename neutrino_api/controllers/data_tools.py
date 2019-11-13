@@ -47,7 +47,7 @@ class DataTools(BaseController):
 
         # Prepare query URL
         _url_path = '/email-validate'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -95,7 +95,7 @@ class DataTools(BaseController):
 
         # Prepare query URL
         _url_path = '/user-agent-info'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -146,7 +146,7 @@ class DataTools(BaseController):
 
         # Prepare query URL
         _url_path = '/bad-word-filter'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -199,7 +199,7 @@ class DataTools(BaseController):
 
         # Prepare query URL
         _url_path = '/convert'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -258,7 +258,7 @@ class DataTools(BaseController):
 
         # Prepare query URL
         _url_path = '/phone-validate'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 

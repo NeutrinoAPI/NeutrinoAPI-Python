@@ -35,7 +35,9 @@ class IPBlocklistResponse(object):
         is_spam_bot (bool): IP address is hosting a spam bot, comment spamming
             or any other spamming type software
         is_listed (bool): Is this IP on a blocklist
-        is_vpn (bool): IP has been detected as belonging to a VPN provider
+        is_vpn (bool): IP belongs to a VPN provider. This field is only kept
+            for backward compatibility, for VPN detection use the <a
+            href="https://www.neutrinoapi.com/api/ip-probe/">IP Probe</a> API
         last_seen (int): The last time this IP was seen on a blocklist (in
             Unix time or 0 if not listed recently)
         blocklists (list of string): An array of strings indicating which

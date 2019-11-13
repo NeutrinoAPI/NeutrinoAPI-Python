@@ -75,8 +75,8 @@ def image_resize(self,
 
 ```python
 image_url = 'image-url'
-width = 128
-height = 128
+width = 189
+height = 189
 format = 'png'
 
 result = imaging_controller.image_resize(image_url, width, height, format)
@@ -160,8 +160,8 @@ watermark_url = 'watermark-url'
 opacity = 50
 format = 'png'
 position = 'center'
-width = 128
-height = 128
+width = 189
+height = 189
 
 result = imaging_controller.image_watermark(image_url, watermark_url, opacity, format, position, width, height)
 
@@ -273,7 +273,7 @@ media_queries = False
 forms = False
 css = 'css'
 image_width = 1024
-image_height = 128
+image_height = 189
 render_delay = 0
 header_text_left = 'header-text-left'
 header_text_center = 'header-text-center'
@@ -289,8 +289,8 @@ footer_size = 9
 footer_font = 'Courier'
 footer_font_size = 11
 footer_line = False
-page_width = 128
-page_height = 128
+page_width = 189
+page_height = 189
 
 result = imaging_controller.html_5_render(content, format, page_size, title, margin, margin_left, margin_right, margin_top, margin_bottom, landscape, zoom, grayscale, media_print, media_queries, forms, css, image_width, image_height, render_delay, header_text_left, header_text_center, header_text_right, header_size, header_font, header_font_size, header_line, footer_text_left, footer_text_center, footer_text_right, footer_size, footer_font, footer_font_size, footer_line, page_width, page_height)
 
@@ -426,7 +426,7 @@ def sms_verify(self,
 ```python
 number = 'number'
 code_length = 5
-security_code = 128
+security_code = 189
 country_code = 'country-code'
 language_code = 'en'
 
@@ -500,7 +500,7 @@ def phone_verify(self,
 ```python
 number = 'number'
 code_length = 6
-security_code = 128
+security_code = 189
 playback_delay = 800
 country_code = 'country-code'
 language_code = 'en'
@@ -1045,7 +1045,7 @@ def browser_bot(self,
                     timeout=30,
                     delay=3,
                     selector=None,
-                    mexec=,
+                    mexec=None,
                     user_agent=None,
                     ignore_certificate_errors=False)
 ```
@@ -1058,7 +1058,7 @@ def browser_bot(self,
 | timeout |  ``` Optional ```  ``` DefaultValue ```  | Timeout in seconds. Give up if still trying to load the page after this number of seconds |
 | delay |  ``` Optional ```  ``` DefaultValue ```  | Delay in seconds to wait before capturing any page data, executing selectors or JavaScript |
 | selector |  ``` Optional ```  | Extract content from the page DOM using this selector. Commonly known as a CSS selector, you can find a good reference <a href="https://www.w3schools.com/cssref/css_selectors.asp">here</a> |
-| mexec |  ``` Optional ```  ``` Collection ```  ``` DefaultValue ```  | Execute JavaScript on the page. Each array element should contain a valid JavaScript statement in string form. If a statement returns any kind of value it will be returned in the 'exec-results' response. For your convenience you can also use the following special shortcut functions: <div> sleep(seconds); Just wait/sleep for the specified number of seconds. click('selector'); Click on the first element matching the given selector. focus('selector'); Focus on the first element matching the given selector. keys('characters'); Send the specified keyboard characters. Use click() or focus() first to send keys to a specific element. enter(); Send the Enter key. tab(); Send the Tab key. </div> Example: <div> [ "click('#button-id')", "sleep(1)", "click('.field-class')", "keys('1234')", "enter()" ] </div> |
+| mexec |  ``` Optional ```  ``` Collection ```  | Execute JavaScript on the page. Each array element should contain a valid JavaScript statement in string form. If a statement returns any kind of value it will be returned in the 'exec-results' response. For your convenience you can also use the following special shortcut functions: <div> sleep(seconds); Just wait/sleep for the specified number of seconds. click('selector'); Click on the first element matching the given selector. focus('selector'); Focus on the first element matching the given selector. keys('characters'); Send the specified keyboard characters. Use click() or focus() first to send keys to a specific element. enter(); Send the Enter key. tab(); Send the Tab key. </div> Example: <div> [ "click('#button-id')", "sleep(1)", "click('.field-class')", "keys('1234')", "enter()" ] </div> |
 | userAgent |  ``` Optional ```  | Override the browsers default user-agent string with this one |
 | ignoreCertificateErrors |  ``` Optional ```  ``` DefaultValue ```  | Ignore any TLS/SSL certificate errors and load the page anyway |
 
@@ -1071,8 +1071,7 @@ url = 'url'
 timeout = 30
 delay = 3
 selector = 'selector'
-mexec_value = '[]'
-mexec = json.loads(mexec_value)
+mexec = ['exec']
 user_agent = 'user-agent'
 ignore_certificate_errors = False
 

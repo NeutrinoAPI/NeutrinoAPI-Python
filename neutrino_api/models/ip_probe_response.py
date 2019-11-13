@@ -65,6 +65,8 @@ class IPProbeResponse(object):
         as_age (int): The age of the autonomous system (AS) in number of years
             since registration
         host_domain (string): The IPs host domain
+        vpn_domain (string): The domain of the VPN provider (may be empty if
+            the VPN domain is not detectable)
 
     """
 
@@ -95,7 +97,8 @@ class IPProbeResponse(object):
         "as_domains":'asDomains',
         "as_description":'asDescription',
         "as_age":'asAge',
-        "host_domain":'hostDomain'
+        "host_domain":'hostDomain',
+        "vpn_domain":'vpnDomain'
     }
 
     def __init__(self,
@@ -124,7 +127,8 @@ class IPProbeResponse(object):
                  as_domains=None,
                  as_description=None,
                  as_age=None,
-                 host_domain=None):
+                 host_domain=None,
+                 vpn_domain=None):
         """Constructor for the IPProbeResponse class"""
 
         # Initialize members of the class
@@ -154,6 +158,7 @@ class IPProbeResponse(object):
         self.as_description = as_description
         self.as_age = as_age
         self.host_domain = host_domain
+        self.vpn_domain = vpn_domain
 
 
     @classmethod
@@ -200,6 +205,7 @@ class IPProbeResponse(object):
         as_description = dictionary.get('asDescription')
         as_age = dictionary.get('asAge')
         host_domain = dictionary.get('hostDomain')
+        vpn_domain = dictionary.get('vpnDomain')
 
         # Return an object of this model
         return cls(valid,
@@ -227,6 +233,7 @@ class IPProbeResponse(object):
                    as_domains,
                    as_description,
                    as_age,
-                   host_domain)
+                   host_domain,
+                   vpn_domain)
 
 

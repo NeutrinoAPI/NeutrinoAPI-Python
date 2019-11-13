@@ -12,7 +12,7 @@ else:
 
 setup(
     name='neutrino_api',
-    version='3.4.3',
+    version='3.4.5',
     description='The general-purpose API',
     long_description=long_description,
     long_description_content_type="text/markdown",

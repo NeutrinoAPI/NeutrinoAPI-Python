@@ -52,7 +52,7 @@ class WWW(BaseController):
 
         # Prepare query URL
         _url_path = '/url-info'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -113,7 +113,7 @@ class WWW(BaseController):
 
         # Prepare query URL
         _url_path = '/html-clean'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -137,7 +137,7 @@ class WWW(BaseController):
                     timeout=30,
                     delay=3,
                     selector=None,
-                    mexec=,
+                    mexec=None,
                     user_agent=None,
                     ignore_certificate_errors=False):
         """Does a POST request to /browser-bot.
@@ -189,7 +189,7 @@ class WWW(BaseController):
 
         # Prepare query URL
         _url_path = '/browser-bot'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 

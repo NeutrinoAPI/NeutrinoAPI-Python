@@ -43,7 +43,7 @@ class SecurityAndNetworking(BaseController):
 
         # Prepare query URL
         _url_path = '/ip-probe'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -93,7 +93,7 @@ class SecurityAndNetworking(BaseController):
 
         # Prepare query URL
         _url_path = '/email-verify'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -141,7 +141,7 @@ class SecurityAndNetworking(BaseController):
 
         # Prepare query URL
         _url_path = '/ip-blocklist'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -194,7 +194,7 @@ class SecurityAndNetworking(BaseController):
 
         # Prepare query URL
         _url_path = '/host-reputation'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 

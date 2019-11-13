@@ -45,7 +45,7 @@ class Telephony(BaseController):
 
         # Prepare query URL
         _url_path = '/verify-security-code'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -97,7 +97,7 @@ class Telephony(BaseController):
 
         # Prepare query URL
         _url_path = '/hlr-lookup'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -151,7 +151,7 @@ class Telephony(BaseController):
 
         # Prepare query URL
         _url_path = '/phone-playback'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -218,7 +218,7 @@ class Telephony(BaseController):
 
         # Prepare query URL
         _url_path = '/sms-verify'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -278,7 +278,7 @@ class Telephony(BaseController):
 
         # Prepare query URL
         _url_path = '/sms-message'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -350,7 +350,7 @@ class Telephony(BaseController):
 
         # Prepare query URL
         _url_path = '/phone-verify'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 

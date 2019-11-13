@@ -48,7 +48,7 @@ class Imaging(BaseController):
 
         # Prepare query URL
         _url_path = '/image-resize'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -101,7 +101,7 @@ class Imaging(BaseController):
 
         # Prepare query URL
         _url_path = '/qr-code'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -163,7 +163,7 @@ class Imaging(BaseController):
 
         # Prepare query URL
         _url_path = '/image-watermark'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -311,7 +311,7 @@ class Imaging(BaseController):
 
         # Prepare query URL
         _url_path = '/html5-render'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 

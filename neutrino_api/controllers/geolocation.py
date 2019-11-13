@@ -56,7 +56,7 @@ class Geolocation(BaseController):
 
         # Prepare query URL
         _url_path = '/geocode-reverse'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -110,7 +110,7 @@ class Geolocation(BaseController):
 
         # Prepare query URL
         _url_path = '/ip-info'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
@@ -173,7 +173,7 @@ class Geolocation(BaseController):
 
         # Prepare query URL
         _url_path = '/geocode-address'
-        _query_builder = Configuration.base_uri
+        _query_builder = Configuration.get_base_uri()
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
